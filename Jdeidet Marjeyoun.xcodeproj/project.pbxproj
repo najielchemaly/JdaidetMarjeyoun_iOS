@@ -56,6 +56,9 @@
 		4278E7021F67D211007530AB /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4278E7001F67D211007530AB /* HomeCollectionViewCell.xib */; };
 		4278E7051F67D732007530AB /* HomePagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4278E7031F67D732007530AB /* HomePagerView.swift */; };
 		4278E7061F67D732007530AB /* HomePagerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4278E7041F67D732007530AB /* HomePagerView.xib */; };
+		428B6FF11F7826BA0036E67C /* FeesPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B6FEF1F7826BA0036E67C /* FeesPopup.swift */; };
+		428B6FF21F7826BA0036E67C /* FeesPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 428B6FF01F7826BA0036E67C /* FeesPopup.xib */; };
+		428B6FF41F7844510036E67C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B6FF31F7844510036E67C /* AboutViewController.swift */; };
 		42A070F61F6D27E500BA61CF /* ToolBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42A070F51F6D27E500BA61CF /* ToolBarView.xib */; };
 		42A070F81F6D2DAE00BA61CF /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A070F71F6D2DAE00BA61CF /* ToolBarView.swift */; };
 		42A070FA1F6D30F100BA61CF /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A070F91F6D30F100BA61CF /* NewsViewController.swift */; };
@@ -122,6 +125,9 @@
 		4278E7001F67D211007530AB /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		4278E7031F67D732007530AB /* HomePagerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePagerView.swift; sourceTree = "<group>"; };
 		4278E7041F67D732007530AB /* HomePagerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePagerView.xib; sourceTree = "<group>"; };
+		428B6FEF1F7826BA0036E67C /* FeesPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeesPopup.swift; sourceTree = "<group>"; };
+		428B6FF01F7826BA0036E67C /* FeesPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeesPopup.xib; sourceTree = "<group>"; };
+		428B6FF31F7844510036E67C /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		42A070F51F6D27E500BA61CF /* ToolBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolBarView.xib; sourceTree = "<group>"; };
 		42A070F71F6D2DAE00BA61CF /* ToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
 		42A070F91F6D30F100BA61CF /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +235,7 @@
 				4228BD961F6DFAED00DE3345 /* PlacesDetailsViewController.swift */,
 				425A39D51F74EF260026056C /* MapViewController.swift */,
 				425A39D71F750C690026056C /* FeesViewController.swift */,
+				428B6FF31F7844510036E67C /* AboutViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -246,6 +253,8 @@
 		427896121F668579001DBE5C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				428B6FEF1F7826BA0036E67C /* FeesPopup.swift */,
+				428B6FF01F7826BA0036E67C /* FeesPopup.xib */,
 				4228BD921F6DF7A200DE3345 /* PlacesTableViewCell.swift */,
 				4228BD931F6DF7A200DE3345 /* PlacesTableViewCell.xib */,
 				427896131F668590001DBE5C /* PopupView.xib */,
@@ -369,6 +378,7 @@
 				4278961B1F66A1CB001DBE5C /* DINNextLTArabic-Regular-1.ttf in Resources */,
 				4278E7061F67D732007530AB /* HomePagerView.xib in Resources */,
 				4228BD951F6DF7A200DE3345 /* PlacesTableViewCell.xib in Resources */,
+				428B6FF21F7826BA0036E67C /* FeesPopup.xib in Resources */,
 				42301E6C1F6DD70100F41F7F /* ContactsHeaderTableViewCell.xib in Resources */,
 				427895F71F666632001DBE5C /* LaunchScreen.storyboard in Resources */,
 				4278E7021F67D211007530AB /* HomeCollectionViewCell.xib in Resources */,
@@ -470,6 +480,7 @@
 				4278E7051F67D732007530AB /* HomePagerView.swift in Sources */,
 				42301E631F6DB86E00F41F7F /* ComplaintViewController.swift in Sources */,
 				4228BD911F6DF41800DE3345 /* PlacesViewController.swift in Sources */,
+				428B6FF11F7826BA0036E67C /* FeesPopup.swift in Sources */,
 				4278960A1F666E1A001DBE5C /* Alamofire+Synchronous.swift in Sources */,
 				425BBA5B1F69184F00C6511B /* PSErrorAlertView.swift in Sources */,
 				425A39D61F74EF260026056C /* MapViewController.swift in Sources */,
@@ -485,6 +496,7 @@
 				42301E551F6D53ED00F41F7F /* DatabaseObjects.swift in Sources */,
 				42301E721F6DDC1200F41F7F /* Contacts.swift in Sources */,
 				427896051F666D7F001DBE5C /* SelectLanguageViewController.swift in Sources */,
+				428B6FF41F7844510036E67C /* AboutViewController.swift in Sources */,
 				42A0710A1F6D4E6A00BA61CF /* Complaint.swift in Sources */,
 				42A071031F6D497D00BA61CF /* Users.swift in Sources */,
 				42301E5F1F6D7B7F00F41F7F /* Notifications.swift in Sources */,

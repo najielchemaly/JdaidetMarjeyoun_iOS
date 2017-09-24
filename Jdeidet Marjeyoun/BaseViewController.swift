@@ -117,7 +117,7 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     var mainView: UIView!
-    func showPopupView() {
+    func showPopupView(name: String) {
         if let window = UIApplication.shared.keyWindow {
             mainView = UIView(frame: window.frame)
             
@@ -126,7 +126,7 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             
             mainView.addSubview(shadowView)
             
-            let view = Bundle.main.loadNibNamed("PopupView", owner: self.view, options: nil)
+            let view = Bundle.main.loadNibNamed(name, owner: self.view, options: nil)
             if let popupView = view?.first as? PopupView {
                 popupView.frame.origin.y = mainView.frame.size.height+popupView.frame.size.height
                 
@@ -145,14 +145,32 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 UIView.animate(withDuration: 0.6, animations: {
                     popupView.center = window.center
                 })
+            } else if let popupView = view?.first as? FeesPopup {
+                popupView.frame.origin.y = mainView.frame.size.height+popupView.frame.size.height
+                
+                popupView.buttonCancel.layer.borderWidth = 1
+                popupView.buttonCancel.layer.borderColor = Colors.appBlue.cgColor
+                
+                popupView.buttonCancel.addTarget(self, action: #selector(hidePopupView), for: .touchUpInside)
+                
+                mainView.addSubview(popupView)
+               
+                self.view.addSubview(mainView)
+                self.view.bringSubview(toFront: mainView)
+                
+                UIView.animate(withDuration: 0.6, animations: {
+                    popupView.center = window.center
+                    let oldX = popupView.frame.origin.x
+                    popupView.frame.origin.x = 8
+                    popupView.frame.size.width -= abs((oldX-popupView.frame.origin.x)*2)
+                })
             }
         }
     }
     
     func hidePopupView() {
         if mainView != nil {
-            
-            if let popupView = mainView.subviews.last as? PopupView {
+            if let popupView = mainView.subviews.last {
                 UIView.animate(withDuration: 0.6, animations: {
                     popupView.center.y = self.mainView.frame.size.height+popupView.frame.size.height
                 }, completion: { success in
@@ -170,7 +188,7 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func hasToolBar() -> Bool {
      
-        if self is NewsViewController || self is NewsDetailsViewController || self is NotificationsViewController || self is ComplaintViewController || self is ContactsViewController || self is PlacesViewController || self is PlacesDetailsViewController || self is MapViewController || self is FeesViewController {
+        if self is NewsViewController || self is NewsDetailsViewController || self is NotificationsViewController || self is ComplaintViewController || self is ContactsViewController || self is PlacesViewController || self is PlacesDetailsViewController || self is MapViewController || self is FeesViewController || self is AboutViewController {
             return true
         }
         

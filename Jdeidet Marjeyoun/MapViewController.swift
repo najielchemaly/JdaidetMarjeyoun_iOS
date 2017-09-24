@@ -30,6 +30,7 @@ class MapViewController: BaseViewController {
         // coordinate -33.86,151.20 at zoom level 6.
         let camera = GMSCameraPosition.camera(withLatitude: 33.364202, longitude: 35.587387, zoom: 6.0)
         self.mapView.camera = camera
+        self.mapView.mapType = .satellite
         
         if let place = DatabaseObjects.selectedPlace {
             self.toolBarView.labelTitle.text = place.title

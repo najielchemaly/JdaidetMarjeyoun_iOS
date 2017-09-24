@@ -80,7 +80,7 @@ class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerView
         case 3:
             self.redirectToVC(storyboardId: StoryboardIds.NotificationsViewController, type: .Push, newsType: .Socials)
         case 4:
-            break
+            self.redirectToVC(storyboardId: StoryboardIds.AboutViewController, type: .Push)
         case 5:
             self.redirectToVC(storyboardId: StoryboardIds.PlacesViewController, type: .Push)
         default:

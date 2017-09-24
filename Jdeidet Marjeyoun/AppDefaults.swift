@@ -46,6 +46,7 @@ struct StoryboardIds {
     static let PlacesDetailsViewController: String = "PlacesDetailsViewController"
     static let MapViewController: String = "MapViewController"
     static let FeesViewController: String = "FeesViewController"
+    static let AboutViewController: String = "AboutViewController"
     
 }
 

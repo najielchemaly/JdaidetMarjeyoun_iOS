@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINNextLTArabic-Light-1.ttf">
+            <string>DINNextLTArabic-Light</string>
+        </array>
+        <array key="DINNextLTArabic-Regular-1.ttf">
+            <string>DINNextLTArabic-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="FeesPopup" id="iN0-l3-epB" customClass="FeesPopup" customModule="Jdeidet_Marjeyoun" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="186"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="عقار " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unI-RD-9jb">
+                    <rect key="frame" x="293" y="0.0" width="66" height="65"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="66" id="Dam-Qm-QVf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="السنة" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3f-Vw-dvN">
+                    <rect key="frame" x="175" y="0.0" width="110" height="65"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="110" id="pnF-GN-aOF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="المبلغ باليرة اللبنانية" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REj-jf-HiH">
+                    <rect key="frame" x="16" y="0.0" width="151" height="65"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="ZG6-mv-n9J"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="٢٣" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCh-ZG-Uwp">
+                    <rect key="frame" x="293" y="73" width="66" height="45"/>
+                    <fontDescription key="fontDescription" name="DINNextLTArabic-Light" family="DIN Next LT Arabic" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="٢٠١٧" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5e-Hk-I2T">
+                    <rect key="frame" x="175" y="73" width="110" height="45"/>
+                    <fontDescription key="fontDescription" name="DINNextLTArabic-Light" family="DIN Next LT Arabic" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="٢٠٠،٠٠٠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4c-Ge-Uzx">
+                    <rect key="frame" x="16" y="73" width="151" height="45"/>
+                    <fontDescription key="fontDescription" name="DINNextLTArabic-Light" family="DIN Next LT Arabic" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gX-o0-zO1">
+                    <rect key="frame" x="37" y="126" width="300" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ulx-Ue-f91"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="15"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                    <state key="normal" title="خروج">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="T5e-Hk-I2T" firstAttribute="firstBaseline" secondItem="KCh-ZG-Uwp" secondAttribute="firstBaseline" id="1u9-Eq-gvW"/>
+                <constraint firstAttribute="trailing" secondItem="8gX-o0-zO1" secondAttribute="trailing" constant="38" id="4aJ-wU-UBA"/>
+                <constraint firstAttribute="trailing" secondItem="unI-RD-9jb" secondAttribute="trailing" constant="16" id="Do2-ri-56L"/>
+                <constraint firstItem="t4c-Ge-Uzx" firstAttribute="leading" secondItem="8gX-o0-zO1" secondAttribute="leading" constant="-21" id="EZj-u8-fJv"/>
+                <constraint firstItem="L3f-Vw-dvN" firstAttribute="baseline" secondItem="unI-RD-9jb" secondAttribute="baseline" id="F3f-g9-UgI"/>
+                <constraint firstItem="T5e-Hk-I2T" firstAttribute="leading" secondItem="t4c-Ge-Uzx" secondAttribute="trailing" constant="8" symbolic="YES" id="GaB-i8-c7D"/>
+                <constraint firstItem="unI-RD-9jb" firstAttribute="trailing" secondItem="KCh-ZG-Uwp" secondAttribute="trailing" id="JFT-Bi-JMN"/>
+                <constraint firstItem="8gX-o0-zO1" firstAttribute="top" secondItem="t4c-Ge-Uzx" secondAttribute="bottom" constant="8" id="Mr4-q4-yl3"/>
+                <constraint firstItem="L3f-Vw-dvN" firstAttribute="leading" secondItem="T5e-Hk-I2T" secondAttribute="leading" id="MsR-WM-POe"/>
+                <constraint firstItem="REj-jf-HiH" firstAttribute="firstBaseline" secondItem="L3f-Vw-dvN" secondAttribute="firstBaseline" id="PJc-rc-jGh"/>
+                <constraint firstItem="unI-RD-9jb" firstAttribute="leading" secondItem="L3f-Vw-dvN" secondAttribute="trailing" constant="8" symbolic="YES" id="PSu-WF-E06"/>
+                <constraint firstItem="REj-jf-HiH" firstAttribute="baseline" secondItem="L3f-Vw-dvN" secondAttribute="baseline" id="QDA-mF-Tbs"/>
+                <constraint firstAttribute="bottom" secondItem="8gX-o0-zO1" secondAttribute="bottom" constant="20" id="QO8-ZT-ycH"/>
+                <constraint firstItem="L3f-Vw-dvN" firstAttribute="leading" secondItem="REj-jf-HiH" secondAttribute="trailing" constant="8" symbolic="YES" id="Qpw-gs-Dc2"/>
+                <constraint firstItem="T5e-Hk-I2T" firstAttribute="baseline" secondItem="KCh-ZG-Uwp" secondAttribute="baseline" id="RWa-G8-o1H"/>
+                <constraint firstItem="L3f-Vw-dvN" firstAttribute="firstBaseline" secondItem="unI-RD-9jb" secondAttribute="firstBaseline" id="RtU-gW-XUQ"/>
+                <constraint firstItem="unI-RD-9jb" firstAttribute="leading" secondItem="KCh-ZG-Uwp" secondAttribute="leading" id="YWc-kE-maK"/>
+                <constraint firstItem="REj-jf-HiH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gdb-aN-VTb"/>
+                <constraint firstItem="REj-jf-HiH" firstAttribute="leading" secondItem="t4c-Ge-Uzx" secondAttribute="leading" id="j6q-lH-7xs"/>
+                <constraint firstItem="8gX-o0-zO1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="37" id="jKg-9E-Ios"/>
+                <constraint firstItem="t4c-Ge-Uzx" firstAttribute="firstBaseline" secondItem="T5e-Hk-I2T" secondAttribute="firstBaseline" id="kgM-g0-e7I"/>
+                <constraint firstItem="t4c-Ge-Uzx" firstAttribute="top" secondItem="REj-jf-HiH" secondAttribute="bottom" constant="8" symbolic="YES" id="mLR-ud-RMh"/>
+                <constraint firstItem="KCh-ZG-Uwp" firstAttribute="leading" secondItem="T5e-Hk-I2T" secondAttribute="trailing" constant="8" symbolic="YES" id="pLe-Oi-JqR"/>
+                <constraint firstItem="t4c-Ge-Uzx" firstAttribute="baseline" secondItem="T5e-Hk-I2T" secondAttribute="baseline" id="tMA-ui-5hu"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="buttonCancel" destination="8gX-o0-zO1" id="o8w-2Y-JuN"/>
+                <outlet property="labelAmount" destination="t4c-Ge-Uzx" id="5Xp-H0-EzE"/>
+                <outlet property="labelBlockNumber" destination="KCh-ZG-Uwp" id="eJb-P7-xKo"/>
+                <outlet property="labelYear" destination="T5e-Hk-I2T" id="A6A-u9-Iqf"/>
+            </connections>
+            <point key="canvasLocation" x="26.5" y="-43"/>
+        </view>
+    </objects>
+</document>

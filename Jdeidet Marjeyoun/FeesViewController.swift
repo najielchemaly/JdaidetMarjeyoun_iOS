@@ -38,7 +38,7 @@ class FeesViewController: BaseViewController, UIPickerViewDelegate {
         self.viewBlock.customizeBorder(color: Colors.appBlue)
         self.viewYear.customizeBorder(color: Colors.appBlue)
         
-        self.toolBarView.labelTitle.text = "الشكاوى"
+        self.toolBarView.labelTitle.text = "الرسوم البلدية"
         
         self.years = DatabaseObjects.years
     }
@@ -82,6 +82,10 @@ class FeesViewController: BaseViewController, UIPickerViewDelegate {
         return year
     }
 
+    @IBAction func buttonSearchTapped(_ sender: Any) {
+        self.showPopupView(name: "FeesPopup")
+    }
+    
     /*
     // MARK: - Navigation
 

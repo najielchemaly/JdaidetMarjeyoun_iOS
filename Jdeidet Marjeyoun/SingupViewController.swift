@@ -46,7 +46,7 @@ class SingupViewController: BaseViewController, PSTextFieldDelegate {
         self.dismissKeyboard()
         
         if isDataFoundValid {
-            self.showPopupView()
+            self.showPopupView(name: "PopupView")
         }
     }
     
