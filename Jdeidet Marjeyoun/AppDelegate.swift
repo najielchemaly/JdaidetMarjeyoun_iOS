@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: .main)
+        if UserDefaults.standard.bool(forKey: "didFinishLaunching") {
+            if let navTabBar = storyboard.instantiateViewController(withIdentifier: "navTabBar") as? UINavigationController {
+                application.keyWindow?.rootViewController =  navTabBar
+            }
+        }
+        
+        GMSServices.provideAPIKey(GMS_APIKEY)
+//        GMSPlacesClient.provideAPIKey("AIzaSyD11O_Yqj_IIFQC6Rq-55amKes1iGV4Doo")
+        
         return true
     }
 

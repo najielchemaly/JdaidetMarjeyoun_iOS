@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINNextLTArabic-Regular-1.ttf">
+            <string>DINNextLTArabic-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactsTableViewCell" id="KGk-i7-Jjw" customClass="ContactsTableViewCell" customModule="Jdeidet_Marjeyoun" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="الاسم الثلاثي" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgg-nT-ArU">
+                        <rect key="frame" x="184" y="9" width="183" height="23"/>
+                        <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="رقم الهاتف" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPi-Xc-i0S">
+                        <rect key="frame" x="96" y="9" width="80" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="width" priority="750" constant="80" id="DSW-Me-ai1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="رقم المحمول" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjQ-Xc-gGi">
+                        <rect key="frame" x="8" y="9" width="80" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="width" priority="750" constant="80" id="nYc-yk-olf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="yPi-Xc-i0S" firstAttribute="firstBaseline" secondItem="Cgg-nT-ArU" secondAttribute="firstBaseline" id="BCJ-4C-dEF"/>
+                    <constraint firstItem="yPi-Xc-i0S" firstAttribute="baseline" secondItem="Cgg-nT-ArU" secondAttribute="baseline" id="CPt-ip-MlR"/>
+                    <constraint firstItem="Cgg-nT-ArU" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Fxu-nN-FR0"/>
+                    <constraint firstItem="Cgg-nT-ArU" firstAttribute="leading" secondItem="yPi-Xc-i0S" secondAttribute="trailing" constant="8" symbolic="YES" id="G8C-ti-V4K"/>
+                    <constraint firstItem="cjQ-Xc-gGi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="MRr-Sv-4qe"/>
+                    <constraint firstItem="cjQ-Xc-gGi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OBT-kj-jkN"/>
+                    <constraint firstItem="yPi-Xc-i0S" firstAttribute="leading" secondItem="cjQ-Xc-gGi" secondAttribute="trailing" constant="8" symbolic="YES" id="Ooq-X7-2MJ"/>
+                    <constraint firstItem="cjQ-Xc-gGi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="TS5-o3-BGz"/>
+                    <constraint firstItem="cjQ-Xc-gGi" firstAttribute="baseline" secondItem="yPi-Xc-i0S" secondAttribute="baseline" id="Y9B-JB-QiV"/>
+                    <constraint firstItem="cjQ-Xc-gGi" firstAttribute="firstBaseline" secondItem="yPi-Xc-i0S" secondAttribute="firstBaseline" id="ueh-Ua-tPo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="labelFullName" destination="Cgg-nT-ArU" id="yNG-dV-mAU"/>
+                <outlet property="labelMobileNumber" destination="cjQ-Xc-gGi" id="cLc-Xq-d9M"/>
+                <outlet property="labelPhoneNumber" destination="yPi-Xc-i0S" id="454-2p-VAV"/>
+            </connections>
+            <point key="canvasLocation" x="31.5" y="104"/>
+        </tableViewCell>
+    </objects>
+</document>

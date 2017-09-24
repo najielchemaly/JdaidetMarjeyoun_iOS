@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DINNextLTArabic-Bold-1.ttf">
+            <string>DINNextLTArabic-Bold</string>
+        </array>
+        <array key="DINNextLTArabic-Regular-1.ttf">
+            <string>DINNextLTArabic-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationTableViewCell" rowHeight="100" id="KGk-i7-Jjw" customClass="NotificationTableViewCell" customModule="Jdeidet_Marjeyoun" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSG-uq-tSr">
+                        <rect key="frame" x="8" y="8" width="359" height="22.5"/>
+                        <fontDescription key="fontDescription" name="DINNextLTArabic-Bold" family="DIN Next LT Arabic" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="بمناسبة عيد الجيش ندعوكم للمشاركة في يوم الشباب الرياضي على بولفار جديدة مرجعيون" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVg-5y-59a">
+                        <rect key="frame" x="8" y="30.5" width="359" height="44.5"/>
+                        <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hVg-5y-59a" firstAttribute="top" secondItem="mSG-uq-tSr" secondAttribute="bottom" id="1Q0-aD-3xu"/>
+                    <constraint firstItem="hVg-5y-59a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="4xC-hE-2gs"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="mSG-uq-tSr" secondAttribute="leading" id="5a6-6e-AYv"/>
+                    <constraint firstAttribute="trailing" secondItem="hVg-5y-59a" secondAttribute="trailing" constant="8" id="9n1-se-P23"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="mSG-uq-tSr" secondAttribute="trailing" id="LbR-wb-xqs"/>
+                    <constraint firstItem="hVg-5y-59a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Qf6-Qf-VuE"/>
+                    <constraint firstAttribute="topMargin" secondItem="mSG-uq-tSr" secondAttribute="top" id="rno-nY-tc8"/>
+                    <constraint firstAttribute="bottom" secondItem="hVg-5y-59a" secondAttribute="bottom" constant="7.5" id="vBU-xL-dOI"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="Qf6-Qf-VuE"/>
+                        <exclude reference="vBU-xL-dOI"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="labelDescription" destination="hVg-5y-59a" id="Ix8-Zp-eXn"/>
+                <outlet property="labelTitle" destination="mSG-uq-tSr" id="FFS-aZ-aP7"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="61.5"/>
+        </tableViewCell>
+    </objects>
+</document>

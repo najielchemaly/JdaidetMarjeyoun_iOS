@@ -1,0 +1,6 @@
+framework module Pods_Jdeidet_Marjeyoun {
+  umbrella header "Pods-Jdeidet Marjeyoun-umbrella.h"
+
+  export *
+  module * { export * }
+}
