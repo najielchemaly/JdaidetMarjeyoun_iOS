@@ -16,6 +16,7 @@ class AboutViewController: BaseViewController {
     @IBOutlet weak var viewPageControl: UIView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelDescription: UILabel!
+    @IBOutlet weak var labelTitleTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,7 @@ class AboutViewController: BaseViewController {
         let width = self.view.frame.size.width
         let height = self.labelDescription.frame.origin.y+self.labelDescription.frame.size.height
         
-        self.scrollView.contentSize = CGSize(width: width, height: height)
+        self.scrollView.contentSize = CGSize(width: width, height: height-self.viewPager.frame.size.height)
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,7 +40,9 @@ class AboutViewController: BaseViewController {
     }
 
     func initializeViews() {
-        self.toolBarView.labelTitle.text = "عن البلدية"
+        self.toolBarView.labelTitle.text = NSLocalizedString("About Us", comment: "")
+        
+        self.labelTitleTopConstraint.constant = 0
     }
     
     /*

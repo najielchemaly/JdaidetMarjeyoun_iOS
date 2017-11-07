@@ -19,7 +19,17 @@ class ToolBarView: UIView {
     }
     
     @IBAction func buttonMenuTapped(_ sender: Any) {
-        
+        if let baseVC = currentVC as? BaseViewController {
+            if buttonMenu.imageView?.image == #imageLiteral(resourceName: "menu") {
+                baseVC.showPopupView(name: "MenuPopup")
+                buttonMenu.setImage(#imageLiteral(resourceName: "close"), for: .normal)
+                buttonMenu.imageView?.contentMode = .scaleAspectFill
+            } else {
+                baseVC.hidePopupView()
+                buttonMenu.setImage(#imageLiteral(resourceName: "menu"), for: .normal)
+                buttonMenu.imageView?.contentMode = .scaleAspectFill
+            }
+        }
     }
     
     /*
@@ -29,5 +39,13 @@ class ToolBarView: UIView {
         // Drawing code
     }
     */
+    
+    override func layoutSubviews() {
+        if Localization.currentLanguage() == "ar" {
+            self.buttonBack.setImage(#imageLiteral(resourceName: "backarrow_right"), for: .normal)
+        } else {
+            self.buttonBack.setImage(#imageLiteral(resourceName: "backarrow_left"), for: .normal)
+        }
+    }
 
 }

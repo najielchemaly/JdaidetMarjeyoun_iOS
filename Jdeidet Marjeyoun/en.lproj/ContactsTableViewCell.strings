@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "الاسم الثلاثي"; ObjectID = "Cgg-nT-ArU"; */
+"Cgg-nT-ArU.text" = "Full Name";
+
+/* Class = "UILabel"; text = "رقم المحمول"; ObjectID = "cjQ-Xc-gGi"; */
+"cjQ-Xc-gGi.text" = "Mobile Number";
+
+/* Class = "UILabel"; text = "رقم الهاتف"; ObjectID = "yPi-Xc-i0S"; */
+"yPi-Xc-i0S.text" = "Phone Number";

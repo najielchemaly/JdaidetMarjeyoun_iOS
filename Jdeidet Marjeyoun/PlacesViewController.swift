@@ -39,7 +39,7 @@ class PlacesViewController: BaseViewController, UITableViewDelegate, UITableView
         self.viewCategory.customizeBorder(color: Colors.appBlue)
         self.viewTitle.customizeBorder(color: Colors.appBlue)
         
-        self.toolBarView.labelTitle.text = "اماكن للزيارة"
+        self.toolBarView.labelTitle.text = NSLocalizedString("Places to Visit", comment: "")
         
         self.textFieldTitle.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
@@ -138,6 +138,12 @@ class PlacesViewController: BaseViewController, UITableViewDelegate, UITableView
             if !title.isEmpty {
                 self.filteredPlaces = self.filteredPlaces.filter { ($0.title?.lowercased().contains(title.lowercased()))! }
             }
+        }
+
+        if self.filteredPlaces.count == 0 {
+            self.tableView.isHidden = true
+        } else {
+            self.tableView.isHidden = false
         }
         
         self.tableView.reloadData()

@@ -51,12 +51,12 @@ class SingupViewController: BaseViewController, PSTextFieldDelegate {
     }
     
     @IBAction func buttonSkipTapped(_ sender: Any) {
-        
+        if let navTabBar = storyboard?.instantiateViewController(withIdentifier: "navTabBar") as? UINavigationController {
+            appDelegate.window?.rootViewController = navTabBar
+        }
     }
 
     func initialzeViews() {
-        self.buttonSkip.addBottomBorderWithColor(color: Colors.text, width: 2, alpha: 0.6)
-        
         self.textFieldUsername.dataValidationType = .userName
         self.textFieldPassword.dataValidationType = .password
         self.textFieldConfirmPassword.dataValidationType = .confirmPassword

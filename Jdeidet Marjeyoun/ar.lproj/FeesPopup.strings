@@ -1,0 +1,20 @@
+/* Class = "UIButton"; normalTitle = "خروج"; ObjectID = "8gX-o0-zO1"; */
+"8gX-o0-zO1.normalTitle" = "خروج";
+
+/* Class = "UILabel"; text = "٢٣"; ObjectID = "KCh-ZG-Uwp"; */
+"KCh-ZG-Uwp.text" = "٢٣";
+
+/* Class = "UILabel"; text = "السنة"; ObjectID = "L3f-Vw-dvN"; */
+"L3f-Vw-dvN.text" = "السنة";
+
+/* Class = "UILabel"; text = "المبلغ باليرة اللبنانية"; ObjectID = "REj-jf-HiH"; */
+"REj-jf-HiH.text" = "المبلغ باليرة اللبنانية";
+
+/* Class = "UILabel"; text = "٢٠١٧"; ObjectID = "T5e-Hk-I2T"; */
+"T5e-Hk-I2T.text" = "٢٠١٧";
+
+/* Class = "UILabel"; text = "٢٠٠،٠٠٠"; ObjectID = "t4c-Ge-Uzx"; */
+"t4c-Ge-Uzx.text" = "٢٠٠،٠٠٠";
+
+/* Class = "UILabel"; text = "عقار "; ObjectID = "unI-RD-9jb"; */
+"unI-RD-9jb.text" = "عقار ";

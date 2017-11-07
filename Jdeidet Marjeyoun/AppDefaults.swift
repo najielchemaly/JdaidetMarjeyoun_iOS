@@ -12,6 +12,18 @@ var currentVC: UIViewController!
 var isUserLoggedIn: Bool = false
 
 let GMS_APIKEY = "AIzaSyD11O_Yqj_IIFQC6Rq-55amKes1iGV4Doo"
+let APPLE_LANGUAGE_KEY = "AppleLanguages"
+let DEVICE_LANGUAGE_KEY = "AppleLocale"
+
+var appDelegate: AppDelegate {
+    get {
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            return delegate
+        }
+        
+        return AppDelegate()
+    }
+}
 
 struct Colors {
     
@@ -26,9 +38,37 @@ struct Colors {
 
 struct Fonts {
     
-    static let textFont_Bold: UIFont = UIFont(name: "DIN Next LT Arabic Bold", size: 17)!
-    static let textFont_Regular: UIFont = UIFont(name: "DIN Next LT Arabic Regular", size: 17)!
-    static let textFont_Light: UIFont = UIFont(name: "DIN Next LT Arabic Light", size: 17)!
+    static let names: [String?] = UIFont.fontNames(forFamilyName: "DIN Next LT Arabic")
+    
+    static var textFont_Light: UIFont {
+        get {
+            if let fontName = Fonts.names[0] {
+                return UIFont.init(name: fontName, size: 16)!
+            }
+            
+            return UIFont.init()
+        }
+    }
+    
+    static var textFont_Regular: UIFont {
+        get {
+            if let fontName = Fonts.names[1] {
+                return UIFont.init(name: fontName, size: 16)!
+            }
+            
+            return UIFont.init()
+        }
+    }
+    
+    static var textFont_Bold: UIFont {
+        get {
+            if let fontName = Fonts.names[2] {
+                return UIFont.init(name: fontName, size: 16)!
+            }
+            
+            return UIFont.init()
+        }
+    }
     
 }
 
@@ -47,6 +87,8 @@ struct StoryboardIds {
     static let MapViewController: String = "MapViewController"
     static let FeesViewController: String = "FeesViewController"
     static let AboutViewController: String = "AboutViewController"
+    static let ProfileViewController: String = "ProfileViewController"
+    static let EditProfileViewController: String = "EditProfileViewController"
     
 }
 

@@ -13,7 +13,7 @@ import SwiftyJSON
 
 struct ServiceName {
     
-    static let getConfig = ""
+    static let getGlobalVariables = "/getGlobalVariables"
     
 }
 
@@ -27,8 +27,8 @@ enum ResponseStatus: Int {
 
 enum ResponseMessage: String {
     
-    case SERVER_UNREACHABLE = "Une erreur est survenue. Veuillez réessayer."
-    case CONNECTION_TIMEOUT = "Vérifiez votre connection internet."
+    case SERVER_UNREACHABLE = "An error has occured, please try again."
+    case CONNECTION_TIMEOUT = "Check your internet connection."
     
 }
 
@@ -43,40 +43,14 @@ class ResponseData {
 
 class Services {
     
-    private let BaseUrl = ""
+    private let BaseUrl = "192.168.0.107/Api"
     private let Suffix = ""
     private let ACCESS_TOKEN = UserDefaults.standard.string(forKey: Keys.AccessToken.rawValue)
     
-//    func getConfig() -> Config? {
-//        
-//        let headers: HTTPHeaders = [Keys.DeviceId.rawValue : "1"]
-//        let result = makeHttpRequest(method: .post, serviceName: ServiceName.getConfig, headers: headers)
-//        if let jsonArray = result.json {
-//            let config = Config.init(dictionary: jsonArray.first!)
-//            return config
-//        }
-//        
-//        return nil
-//        
-//    }
-    
-//    func getCycle() -> ResponseData? {
-//        
-//        let headers: HTTPHeaders = [Keys.AccessToken.rawValue : ACCESS_TOKEN!]
-//        return makeHttpRequest(method: .post, serviceName: ServiceName.getCycle, headers: headers)
-//        
-//    }
-    
-//    func getClassByCycle(cycleID: String) -> ResponseData? {
-//        
-//        let parameters: Parameters = [
-//            "cycleID": cycleID
-//        ]
-//        
-//        let headers: HTTPHeaders = [Keys.AccessToken.rawValue : ACCESS_TOKEN!]
-//        return makeHttpRequest(method: .post, serviceName: ServiceName.getClassByCycle, parameters: parameters, headers: headers)
-//        
-//    }
+    func getConfig() -> ResponseData? {
+        
+        return makeHttpRequest(method: .get, serviceName: ServiceName.getGlobalVariables)
+    }
     
     // MARK: /************* SERVER REQUEST *************/
 

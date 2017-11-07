@@ -38,7 +38,7 @@ class FeesViewController: BaseViewController, UIPickerViewDelegate {
         self.viewBlock.customizeBorder(color: Colors.appBlue)
         self.viewYear.customizeBorder(color: Colors.appBlue)
         
-        self.toolBarView.labelTitle.text = "الرسوم البلدية"
+        self.toolBarView.labelTitle.text = NSLocalizedString("Fees", comment: "")
         
         self.years = DatabaseObjects.years
     }

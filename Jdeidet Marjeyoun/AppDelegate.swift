@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,10 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        Localization.doTheExchange()
+        
+        FirebaseApp.configure()
+        
         let storyboard = UIStoryboard.init(name: "Main", bundle: .main)
         if UserDefaults.standard.bool(forKey: "didFinishLaunching") {
             if let navTabBar = storyboard.instantiateViewController(withIdentifier: "navTabBar") as? UINavigationController {
-                application.keyWindow?.rootViewController =  navTabBar
+                application.keyWindow?.rootViewController = navTabBar
             }
         }
         

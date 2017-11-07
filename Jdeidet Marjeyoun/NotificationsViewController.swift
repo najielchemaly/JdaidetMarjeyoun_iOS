@@ -35,11 +35,11 @@ class NotificationsViewController: BaseViewController {
         
         switch newsType {
         case NewsType.Notifications.identifier:
-            self.toolBarView.labelTitle.text = "اشعارات"
+            self.toolBarView.labelTitle.text = NSLocalizedString("Notifications", comment: "")
             self.toolBarView.buttonBack.isHidden = true
             self.toolBarView.buttonMenu.isHidden = true
         case NewsType.Socials.identifier:
-            self.toolBarView.labelTitle.text = "اجتماعيات"
+            self.toolBarView.labelTitle.text = NSLocalizedString("Socials", comment: "")
             self.toolBarView.buttonBack.isHidden = false
             self.toolBarView.buttonMenu.isHidden = false
         default:

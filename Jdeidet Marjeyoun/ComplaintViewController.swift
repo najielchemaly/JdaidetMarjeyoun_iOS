@@ -49,7 +49,7 @@ class ComplaintViewController: BaseViewController, UIPickerViewDelegate, ImagePi
         self.imageUpload.image = #imageLiteral(resourceName: "upload").withRenderingMode(.alwaysTemplate)
         self.imageUpload.tintColor = .white
         
-        self.toolBarView.labelTitle.text = "الشكاوى"
+        self.toolBarView.labelTitle.text = NSLocalizedString("Complaints", comment: "")
         self.toolBarView.buttonBack.isHidden = true
         self.toolBarView.buttonMenu.isHidden = true
         
@@ -60,8 +60,10 @@ class ComplaintViewController: BaseViewController, UIPickerViewDelegate, ImagePi
         self.textFieldComplaintType.dataValidationType = .empty
         
         self.textViewDescription.delegate = self
+        self.textViewDescription.text = ""
+        self.textViewDidEndEditing(self.textViewDescription)
         
-        self.placeholder = "التفاصيل"
+        self.placeholder = NSLocalizedString("Comments", comment: "")
     }
 
     func setupPickerView() {

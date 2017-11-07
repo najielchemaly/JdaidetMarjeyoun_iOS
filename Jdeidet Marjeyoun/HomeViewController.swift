@@ -20,12 +20,12 @@ class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerView
     let itemSpacing = 10
     
     var options: [HomeOptions] = [
-        HomeOptions.init(title: "الرسوم البلدية ", image: #imageLiteral(resourceName: "fees")),
-        HomeOptions.init(title: "النشاطات", image: #imageLiteral(resourceName: "activities")),
-        HomeOptions.init(title: "آخر الاخبار", image: #imageLiteral(resourceName: "news")),
-        HomeOptions.init(title: "اجتماعيات", image: #imageLiteral(resourceName: "socials")),
-        HomeOptions.init(title: "عن البلدية", image: #imageLiteral(resourceName: "about")),
-        HomeOptions.init(title: "اماكن للزيارة", image: #imageLiteral(resourceName: "location"))
+        HomeOptions.init(title: NSLocalizedString("Fees", comment: ""), image: #imageLiteral(resourceName: "fees")),
+        HomeOptions.init(title: NSLocalizedString("Events", comment: ""), image: #imageLiteral(resourceName: "activities")),
+        HomeOptions.init(title: NSLocalizedString("Latest News", comment: ""), image: #imageLiteral(resourceName: "news")),
+        HomeOptions.init(title: NSLocalizedString("Socials", comment: ""), image: #imageLiteral(resourceName: "socials")),
+        HomeOptions.init(title: NSLocalizedString("About Us", comment: ""), image: #imageLiteral(resourceName: "about")),
+        HomeOptions.init(title: NSLocalizedString("Places to Visit", comment: ""), image: #imageLiteral(resourceName: "location"))
     ]
     
     override func viewDidLoad() {
@@ -62,6 +62,8 @@ class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerView
             let option = options[indexPath.row]
             cell.imageView.image = option.image
             cell.labelTitle.text = option.title
+            
+            cell.layer.cornerRadius = 10.0
             
             return cell
         }

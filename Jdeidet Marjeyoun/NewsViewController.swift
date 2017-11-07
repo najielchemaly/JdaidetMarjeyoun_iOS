@@ -36,9 +36,9 @@ class NewsViewController: BaseViewController {
         
         switch newsType {
         case NewsType.LatestNews.identifier:
-            self.toolBarView.labelTitle.text = "آخر الاخبار"
+            self.toolBarView.labelTitle.text = NSLocalizedString("Latest News", comment: "")
         case NewsType.Events.identifier:
-            self.toolBarView.labelTitle.text = "النشاطات"
+            self.toolBarView.labelTitle.text = NSLocalizedString("Events", comment: "")
         default:
             break
         }

@@ -12,12 +12,26 @@ class SelectLanguageViewController: BaseViewController {
 
     @IBOutlet weak var buttonArabic: UIButton!
     @IBOutlet weak var buttonEnglish: UIButton!
+    @IBOutlet weak var buttonClose: UIButton!
+    
+    var comingFrom: Int = ComingFrom.launch.rawValue
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.setGradientBackground()
+        
+        if currentVC is ProfileViewController {
+            self.buttonClose.setImage(#imageLiteral(resourceName: "close").withRenderingMode(.alwaysTemplate), for: .normal)
+            self.buttonClose.imageView?.tintColor = Colors.appBlue
+            self.buttonClose.isHidden = false
+            
+            self.comingFrom = ComingFrom.profile.rawValue
+        } else {
+            self.buttonClose.isHidden = true
+            self.comingFrom = ComingFrom.launch.rawValue
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,9 +40,30 @@ class SelectLanguageViewController: BaseViewController {
     }
     
     @IBAction func buttonLanguageTapped(_ sender: Any) {
-        self.redirectToVC(storyboardId: StoryboardIds.SingupViewController, type: .Push)
+        if let button = sender as? UIButton {
+            if button.tag == SelectedLanguage.arabic.rawValue {
+                Localization.setLanguageTo("ar")
+            } else {
+                Localization.setLanguageTo("en")
+            }
+            
+            if UserDefaults.standard.bool(forKey: "didRegister") {
+                if let navTabBar = storyboard?.instantiateViewController(withIdentifier: "navTabBar") as? UINavigationController {
+                    appDelegate.window?.rootViewController = navTabBar
+                }
+            } else {
+                if let signup = storyboard?.instantiateViewController(withIdentifier: StoryboardIds.SingupViewController) as? SingupViewController {
+                    appDelegate.window?.rootViewController = signup
+                }
+//                self.redirectToVC(storyboardId: StoryboardIds.SingupViewController, type: .Push)
+            }
+        }
     }
 
+    @IBAction func buttonCloseTapped(_ sender: Any) {
+        self.dismissVC()
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -39,4 +74,14 @@ class SelectLanguageViewController: BaseViewController {
     }
     */
 
+}
+
+enum ComingFrom: Int {
+    case launch = 1
+    case profile = 2
+}
+
+enum SelectedLanguage: Int {
+    case arabic = 1
+    case english = 2
 }

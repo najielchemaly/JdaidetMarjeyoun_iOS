@@ -40,7 +40,7 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
         self.viewCategory.customizeBorder(color: Colors.appBlue)
         self.viewTitle.customizeBorder(color: Colors.appBlue)
         
-        self.toolBarView.labelTitle.text = "الدليل"
+        self.toolBarView.labelTitle.text = NSLocalizedString("Directory", comment: "")
         self.toolBarView.buttonBack.isHidden = true
         self.toolBarView.buttonMenu.isHidden = true
         

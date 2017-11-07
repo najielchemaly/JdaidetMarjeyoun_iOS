@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="186"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="عقار " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unI-RD-9jb">
+                <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="عقار " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unI-RD-9jb">
                     <rect key="frame" x="293" y="0.0" width="66" height="65"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="66" id="Dam-Qm-QVf"/>
@@ -32,7 +33,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="السنة" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3f-Vw-dvN">
+                <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" verticalHuggingPriority="251" text="السنة" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3f-Vw-dvN">
                     <rect key="frame" x="175" y="0.0" width="110" height="65"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="110" id="pnF-GN-aOF"/>
@@ -41,8 +42,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="المبلغ باليرة اللبنانية" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REj-jf-HiH">
-                    <rect key="frame" x="16" y="0.0" width="151" height="65"/>
+                <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="المبلغ باليرة اللبنانية" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REj-jf-HiH">
+                    <rect key="frame" x="-1" y="0.0" width="168" height="65"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="ZG6-mv-n9J"/>
                     </constraints>
@@ -50,26 +51,26 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="٢٣" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCh-ZG-Uwp">
+                <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" verticalHuggingPriority="251" text="٢٣" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCh-ZG-Uwp">
                     <rect key="frame" x="293" y="73" width="66" height="45"/>
                     <fontDescription key="fontDescription" name="DINNextLTArabic-Light" family="DIN Next LT Arabic" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="٢٠١٧" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5e-Hk-I2T">
+                <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="٢٠١٧" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5e-Hk-I2T">
                     <rect key="frame" x="175" y="73" width="110" height="45"/>
                     <fontDescription key="fontDescription" name="DINNextLTArabic-Light" family="DIN Next LT Arabic" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="٢٠٠،٠٠٠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4c-Ge-Uzx">
-                    <rect key="frame" x="16" y="73" width="151" height="45"/>
+                <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="٢٠٠،٠٠٠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4c-Ge-Uzx">
+                    <rect key="frame" x="-1" y="73" width="168" height="45"/>
                     <fontDescription key="fontDescription" name="DINNextLTArabic-Light" family="DIN Next LT Arabic" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gX-o0-zO1">
-                    <rect key="frame" x="37" y="126" width="300" height="40"/>
+                <button opaque="NO" tag="999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gX-o0-zO1">
+                    <rect key="frame" x="20" y="126" width="335" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="ulx-Ue-f91"/>
                     </constraints>
@@ -83,7 +84,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="T5e-Hk-I2T" firstAttribute="firstBaseline" secondItem="KCh-ZG-Uwp" secondAttribute="firstBaseline" id="1u9-Eq-gvW"/>
-                <constraint firstAttribute="trailing" secondItem="8gX-o0-zO1" secondAttribute="trailing" constant="38" id="4aJ-wU-UBA"/>
+                <constraint firstAttribute="trailing" secondItem="8gX-o0-zO1" secondAttribute="trailing" constant="20" id="4aJ-wU-UBA"/>
                 <constraint firstAttribute="trailing" secondItem="unI-RD-9jb" secondAttribute="trailing" constant="16" id="Do2-ri-56L"/>
                 <constraint firstItem="t4c-Ge-Uzx" firstAttribute="leading" secondItem="8gX-o0-zO1" secondAttribute="leading" constant="-21" id="EZj-u8-fJv"/>
                 <constraint firstItem="L3f-Vw-dvN" firstAttribute="baseline" secondItem="unI-RD-9jb" secondAttribute="baseline" id="F3f-g9-UgI"/>
@@ -101,7 +102,7 @@
                 <constraint firstItem="unI-RD-9jb" firstAttribute="leading" secondItem="KCh-ZG-Uwp" secondAttribute="leading" id="YWc-kE-maK"/>
                 <constraint firstItem="REj-jf-HiH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gdb-aN-VTb"/>
                 <constraint firstItem="REj-jf-HiH" firstAttribute="leading" secondItem="t4c-Ge-Uzx" secondAttribute="leading" id="j6q-lH-7xs"/>
-                <constraint firstItem="8gX-o0-zO1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="37" id="jKg-9E-Ios"/>
+                <constraint firstItem="8gX-o0-zO1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="jKg-9E-Ios"/>
                 <constraint firstItem="t4c-Ge-Uzx" firstAttribute="firstBaseline" secondItem="T5e-Hk-I2T" secondAttribute="firstBaseline" id="kgM-g0-e7I"/>
                 <constraint firstItem="t4c-Ge-Uzx" firstAttribute="top" secondItem="REj-jf-HiH" secondAttribute="bottom" constant="8" symbolic="YES" id="mLR-ud-RMh"/>
                 <constraint firstItem="KCh-ZG-Uwp" firstAttribute="leading" secondItem="T5e-Hk-I2T" secondAttribute="trailing" constant="8" symbolic="YES" id="pLe-Oi-JqR"/>

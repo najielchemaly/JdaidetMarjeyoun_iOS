@@ -1,0 +1,186 @@
+
+/* Class = "UITextField"; placeholder = "رقم الهاتف"; ObjectID = "185-i2-opj"; */
+"185-i2-opj.placeholder" = "Phone Number";
+
+/* Class = "UITextField"; placeholder = "مكان السكن"; ObjectID = "2cH-2y-GMq"; */
+"2cH-2y-GMq.placeholder" = "Address";
+
+/* Class = "UITextField"; placeholder = "البريد الالكتروني"; ObjectID = "3MF-Zj-Nu8"; */
+"3MF-Zj-Nu8.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "الرجاء اختيار فئة معينة (مطاعم, كنائس...) او البحث عبر إدخال الإسم المطلوب "; ObjectID = "3oy-FY-S79"; */
+"3oy-FY-S79.text" = "Please select a specific category (restaurants, churches ...) or search by entering the desired name";
+
+/* Class = "UIButton"; normalTitle = "بحث"; ObjectID = "5DR-Jh-D0f"; */
+"5DR-Jh-D0f.normalTitle" = "Search";
+
+/* Class = "UILabel"; text = "الرجاء اختيار فئة معينة (مصارف, مدارس, ارقام خاصة...) او البحث عبر إدخال الإسم المطلوب "; ObjectID = "6Kg-JV-OHu"; */
+"6Kg-JV-OHu.text" = "Please select a specific category (banks, schools, special numbers ...) or search by entering the required name";
+
+/* Class = "UITextField"; placeholder = "القسم"; ObjectID = "6RB-8G-0ck"; */
+"6RB-8G-0ck.placeholder" = "Section";
+
+/* Class = "UITabBarItem"; title = "ملفي الشخصي"; ObjectID = "6ZO-2J-W8Z"; */
+"6ZO-2J-W8Z.title" = "Profile";
+
+/* Class = "UILabel"; text = "+961 3 133830"; ObjectID = "CLE-ux-dui"; */
+"CLE-ux-dui.text" = "+961 3 133830";
+
+/* Class = "UIButton"; normalTitle = "عربي"; ObjectID = "Crc-gR-G1x"; */
+"Crc-gR-G1x.normalTitle" = "العربية";
+
+/* Class = "UIButton"; normalTitle = "بحث"; ObjectID = "CtE-Kc-ZNr"; */
+"CtE-Kc-ZNr.normalTitle" = "Search";
+
+/* Class = "UITextField"; placeholder = "رقم الجوال"; ObjectID = "FGz-RJ-bHM"; */
+"FGz-RJ-bHM.placeholder" = "Mobile Number";
+
+/* Class = "UITextField"; placeholder = "البحث عن اسم مكان"; ObjectID = "FLd-fc-CZJ"; */
+"FLd-fc-CZJ.placeholder" = "Search for a place name";
+
+/* Class = "UITextField"; placeholder = "رقم اعقار"; ObjectID = "Fam-0d-OLE"; */
+"Fam-0d-OLE.placeholder" = "Block number";
+
+/* Class = "UIButton"; normalTitle = "تعديل المعلومات"; ObjectID = "G00-3z-x3A"; */
+"G00-3z-x3A.normalTitle" = "Edit";
+
+/* Class = "UIButton"; normalTitle = "تخطى تسجيل الدخول"; ObjectID = "Gkt-5N-w0B"; */
+"Gkt-5N-w0B.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة ك"; ObjectID = "Huo-mC-prc"; */
+"Huo-mC-prc.text" = "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة ك";
+
+/* Class = "UIButton"; normalTitle = "تسجيل الدخول"; ObjectID = "I4C-OY-JFM"; */
+"I4C-OY-JFM.normalTitle" = "Sign in";
+
+/* Class = "UILabel"; text = "تسجيل دخول"; ObjectID = "KOV-5R-SDF"; */
+"KOV-5R-SDF.text" = "Login";
+
+/* Class = "UILabel"; text = "جورج عبلا"; ObjectID = "PgF-bK-kF2"; */
+"PgF-bK-kF2.text" = "جورج عبلا";
+
+/* Class = "UILabel"; text = "georges.abla@hotmail.com"; ObjectID = "PiQ-R5-mjs"; */
+"PiQ-R5-mjs.text" = "georges.abla@hotmail.com";
+
+/* Class = "UILabel"; text = "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي  فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي "; ObjectID = "PpH-Yc-u2X"; */
+"PpH-Yc-u2X.text" = "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي  فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة قدم الصالات التي يقيمها النادي ";
+
+/* Class = "UITabBarItem"; title = "الدليل"; ObjectID = "QHd-hc-J8A"; */
+"QHd-hc-J8A.title" = "Directory";
+
+/* Class = "UITextField"; placeholder = "كلمة المرور"; ObjectID = "QKg-3m-AK5"; */
+"QKg-3m-AK5.placeholder" = "Password";
+
+/* Class = "UITabBarItem"; title = "الدليل"; ObjectID = "Qc4-zn-16R"; */
+"Qc4-zn-16R.title" = "Directory";
+
+/* Class = "UITextField"; placeholder = "اسم المستخدم"; ObjectID = "Qwl-M0-nVm"; */
+"Qwl-M0-nVm.placeholder" = "Username";
+
+/* Class = "UILabel"; text = "بلدية جديدة مرجعيون"; ObjectID = "R8c-7I-2sy"; */
+"R8c-7I-2sy.text" = "Municipality of Jdeidet Marjeyoun";
+
+/* Class = "UITabBarItem"; title = "اشعارات"; ObjectID = "SGY-PO-E1e"; */
+"SGY-PO-E1e.title" = "Notifications";
+
+/* Class = "UITextField"; placeholder = "الاسم الثلاثي"; ObjectID = "SRm-iT-ud9"; */
+"SRm-iT-ud9.placeholder" = "Full Name";
+
+/* Class = "UILabel"; text = "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة ك"; ObjectID = "Tls-1T-ppX"; */
+"Tls-1T-ppX.text" = "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة ك";
+
+/* Class = "UILabel"; text = "THE MUNICIPALITY OF"; ObjectID = "TzV-dq-inW"; */
+"TzV-dq-inW.text" = "THE MUNICIPALITY OF";
+
+/* Class = "UITextField"; placeholder = "اختيار الفئة"; ObjectID = "Vs3-UO-jnd"; */
+"Vs3-UO-jnd.placeholder" = "Select Category";
+
+/* Class = "UIButton"; normalTitle = "تحميل ملف"; ObjectID = "WX7-sQ-tes"; */
+"WX7-sQ-tes.normalTitle" = "Upload";
+
+/* Class = "UITabBarItem"; title = "الصفحة الرئيسية"; ObjectID = "YLI-kW-TA9"; */
+"YLI-kW-TA9.title" = "Home";
+
+/* Class = "UIButton"; normalTitle = "حفظ المعلومات"; ObjectID = "Ypi-N8-0Ll"; */
+"Ypi-N8-0Ll.normalTitle" = "Save";
+
+/* Class = "UITextField"; placeholder = "السنة"; ObjectID = "ZJY-b0-Qmi"; */
+"ZJY-b0-Qmi.placeholder" = "Year";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ZXG-do-9jS"; */
+"ZXG-do-9jS.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "بحث"; ObjectID = "Zih-7j-arT"; */
+"Zih-7j-arT.normalTitle" = "Search";
+
+/* Class = "UILabel"; text = "JDEIDET MARJEYOUN"; ObjectID = "bhy-9z-VWl"; */
+"bhy-9z-VWl.text" = "JDEIDET MARJEYOUN";
+
+/* Class = "UITextField"; placeholder = "البحث عن رقم في الدليل"; ObjectID = "eBQ-nG-1vf"; */
+"eBQ-nG-1vf.placeholder" = "Search in the directory";
+
+/* Class = "UILabel"; text = "جورج حسان عبلا"; ObjectID = "fSP-Fb-y2d"; */
+"fSP-Fb-y2d.text" = "جورج حسان عبلا";
+
+/* Class = "UITextField"; placeholder = "اختيار الفئة"; ObjectID = "hRX-PR-pzd"; */
+"hRX-PR-pzd.placeholder" = "Select Category";
+
+/* Class = "UIButton"; normalTitle = "تغيير كلمة المرور"; ObjectID = "iOc-NQ-opi"; */
+"iOc-NQ-opi.normalTitle" = "Change Password";
+
+/* Class = "UILabel"; text = "أصل كلمة مرجعيون"; ObjectID = "kf1-OT-8TR"; */
+"kf1-OT-8TR.text" = "أصل كلمة مرجعيون";
+
+/* Class = "UITabBarItem"; title = "الشكاوى"; ObjectID = "kfC-1m-oL3"; */
+"kfC-1m-oL3.title" = "Complaints";
+
+/* Class = "UITextField"; placeholder = "إعادة إدخال كلمة المرور"; ObjectID = "kmR-Km-Ted"; */
+"kmR-Km-Ted.placeholder" = "Confirm Password";
+
+/* Class = "UITextField"; placeholder = "نوع الشكوى"; ObjectID = "lKL-hw-VwY"; */
+"lKL-hw-VwY.placeholder" = "Complaint Type";
+
+/* Class = "UIButton"; normalTitle = "ارسل"; ObjectID = "lup-3N-mfe"; */
+"lup-3N-mfe.normalTitle" = "Send";
+
+/* Class = "UILabel"; text = "يرجى ملء النموذج أدناه لاستخدام التطبيق"; ObjectID = "mk3-dS-pHN"; */
+"mk3-dS-pHN.text" = "Fill out the form below to use the application";
+
+/* Class = "UIButton"; normalTitle = "ENGLISH"; ObjectID = "nsL-wp-YUX"; */
+"nsL-wp-YUX.normalTitle" = "ENGLISH";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "oED-Rb-Z0h"; */
+"oED-Rb-Z0h.text" = "Label";
+
+/* Class = "UILabel"; text = "الاشعارات"; ObjectID = "oQe-gX-qj6"; */
+"oQe-gX-qj6.text" = "Notifications";
+
+/* Class = "UIButton"; normalTitle = "تغيير اللغة"; ObjectID = "pWY-bb-Z8p"; */
+"pWY-bb-Z8p.normalTitle" = "Change Language";
+
+/* Class = "UITextField"; placeholder = "الاسم الثلاثي"; ObjectID = "pX2-Ra-ZP0"; */
+"pX2-Ra-ZP0.placeholder" = "Full Name";
+
+/* Class = "UILabel"; text = "الفنار, لبنان"; ObjectID = "qFD-ki-Ra7"; */
+"qFD-ki-Ra7.text" = "الفنار, لبنان";
+
+/* Class = "UILabel"; text = "إعدادات"; ObjectID = "saG-nX-QiT"; */
+"saG-nX-QiT.text" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "افتح خريطة جوجل"; ObjectID = "u9Z-1V-ecw"; */
+"u9Z-1V-ecw.normalTitle" = "Show on map";
+
+/* Class = "UILabel"; text = "يرجح أن أصل كلمة مرجعيون يأتي من المدينة القديمة \"ايون \" التي فقدت، ما سبب الارتباك في وقت لاحق مع كلمة العيون ، و التي هي جمع عين في العربية \"\".أما بالنسبة لكلمة مرج فهي ببساطة تعني مسطح ، وبالتالي \"مسطح من الينابيع\".هذا المسطح بالمناسبة سهل يمتد جنوبا من حدود المدينة الحالية إلى الحدود الفلسطينية ومحاط من ثلاث جهات بالتلال.بالقرب من الطرف الشمالي من السهل وعلى بعد الأمتار مئات من البلدة يقع تل دبين، الذي يعتقد أنه الموقع الفعلي ل \"ايون \" المفقودة.\n \nتدين البلدة باسمها إلى عدد كبير من مصادر المياه والينابيع التي تشكل الأنهار الصغيرة ، الأمر الذي جعل السهول المحيطة خصبة جدا ."; ObjectID = "vcf-qy-gBA"; */
+"vcf-qy-gBA.text" = "يرجح أن أصل كلمة مرجعيون يأتي من المدينة القديمة \"ايون \" التي فقدت، ما سبب الارتباك في وقت لاحق مع كلمة العيون ، و التي هي جمع عين في العربية \"\".أما بالنسبة لكلمة مرج فهي ببساطة تعني مسطح ، وبالتالي \"مسطح من الينابيع\".هذا المسطح بالمناسبة سهل يمتد جنوبا من حدود المدينة الحالية إلى الحدود الفلسطينية ومحاط من ثلاث جهات بالتلال.بالقرب من الطرف الشمالي من السهل وعلى بعد الأمتار مئات من البلدة يقع تل دبين، الذي يعتقد أنه الموقع الفعلي ل \"ايون \" المفقودة.\n \nتدين البلدة باسمها إلى عدد كبير من مصادر المياه والينابيع التي تشكل الأنهار الصغيرة ، الأمر الذي جعل السهول المحيطة خصبة جدا .";
+
+/* Class = "UITextField"; placeholder = "رقم الهاتف"; ObjectID = "wAe-I3-ybT"; */
+"wAe-I3-ybT.placeholder" = "Phone Number";
+
+/* Class = "UITextView"; text = "التفاصيل"; ObjectID = "yrH-B4-xQT"; */
+"yrH-B4-xQT.text" = "Comments";
+
+/* Class = "UITextField"; placeholder = "اسم المستخدم"; ObjectID = "zzp-bS-Pgu"; */
+"zzp-bS-Pgu.placeholder" = "Username";
+
+/* Class = "UITextField"; text = "جورج عبلا"; ObjectID = "zzp-bS-Pgu"; */
+"zzp-bS-Pgu.text" = "جورج عبلا";

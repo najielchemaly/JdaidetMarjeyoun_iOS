@@ -52,7 +52,7 @@ DEPENDENCIES:
   - FSPagerView
   - GoogleMaps
   - GooglePlaces
-  - Kingfisher (~> 3.0)
+  - Kingfisher
   - ObjectMapper
   - SwiftyJSON
 
@@ -73,6 +73,6 @@ SPEC CHECKSUMS:
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 337099ac467fe0859c1320d27d11c3a510094d2d
+PODFILE CHECKSUM: 114714a94319aa2949472038b67133b69aafac67
 
 COCOAPODS: 1.3.1

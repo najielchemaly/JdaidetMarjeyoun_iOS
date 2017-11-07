@@ -1,0 +1,9 @@
+
+/* Class = "UIButton"; normalTitle = "ENGLISH"; ObjectID = "21a-oo-CGP"; */
+"21a-oo-CGP.normalTitle" = "ENGLISH";
+
+/* Class = "UIButton"; normalTitle = "العربية"; ObjectID = "Q1F-OP-SYn"; */
+"Q1F-OP-SYn.normalTitle" = "العربية";
+
+/* Class = "UILabel"; text = "تغيير اللغة"; ObjectID = "n0m-y6-ciq"; */
+"n0m-y6-ciq.text" = "Change Language";

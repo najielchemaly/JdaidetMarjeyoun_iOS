@@ -15,9 +15,8 @@ class NewsDetailsViewController: BaseViewController, FSPagerViewDataSource, FSPa
     @IBOutlet weak var viewPageControl: UIView!
     @IBOutlet weak var labelDate: UILabel!
     @IBOutlet weak var labelTitle: UILabel!
-    @IBOutlet weak var textViewDescription: UITextView!
-    
-    var pageControl: FSPageControl!
+    @IBOutlet weak var labelDescription: UILabel!
+
     var news = News()
     
     override func viewDidLoad() {
@@ -38,7 +37,7 @@ class NewsDetailsViewController: BaseViewController, FSPagerViewDataSource, FSPa
             self.news = news
             self.labelTitle.text = news.shortDescription
             self.labelDate.text = news.date
-            self.textViewDescription.text = news.description
+            self.labelDescription.text = news.description
             self.toolBarView.labelTitle.text = news.title
         }
     }
@@ -48,21 +47,14 @@ class NewsDetailsViewController: BaseViewController, FSPagerViewDataSource, FSPa
         
         self.pagerView.dataSource = self
         self.pagerView.delegate = self
-        
-        self.pageControl = FSPageControl(frame: self.viewPageControl.bounds)
-        self.pageControl.contentHorizontalAlignment = .center
-        self.pageControl.numberOfPages = self.news.images == nil ? 1 /* TODO 0 */ : (self.news.images?.count)!
-        self.pageControl.currentPage = 0
-        self.pageControl.hidesForSinglePage(hide: true)
-        
-        self.viewPageControl.addSubview(pageControl)
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         
         if let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "HomePagerView", at: index) as? HomePagerView {
             
-            self.pageControl.currentPage = index
+            cell.pageControl.currentPage = index
+            cell.pageControl.numberOfPages = self.news.images == nil ? 1 /* TODO 0 */ : (self.news.images?.count)!
             
             cell.imageViewThumb.image = #imageLiteral(resourceName: "newstest")
             cell.labelDescription.isHidden = true

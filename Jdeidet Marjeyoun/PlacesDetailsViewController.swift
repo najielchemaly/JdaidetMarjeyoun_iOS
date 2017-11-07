@@ -16,7 +16,6 @@ class PlacesDetailsViewController: BaseViewController, FSPagerViewDataSource, FS
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelDescription: UILabel!
     
-    var pageControl: FSPageControl!
     var place: Places!
     
     override func viewDidLoad() {
@@ -41,7 +40,7 @@ class PlacesDetailsViewController: BaseViewController, FSPagerViewDataSource, FS
             self.place = place
             self.labelTitle.text = place.title
             self.labelDescription.text = place.description
-            self.toolBarView.labelTitle.text = "اماكن للزيارة"
+            self.toolBarView.labelTitle.text = NSLocalizedString("Places to Visit", comment: "")
         }
     }
     
@@ -50,21 +49,14 @@ class PlacesDetailsViewController: BaseViewController, FSPagerViewDataSource, FS
         
         self.pagerView.dataSource = self
         self.pagerView.delegate = self
-        
-        self.pageControl = FSPageControl(frame: self.viewPageControl.bounds)
-        self.pageControl.contentHorizontalAlignment = .center
-        self.pageControl.numberOfPages = self.place.images == nil ? 1 /* TODO 0 */ : (self.place.images?.count)!
-        self.pageControl.currentPage = 0
-        self.pageControl.hidesForSinglePage(hide: true)
-        
-        self.viewPageControl.addSubview(pageControl)
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         
         if let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "HomePagerView", at: index) as? HomePagerView {
             
-            self.pageControl.currentPage = index
+            cell.pageControl.numberOfPages = self.place.images == nil ? 1 /* TODO 0 */ : (self.place.images?.count)!
+            cell.pageControl.currentPage = index
             
             cell.imageViewThumb.image = UIImage.init(named: self.place.thumb!)
             cell.labelDescription.isHidden = true
