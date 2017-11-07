@@ -57,6 +57,11 @@ class SelectLanguageViewController: BaseViewController {
                 }
 //                self.redirectToVC(storyboardId: StoryboardIds.SingupViewController, type: .Push)
             }
+            
+            let response = Services.init().getGlobalVariables()
+            if response?.status == ResponseStatus.SUCCESS.rawValue {
+                
+            }
         }
     }
 

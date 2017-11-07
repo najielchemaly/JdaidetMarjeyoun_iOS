@@ -226,7 +226,6 @@
 			children = (
 				42CDBE1D1FA67492006FFDB0 /* Localizable.strings */,
 				427895EB1F666632001DBE5C /* Jdeidet Marjeyoun */,
-				42A8AA221FAA470700A841E9 /* GoogleService-Info.plist */,
 				427895EA1F666632001DBE5C /* Products */,
 				70D3EE93DAAE96C90B434FF8 /* Pods */,
 				E918EE6D923484B0825C23FF /* Frameworks */,
@@ -244,6 +243,7 @@
 		427895EB1F666632001DBE5C /* Jdeidet Marjeyoun */ = {
 			isa = PBXGroup;
 			children = (
+				42A8AA221FAA470700A841E9 /* GoogleService-Info.plist */,
 				42A071011F6D485000BA61CF /* DatabaseObjects */,
 				427896121F668579001DBE5C /* Views */,
 				4278960E1F667553001DBE5C /* AppFonts */,
