@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Localization.doTheExchange()
         
-        FirebaseApp.configure()
+//        FirebaseApp.configure()
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: .main)
         if UserDefaults.standard.bool(forKey: "didFinishLaunching") {

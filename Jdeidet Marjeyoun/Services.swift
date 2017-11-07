@@ -43,13 +43,14 @@ class ResponseData {
 
 class Services {
     
-    private let BaseUrl = "192.168.0.107/Api"
+    private let BaseUrl = "http://192.168.0.108/Api"
     private let Suffix = ""
     private let ACCESS_TOKEN = UserDefaults.standard.string(forKey: Keys.AccessToken.rawValue)
     
-    func getConfig() -> ResponseData? {
+    func getGlobalVariables() -> ResponseData? {
         
-        return makeHttpRequest(method: .get, serviceName: ServiceName.getGlobalVariables)
+        let serviceName = ServiceName.getGlobalVariables + "/?lang=" + Localization.currentLanguage()
+        return makeHttpRequest(method: .get, serviceName: serviceName)
     }
     
     // MARK: /************* SERVER REQUEST *************/
