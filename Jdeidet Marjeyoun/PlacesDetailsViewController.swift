@@ -55,11 +55,13 @@ class PlacesDetailsViewController: BaseViewController, FSPagerViewDataSource, FS
         
         if let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "HomePagerView", at: index) as? HomePagerView {
             
-            cell.pageControl.numberOfPages = self.place.images == nil ? 1 /* TODO 0 */ : (self.place.images?.count)!
+            cell.pageControl.numberOfPages = self.place.images == nil ?  0 : (self.place.images?.count)!
             cell.pageControl.currentPage = index
-            
-            cell.imageViewThumb.image = UIImage.init(named: self.place.thumb!)
+        
             cell.labelDescription.isHidden = true
+            
+            let thumb = place.images![index]
+            cell.imageViewThumb.kf.setImage(with: URL(string: Services.getMediaUrl() + thumb))
             
             return cell
         }
@@ -81,10 +83,7 @@ class PlacesDetailsViewController: BaseViewController, FSPagerViewDataSource, FS
             return images.count
         }
         
-        //        return 0
-        
-        // TODO
-        return 1
+        return 0
     }
 
     /*

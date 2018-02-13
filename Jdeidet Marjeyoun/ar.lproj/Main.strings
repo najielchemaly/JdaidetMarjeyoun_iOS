@@ -9,13 +9,13 @@
 "3MF-Zj-Nu8.placeholder" = "البريد الالكتروني";
 
 /* Class = "UILabel"; text = "الرجاء اختيار فئة معينة (مطاعم, كنائس...) او البحث عبر إدخال الإسم المطلوب "; ObjectID = "3oy-FY-S79"; */
-"3oy-FY-S79.text" = "الرجاء اختيار فئة معينة (مطاعم, كنائس...) او البحث عبر إدخال الإسم المطلوب ";
+"3oy-FY-S79.text" = "لا توجد نتائج. \n يرجى تحديد فئة معينة (المطاعم والكنائس ...) أو البحث عن طريق إدخال الاسم المطلوب";
 
 /* Class = "UIButton"; normalTitle = "بحث"; ObjectID = "5DR-Jh-D0f"; */
 "5DR-Jh-D0f.normalTitle" = "بحث";
 
 /* Class = "UILabel"; text = "الرجاء اختيار فئة معينة (مصارف, مدارس, ارقام خاصة...) او البحث عبر إدخال الإسم المطلوب "; ObjectID = "6Kg-JV-OHu"; */
-"6Kg-JV-OHu.text" = "الرجاء اختيار فئة معينة (مصارف, مدارس, ارقام خاصة...) او البحث عبر إدخال الإسم المطلوب ";
+"6Kg-JV-OHu.text" = "لا توجد نتائج. \n يرجى تحديد فئة معينة (البنوك والمدارس والأرقام الخاصة ...) أو البحث عن طريق إدخال الاسم المطلوب";
 
 /* Class = "UITextField"; placeholder = "القسم"; ObjectID = "6RB-8G-0ck"; */
 "6RB-8G-0ck.placeholder" = "القسم";
@@ -45,16 +45,16 @@
 "G00-3z-x3A.normalTitle" = "تعديل المعلومات";
 
 /* Class = "UIButton"; normalTitle = "تخطى تسجيل الدخول"; ObjectID = "Gkt-5N-w0B"; */
-"Gkt-5N-w0B.normalTitle" = "تخطى تسجيل الدخول";
+"Gkt-5N-w0B.normalTitle" = "إلغاء";
 
 /* Class = "UILabel"; text = "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة ك"; ObjectID = "Huo-mC-prc"; */
 "Huo-mC-prc.text" = "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة ك";
 
 /* Class = "UIButton"; normalTitle = "تسجيل الدخول"; ObjectID = "I4C-OY-JFM"; */
-"I4C-OY-JFM.normalTitle" = "تسجيل الدخول";
+"I4C-OY-JFM.normalTitle" = "تسجيل";
 
 /* Class = "UILabel"; text = "تسجيل دخول"; ObjectID = "KOV-5R-SDF"; */
-"KOV-5R-SDF.text" = "تسجيل دخول";
+"KOV-5R-SDF.text" = "إصنع حساب";
 
 /* Class = "UILabel"; text = "جورج عبلا"; ObjectID = "PgF-bK-kF2"; */
 "PgF-bK-kF2.text" = "جورج عبلا";
@@ -69,7 +69,7 @@
 "QHd-hc-J8A.title" = "الدليل";
 
 /* Class = "UITextField"; placeholder = "كلمة المرور"; ObjectID = "QKg-3m-AK5"; */
-"QKg-3m-AK5.placeholder" = "كلمة المرور";
+"QKg-3m-AK5.placeholder" = "كلمة السر";
 
 /* Class = "UITabBarItem"; title = "الدليل"; ObjectID = "Qc4-zn-16R"; */
 "Qc4-zn-16R.title" = "الدليل";
@@ -126,19 +126,19 @@
 "hRX-PR-pzd.placeholder" = "اختيار الفئة";
 
 /* Class = "UIButton"; normalTitle = "تغيير كلمة المرور"; ObjectID = "iOc-NQ-opi"; */
-"iOc-NQ-opi.normalTitle" = "تغيير كلمة المرور";
+"iOc-NQ-opi.normalTitle" = "تغيير كلمة السر";
 
 /* Class = "UILabel"; text = "أصل كلمة مرجعيون"; ObjectID = "kf1-OT-8TR"; */
 "kf1-OT-8TR.text" = "أصل كلمة مرجعيون";
 
 /* Class = "UITabBarItem"; title = "الشكاوى"; ObjectID = "kfC-1m-oL3"; */
-"kfC-1m-oL3.title" = "الشكاوى";
+"kfC-1m-oL3.title" = "إقتراحات";
 
 /* Class = "UITextField"; placeholder = "إعادة إدخال كلمة المرور"; ObjectID = "kmR-Km-Ted"; */
-"kmR-Km-Ted.placeholder" = "إعادة إدخال كلمة المرور";
+"kmR-Km-Ted.placeholder" = "تأكيد كلمة السر";
 
 /* Class = "UITextField"; placeholder = "نوع الشكوى"; ObjectID = "lKL-hw-VwY"; */
-"lKL-hw-VwY.placeholder" = "نوع الشكوى";
+"lKL-hw-VwY.placeholder" = "نوع الاقتراح";
 
 /* Class = "UIButton"; normalTitle = "ارسل"; ObjectID = "lup-3N-mfe"; */
 "lup-3N-mfe.normalTitle" = "ارسل";
@@ -146,7 +146,7 @@
 /* Class = "UILabel"; text = "يرجى ملء النموذج أدناه لاستخدام التطبيق"; ObjectID = "mk3-dS-pHN"; */
 "mk3-dS-pHN.text" = "يرجى ملء النموذج أدناه لاستخدام التطبيق";
 
-/* Class = "UIButton"; normalTitle = "ENGLISH"; ObjectID = "nsL-wp-YUX"; */
+/* Class = "UIButton"; normalTitle = "ENGLISH"; ObjectID = "nsL-wp-YUX"; */ `
 "nsL-wp-YUX.normalTitle" = "ENGLISH";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "oED-Rb-Z0h"; */
@@ -178,6 +178,9 @@
 
 /* Class = "UITextView"; text = "التفاصيل"; ObjectID = "yrH-B4-xQT"; */
 "yrH-B4-xQT.text" = "التفاصيل";
+
+/* Class = "UITextField"; placeholder = "الاسم الكامل"; ObjectID = "irn-JD-UNR"; */
+"irn-JD-UNR.placeholder" = "الاسم الكامل";
 
 /* Class = "UITextField"; placeholder = "اسم المستخدم"; ObjectID = "zzp-bS-Pgu"; */
 "zzp-bS-Pgu.placeholder" = "اسم المستخدم";

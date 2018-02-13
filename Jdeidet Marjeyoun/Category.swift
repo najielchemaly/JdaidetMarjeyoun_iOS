@@ -16,6 +16,7 @@ public class Category {
 	public var id : String?
 	public var type : String?
 	public var title : String?
+    public var name : String?
 
 /**
     Returns an array of models based on given dictionary.
@@ -47,11 +48,17 @@ public class Category {
 
     - returns: Category Instance.
 */
+    public init(title: String?, type: String?) {
+        self.title = title
+        self.type = type
+    }
+    
 	required public init?(dictionary: NSDictionary) {
 
 		id = dictionary["id"] as? String
 		type = dictionary["type"] as? String
 		title = dictionary["title"] as? String
+        name = dictionary["name"] as? String
 	}
 
 		
@@ -67,6 +74,7 @@ public class Category {
 		dictionary.setValue(self.id, forKey: "id")
 		dictionary.setValue(self.type, forKey: "type")
 		dictionary.setValue(self.title, forKey: "title")
+        dictionary.setValue(self.name, forKey: "name")
 
 		return dictionary
 	}

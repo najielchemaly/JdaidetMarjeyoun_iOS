@@ -28,24 +28,35 @@ class NotificationsTable: UITableView, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let description = notifications[indexPath.row].description
-        let label = UILabel()
-        label.text = description
-        label.frame.size = CGSize(width: self.frame.size.width, height: 0)
-        label.numberOfLines = 5
-        var estimatedHeight = label.intrinsicContentSize.height
-        let title = notifications[indexPath.row].title
-        label.text = title
-        estimatedHeight += label.intrinsicContentSize.height
-        return tableRowHeight + (estimatedHeight < 30 ? 30 : estimatedHeight)
+        if let estimatedHeight = notifications[indexPath.row].rowHeight {
+            return tableRowHeight + (estimatedHeight < 30 ? 30 : estimatedHeight)
+        }
+        
+        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationTableViewCell") as? NotificationTableViewCell {
+            cell.selectionStyle = .none
             
             let notification = notifications[indexPath.row]
             cell.labelTitle.text = notification.title
             cell.labelDescription.text = notification.description
+            
+            var height: Int = 0
+            if let titleHeight = notification.title?.height(width: cell.labelTitle.frame.size.width, font: cell.labelTitle.font!) {
+                height += Int(titleHeight)
+            }
+            
+            if let descriptionHeight = notification.description?.height(width: cell.labelDescription.frame.size.width, font: cell.labelDescription.font!) {
+                height += Int(descriptionHeight)
+            }
+            
+            let oldHeight = notifications[indexPath.row].rowHeight
+            notifications[indexPath.row].rowHeight = CGFloat(height)
+            if oldHeight != notifications[indexPath.row].rowHeight {
+//                tableView.reloadRows(at: [indexPath], with: .none)
+            }
             
             return cell
         }

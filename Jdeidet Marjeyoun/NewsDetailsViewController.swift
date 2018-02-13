@@ -35,7 +35,7 @@ class NewsDetailsViewController: BaseViewController, FSPagerViewDataSource, FSPa
     func setupNewsDetails() {
         if let news = DatabaseObjects.selectedNews {
             self.news = news
-            self.labelTitle.text = news.shortDescription
+            self.labelTitle.text = news.title
             self.labelDate.text = news.date
             self.labelDescription.text = news.description
             self.toolBarView.labelTitle.text = news.title
@@ -54,9 +54,12 @@ class NewsDetailsViewController: BaseViewController, FSPagerViewDataSource, FSPa
         if let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "HomePagerView", at: index) as? HomePagerView {
             
             cell.pageControl.currentPage = index
-            cell.pageControl.numberOfPages = self.news.images == nil ? 1 /* TODO 0 */ : (self.news.images?.count)!
+            cell.pageControl.numberOfPages = self.news.images == nil ? 0 : (self.news.images?.count)!
             
-            cell.imageViewThumb.image = #imageLiteral(resourceName: "newstest")
+            if let images = self.news.images {
+                cell.imageViewThumb.kf.setImage(with: URL(string: Services.getMediaUrl() + images[index]))
+            }
+            
             cell.labelDescription.isHidden = true
             
             return cell

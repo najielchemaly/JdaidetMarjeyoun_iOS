@@ -9,9 +9,11 @@
 import UIKit
 import GoogleMaps
 
-class MapViewController: BaseViewController {
+class MapViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!
+    
+    var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +28,14 @@ class MapViewController: BaseViewController {
     }
     
     func loadMapView() {
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
-        let camera = GMSCameraPosition.camera(withLatitude: 33.364202, longitude: 35.587387, zoom: 6.0)
-        self.mapView.camera = camera
-        self.mapView.mapType = .satellite
+        //Location Manager code to fetch current location
+        self.locationManager = CLLocationManager()
+        self.locationManager.delegate = self
+        self.locationManager.startUpdatingLocation()
+        
+        self.mapView.delegate = self
+        self.mapView.mapType = .normal
+        self.mapView.isMyLocationEnabled = true
         
         if let place = DatabaseObjects.selectedPlace {
             self.toolBarView.labelTitle.text = place.title
@@ -39,16 +44,29 @@ class MapViewController: BaseViewController {
             let marker = GMSMarker()
             
             if let location = place.location {
-                let coordinates = location.characters.split{$0 == ","}.map(String.init)
-                let latitude = Double(coordinates.first!)
-                let longitude = Double(coordinates.first!)
-                marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+                if !location.isEmpty {
+                    let coordinates = location.characters.split{$0 == ","}.map(String.init)
+                    let latitude = Double(coordinates.first!)
+                    let longitude = Double(coordinates.first!)
+                    if latitude != nil && longitude != nil {
+                        marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+                    }
+                }
             }
             
-            marker.position = CLLocationCoordinate2D(latitude: 33.364202, longitude: 35.587387)
             marker.title = place.title
-            marker.map = mapView
+            marker.map = self.mapView
         }
+        
+        self.view.sendSubview(toBack: self.mapView)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 8.0)
+        self.mapView?.animate(to: camera)
+        
+        self.locationManager.stopUpdatingLocation()
     }
 
     /*

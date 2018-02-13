@@ -20,6 +20,7 @@ public class News {
 	public var thumb : String?
     public var date: String?
 	public var images : Array<String>?
+    public var type: String?
 
 /**
     Returns an array of models based on given dictionary.
@@ -65,6 +66,7 @@ public class News {
 		thumb = dictionary["thumb"] as? String
         date = dictionary["date"] as? String
 		if (dictionary["images"] != nil) { images = String.modelsFromDictionaryArray(array: dictionary["images"] as! NSArray) }
+        type = dictionary["type"] as? String
 	}
 
 		
@@ -83,6 +85,7 @@ public class News {
 		dictionary.setValue(self.description, forKey: "description")
 		dictionary.setValue(self.thumb, forKey: "thumb")
         dictionary.setValue(self.date, forKey: "date")
+        dictionary.setValue(self.type, forKey: "type")
 
 		return dictionary
 	}

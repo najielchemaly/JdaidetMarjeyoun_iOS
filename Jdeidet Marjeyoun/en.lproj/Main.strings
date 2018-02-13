@@ -9,13 +9,13 @@
 "3MF-Zj-Nu8.placeholder" = "Email";
 
 /* Class = "UILabel"; text = "الرجاء اختيار فئة معينة (مطاعم, كنائس...) او البحث عبر إدخال الإسم المطلوب "; ObjectID = "3oy-FY-S79"; */
-"3oy-FY-S79.text" = "Please select a specific category (restaurants, churches ...) or search by entering the desired name";
+"3oy-FY-S79.text" = "No results found. \nPlease select a specific category (restaurants, churches ...) or search by entering the desired name";
 
 /* Class = "UIButton"; normalTitle = "بحث"; ObjectID = "5DR-Jh-D0f"; */
 "5DR-Jh-D0f.normalTitle" = "Search";
 
 /* Class = "UILabel"; text = "الرجاء اختيار فئة معينة (مصارف, مدارس, ارقام خاصة...) او البحث عبر إدخال الإسم المطلوب "; ObjectID = "6Kg-JV-OHu"; */
-"6Kg-JV-OHu.text" = "Please select a specific category (banks, schools, special numbers ...) or search by entering the required name";
+"6Kg-JV-OHu.text" = "No results found. \nPlease select a specific category (banks, schools, special numbers ...) or search by entering the required name";
 
 /* Class = "UITextField"; placeholder = "القسم"; ObjectID = "6RB-8G-0ck"; */
 "6RB-8G-0ck.placeholder" = "Section";
@@ -33,7 +33,7 @@
 "CtE-Kc-ZNr.normalTitle" = "Search";
 
 /* Class = "UITextField"; placeholder = "رقم الجوال"; ObjectID = "FGz-RJ-bHM"; */
-"FGz-RJ-bHM.placeholder" = "Mobile Number";
+"FGz-RJ-bHM.placeholder" = "Phone Number";
 
 /* Class = "UITextField"; placeholder = "البحث عن اسم مكان"; ObjectID = "FLd-fc-CZJ"; */
 "FLd-fc-CZJ.placeholder" = "Search for a place name";
@@ -45,16 +45,16 @@
 "G00-3z-x3A.normalTitle" = "Edit";
 
 /* Class = "UIButton"; normalTitle = "تخطى تسجيل الدخول"; ObjectID = "Gkt-5N-w0B"; */
-"Gkt-5N-w0B.normalTitle" = "Skip";
+"Gkt-5N-w0B.normalTitle" = "Cancel";
 
 /* Class = "UILabel"; text = "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة ك"; ObjectID = "Huo-mC-prc"; */
 "Huo-mC-prc.text" = "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة ك";
 
 /* Class = "UIButton"; normalTitle = "تسجيل الدخول"; ObjectID = "I4C-OY-JFM"; */
-"I4C-OY-JFM.normalTitle" = "Sign in";
+"I4C-OY-JFM.normalTitle" = "Register";
 
 /* Class = "UILabel"; text = "تسجيل دخول"; ObjectID = "KOV-5R-SDF"; */
-"KOV-5R-SDF.text" = "Login";
+"KOV-5R-SDF.text" = "Create Account";
 
 /* Class = "UILabel"; text = "جورج عبلا"; ObjectID = "PgF-bK-kF2"; */
 "PgF-bK-kF2.text" = "جورج عبلا";
@@ -78,7 +78,7 @@
 "Qwl-M0-nVm.placeholder" = "Username";
 
 /* Class = "UILabel"; text = "بلدية جديدة مرجعيون"; ObjectID = "R8c-7I-2sy"; */
-"R8c-7I-2sy.text" = "Municipality of Jdeidet Marjeyoun";
+"R8c-7I-2sy.text" = "بلدية جديدة مرجعيون";
 
 /* Class = "UITabBarItem"; title = "اشعارات"; ObjectID = "SGY-PO-E1e"; */
 "SGY-PO-E1e.title" = "Notifications";
@@ -153,7 +153,7 @@
 "oED-Rb-Z0h.text" = "Label";
 
 /* Class = "UILabel"; text = "الاشعارات"; ObjectID = "oQe-gX-qj6"; */
-"oQe-gX-qj6.text" = "Notifications";
+"oQe-gX-qj6.text" = "  Notifications";
 
 /* Class = "UIButton"; normalTitle = "تغيير اللغة"; ObjectID = "pWY-bb-Z8p"; */
 "pWY-bb-Z8p.normalTitle" = "Change Language";
@@ -178,6 +178,9 @@
 
 /* Class = "UITextView"; text = "التفاصيل"; ObjectID = "yrH-B4-xQT"; */
 "yrH-B4-xQT.text" = "Comments";
+
+/* Class = "UITextField"; placeholder = "الاسم الكامل"; ObjectID = "irn-JD-UNR"; */
+"irn-JD-UNR.placeholder" = "Full Name";
 
 /* Class = "UITextField"; placeholder = "اسم المستخدم"; ObjectID = "zzp-bS-Pgu"; */
 "zzp-bS-Pgu.placeholder" = "Username";

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SelectLanguageViewController: BaseViewController {
 
@@ -32,6 +33,10 @@ class SelectLanguageViewController: BaseViewController {
             self.buttonClose.isHidden = true
             self.comingFrom = ComingFrom.launch.rawValue
         }
+        
+        if let isLoggedIn = UserDefaults.standard.value(forKey: "isUserLoggedIn") as? Bool {
+            isUserLoggedIn = isLoggedIn
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,25 +48,43 @@ class SelectLanguageViewController: BaseViewController {
         if let button = sender as? UIButton {
             if button.tag == SelectedLanguage.arabic.rawValue {
                 Localization.setLanguageTo("ar")
+                
+                if #available(iOS 10.0, *) {
+                    _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { timer in
+                        Messaging.messaging().unsubscribe(fromTopic: "/topics/jdeidetmarjeyounnewsen")
+                        Messaging.messaging().subscribe(toTopic: "/topics/jdeidetmarjeyounnewsar")
+                    })
+                } else {
+                    // Fallback on earlier versions
+                    Messaging.messaging().unsubscribe(fromTopic: "/topics/jdeidetmarjeyounnewsen")
+                    Messaging.messaging().subscribe(toTopic: "/topics/jdeidetmarjeyounnewsar")
+                }
             } else {
                 Localization.setLanguageTo("en")
+                
+                if #available(iOS 10.0, *) {
+                    _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { timer in
+                        Messaging.messaging().unsubscribe(fromTopic: "/topics/jdeidetmarjeyounnewsar")
+                        Messaging.messaging().subscribe(toTopic: "/topics/jdeidetmarjeyounnewsen")
+                    })
+                } else {
+                    // Fallback on earlier versions
+                    Messaging.messaging().unsubscribe(fromTopic: "/topics/jdeidetmarjeyounnewsar")
+                    Messaging.messaging().subscribe(toTopic: "/topics/jdeidetmarjeyounnewsen")
+                }
             }
             
-            if UserDefaults.standard.bool(forKey: "didRegister") {
+            if isUserLoggedIn {
                 if let navTabBar = storyboard?.instantiateViewController(withIdentifier: "navTabBar") as? UINavigationController {
                     appDelegate.window?.rootViewController = navTabBar
                 }
             } else {
-                if let signup = storyboard?.instantiateViewController(withIdentifier: StoryboardIds.SingupViewController) as? SingupViewController {
-                    appDelegate.window?.rootViewController = signup
+                if let login = storyboard?.instantiateViewController(withIdentifier: StoryboardIds.LoginViewController) as? LoginViewController {
+//                    signup.comingFrom = 1
+                    appDelegate.window?.rootViewController = login
                 }
 //                self.redirectToVC(storyboardId: StoryboardIds.SingupViewController, type: .Push)
-            }
-            
-            let response = Services.init().getGlobalVariables()
-            if response?.status == ResponseStatus.SUCCESS.rawValue {
-                
-            }
+            }                        
         }
     }
 

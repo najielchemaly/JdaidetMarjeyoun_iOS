@@ -58,12 +58,12 @@ class MenuPopup: UIView, UITableViewDelegate, UITableViewDataSource {
             currentVC.redirectToVC(storyboardId: StoryboardIds.NewsViewController, type: .Push, newsType: .LatestNews)
         case 2:
             if let newsVC = currentVC as? NewsViewController {
-                if newsVC.newsType == NewsType.Events.identifier {
+                if newsVC.newsType == NewsType.Activities.identifier {
                     return
                 }
             }
             
-            currentVC.redirectToVC(storyboardId: StoryboardIds.NewsViewController, type: .Push, newsType: .Events)
+            currentVC.redirectToVC(storyboardId: StoryboardIds.NewsViewController, type: .Push, newsType: .Activities)
         case 3:
             if currentVC is FeesViewController {
                 return

@@ -33,7 +33,9 @@ class NewsTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell") as? NewsTableViewCell {
             
             let new = news[indexPath.row]
-            cell.imageViewThumb.image = #imageLiteral(resourceName: "newstest")
+            if let image = new.images?.first {
+                cell.imageViewThumb.kf.setImage(with: URL(string: Services.getMediaUrl() + image))
+            }
             cell.labelTitle.text = new.title
             cell.labelDescription.text = new.shortDescription
             

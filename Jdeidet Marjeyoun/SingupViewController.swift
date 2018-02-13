@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SingupViewController: BaseViewController, PSTextFieldDelegate {
+class SingupViewController: BaseViewController {
 
     @IBOutlet weak var viewUsername: UIView!
     @IBOutlet weak var viewPassword: UIView!
@@ -21,8 +21,11 @@ class SingupViewController: BaseViewController, PSTextFieldDelegate {
     @IBOutlet weak var buttonSignup: UIButton!
     @IBOutlet weak var buttonSkip: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var viewFullname: UIView!
+    @IBOutlet weak var textFieldFullname: PSTextField!
     
-    var isDataFoundValid = false
+//    var isDataFoundValid = false
+    var comingFrom: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,31 +45,51 @@ class SingupViewController: BaseViewController, PSTextFieldDelegate {
     }
     
     @IBAction func buttonSignupTapped(_ sender: Any) {
+        if isValidData() {
+            self.showPopupView(name: "PopupView")
+        } else {
+            self.showAlert(message: errorMessage, style: .alert)
+        }
         
         self.dismissKeyboard()
-        
-        if isDataFoundValid {
-            self.showPopupView(name: "PopupView")
-        }
     }
     
     @IBAction func buttonSkipTapped(_ sender: Any) {
-        if let navTabBar = storyboard?.instantiateViewController(withIdentifier: "navTabBar") as? UINavigationController {
-            appDelegate.window?.rootViewController = navTabBar
+        if comingFrom == 1 {
+            self.redirectToVC(storyboardId: StoryboardIds.NavigationTabBarController, type: .Present)            
+//            if let navTabBar = storyboard?.instantiateViewController(withIdentifier: "navTabBar") as? UINavigationController {
+//                appDelegate.window?.rootViewController = navTabBar
+//            }
+        } else {
+            self.dismissVC()
         }
     }
 
     func initialzeViews() {
-        self.textFieldUsername.dataValidationType = .userName
-        self.textFieldPassword.dataValidationType = .password
-        self.textFieldConfirmPassword.dataValidationType = .confirmPassword
-        self.textFieldPhoneNumber.dataValidationType = .mobileNumber
+//        self.textFieldUsername.dataValidationType = .userName
+//        self.textFieldPassword.dataValidationType = .password
+//        self.textFieldConfirmPassword.dataValidationType = .confirmPassword
+//        self.textFieldPhoneNumber.dataValidationType = .mobileNumber
+        
+        if isReview {
+            self.textFieldPhoneNumber.placeholder?.append(" (Optional)")
+        }
     }
     
     // MARK: PSTextFieldDelegate
     
     func textFieldShouldReturn(_ textField: PSTextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField == textFieldFullname {
+            textFieldUsername.becomeFirstResponder()
+        } else if textField == textFieldUsername {
+            textFieldPassword.becomeFirstResponder()
+        } else if textField == textFieldPassword {
+            textFieldConfirmPassword.becomeFirstResponder()
+        } else if textField == textFieldConfirmPassword {
+            textFieldPhoneNumber.becomeFirstResponder()
+        } else {
+            self.dismissKeyboard()
+        }
         
         return true
     }
@@ -77,10 +100,42 @@ class SingupViewController: BaseViewController, PSTextFieldDelegate {
             password = textField.text!
         }
         
-        isDataFoundValid = textField.validateInput()
+//        isDataFoundValid = textField.validateInput()
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    var errorMessage: String!
+    func isValidData() -> Bool {
+        if textFieldFullname.text == nil || textFieldFullname.text == "" {
+            errorMessage = NSLocalizedString("Fullname Empty", comment: "")
+            return false
+        }
+        if textFieldUsername.text == nil || textFieldUsername.text == "" {
+            errorMessage = NSLocalizedString("Username Empty", comment: "")
+            return false
+        }
+        if textFieldPassword.text == nil || textFieldPassword.text == "" {
+            errorMessage = NSLocalizedString("Password Empty", comment: "")
+            return false
+        }
+        if textFieldPassword.text != textFieldConfirmPassword.text {
+            errorMessage = NSLocalizedString("Passwords do not match", comment: "")
+            return false
+        }
+        if !isReview {
+            if textFieldPhoneNumber.text == nil || textFieldPhoneNumber.text == "" {
+                errorMessage = NSLocalizedString("Phone Number Empty", comment: "")
+                return false
+            }
+        }
+        if (textFieldPhoneNumber.text?.characters.count)! < 8 {
+            errorMessage = NSLocalizedString("Phone Number Invalid", comment: "")
+            return false
+        }
+        
         return true
     }
     

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Foundation
 
-class ChangePasswordPopup: UIView {
+class ChangePasswordPopup: UIView, UITextFieldDelegate {
     
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var textFieldPassword: UITextField!
@@ -18,9 +19,60 @@ class ChangePasswordPopup: UIView {
     @IBOutlet weak var viewConfirmPassword: UIView!
     
     @IBAction func buttonSaveTapped(_ sender: Any) {
-        if let baseVC = currentVC as? BaseViewController {
-            baseVC.hidePopupView()
+        if let profileVC = currentVC as? ProfileViewController {
+            if isValidData() {
+                profileVC.dismissKeyboard()
+                profileVC.showWaitOverlay(color: Colors.appBlue)
+                DispatchQueue.global(qos: .background).async {
+                    let response = Services.init().changePassword(id: DatabaseObjects.user.id!, password: self.textFieldPassword.text!)
+                    
+                    if let message = response?.message {
+                        DispatchQueue.main.async {
+                            profileVC.showAlert(message: message, style: .alert)
+                        }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        profileVC.hidePopupView()
+                        profileVC.removeAllOverlays()
+                    }
+                }
+            } else {
+                profileVC.showAlert(message: errorMessage, style: .alert)
+            }
         }
+    }
+    
+    var errorMessage: String!
+    func isValidData() -> Bool {
+        if textFieldPassword.text == nil || textFieldPassword.text == "" {
+            errorMessage = NSLocalizedString("Password Empty", comment: "")
+            return false
+        }
+        
+        if textFieldPassword.text != textFieldConfirmPassword.text {
+            errorMessage = NSLocalizedString("Passwords do not match", comment: "")
+            return false
+        }
+        
+        return true
+    }
+    
+    func setupDelegates() {
+        self.textFieldPassword.delegate = self
+        self.textFieldConfirmPassword.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == textFieldPassword {
+            textFieldConfirmPassword.becomeFirstResponder()
+        } else {
+            if let profileVC = currentVC as? ProfileViewController {
+                profileVC.dismissKeyboard()
+            }
+        }
+        
+        return true
     }
     
     /*

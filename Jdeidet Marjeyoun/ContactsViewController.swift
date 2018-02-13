@@ -15,7 +15,9 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var textFieldCategory: UITextField!
     @IBOutlet weak var textFieldTitle: UITextField!
     @IBOutlet weak var viewEmpty: UIView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var directoryTableView: UITableView!
+    @IBOutlet weak var linksTableView: UITableView!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     
     var pickerView: UIPickerView!
     var selectedCategoryId: String!
@@ -28,12 +30,21 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
         self.initializeViews()
         self.setupPickerView()
         self.getContactsData()
-        self.setupTableView()
+        self.getUsefulLinksData()
+        self.setupLinksTableView()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func segmentValueChanged(_ sender: Any) {
+        if segmentControl.selectedSegmentIndex == 0 {
+            self.linksTableView.isHidden = false
+        } else if segmentControl.selectedSegmentIndex == 1 {
+            self.linksTableView.isHidden = true
+        }
     }
     
     func initializeViews() {
@@ -45,6 +56,12 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
         self.toolBarView.buttonMenu.isHidden = true
         
         self.textFieldTitle.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
+        self.segmentControl.setTitle(NSLocalizedString("Useful Links", comment: ""), forSegmentAt: 0)
+        self.segmentControl.setTitle(NSLocalizedString("Phone Numbers", comment: ""), forSegmentAt: 1)
+        
+        self.directoryTableView.tableFooterView = UIView()
+        self.directoryTableView.isHidden = false
     }
     
     func setupPickerView() {
@@ -55,20 +72,20 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44))
         toolbar.sizeToFit()
         toolbar.barStyle = .default
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.dismissKeyboard))
+        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(self.dismissKeyboard))
         cancelButton.tintColor = Colors.appBlue
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneButtonTapped))
+        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .plain, target: self, action: #selector(self.doneButtonTapped))
         doneButton.tintColor = Colors.appBlue
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        toolbar.items = [cancelButton, flexibleSpace, doneButton]
+        toolbar.items = [doneButton, flexibleSpace, cancelButton]
         
         self.textFieldCategory.inputAccessoryView = toolbar
     }
     
     func doneButtonTapped() {
-        if DatabaseObjects.contactsCategory.count > 0 {
+        if DatabaseObjects.directoryCategories.count > 0 {
             let row = self.pickerView.selectedRow(inComponent: 0)
-            let category = DatabaseObjects.contactsCategory[row]
+            let category = DatabaseObjects.directoryCategories[row]
             self.selectedCategoryId = category.type
             self.textFieldCategory.text = category.title
         }
@@ -77,46 +94,93 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return DatabaseObjects.contactsCategory.count
+        return DatabaseObjects.directoryCategories.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return DatabaseObjects.contactsCategory[row].title
+        return DatabaseObjects.directoryCategories[row].title
     }
     
     func getContactsData() {
-        // TODO DUMMY DATA
-        DatabaseObjects.contacts = [
-            Contact.init(fullName: "أبو رزق الياس يوسف", mobileNumber: "١٢٣٤٤٥٦٧", phoneNumber: "١٢٣٤٤٥٦٧"),
-            Contact.init(fullName: "أبو أيوب روز سليم", mobileNumber: "١٢٣٤٤٥٦٧", phoneNumber: "١٢٣٤٤٥٦٧"),
-            Contact.init(fullName: "ابو حمرا الياس كايدد", mobileNumber: "١٢٣٤٤٥٦٧", phoneNumber: "١٢٣٤٤٥٦٧"),
-            Contact.init(fullName: "ابو خروب نوال عادل", mobileNumber: "١٢٣٤٤٥٦٧", phoneNumber: "١٢٣٤٤٥٦٧"),
-            Contact.init(fullName: "ابو خليل اندرية اميل", mobileNumber: "١٢٣٤٤٥٦٧", phoneNumber: "١٢٣٤٤٥٦٧"),
-            Contact.init(fullName: "ابو خليل ألبير إميل", mobileNumber: "١٢٣٤٤٥٦٧", phoneNumber: "١٢٣٤٤٥٦٧"),
-            Contact.init(fullName: "ابو خليل ريموندا اندراوس", mobileNumber: "١٢٣٤٤٥٦٧", phoneNumber: "١٢٣٤٤٥٦٧"),
-            Contact.init(fullName: "ابو خير جوزيف فرح", mobileNumber: "١٢٣٤٤٥٦٧", phoneNumber: "١٢٣٤٤٥٦٧")
-        ]
-        
-        self.filteredContacts = DatabaseObjects.contacts
-        
-        self.tableView.reloadData()
+        self.showWaitOverlay(color: Colors.appBlue)
+        DispatchQueue.global(qos: .background).async {
+            let response = Services.init().getDirectory()
+            if response?.status == ResponseStatus.SUCCESS.rawValue {
+                if let json = response?.json?.first {
+                    if let jsonArray = json["directories"] as? [NSDictionary] {
+                        DatabaseObjects.contacts = [Contact]()
+                        
+                        for json in jsonArray {
+                            let contact = Contact.init(dictionary: json)
+                            DatabaseObjects.contacts.append(contact!)
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.filteredContacts = DatabaseObjects.contacts
+                            self.setupDirectoryTableView()
+                            self.filterData()
+                        }
+                    }
+                }
+            } else {
+                if let message = response?.message {
+                    self.showAlert(message: message, style: .alert)
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.removeAllOverlays()
+            }
+        }
     }
     
-    func setupTableView() {
-        self.tableView.register(UINib.init(nibName: "ContactsHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "ContactsHeaderTableViewCell")
-        self.tableView.register(UINib.init(nibName: "ContactsTableViewCell", bundle: nil), forCellReuseIdentifier: "ContactsTableViewCell")
+    func getUsefulLinksData() {
+        DispatchQueue.global(qos: .background).async {
+            let response = Services.init().getUsefullLinks()
+            if response?.status == ResponseStatus.SUCCESS.rawValue {
+                if let json = response?.json?.first {
+                    if let jsonArray = json["links"] as? [NSDictionary] {
+                        DatabaseObjects.usefulLinks = [UsefulLink]()
+                        for json in jsonArray {
+                            let usefulLink = UsefulLink.init(dictionary: json)
+                            DatabaseObjects.usefulLinks.append(usefulLink!)
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.linksTableView.reloadData()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func setupDirectoryTableView() {
+        self.directoryTableView.register(UINib.init(nibName: "ContactsHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "ContactsHeaderTableViewCell")
+        self.directoryTableView.register(UINib.init(nibName: "ContactsTableViewCell", bundle: nil), forCellReuseIdentifier: "ContactsTableViewCell")
+
+        self.directoryTableView.delegate = self
+        self.directoryTableView.dataSource = self
+    }
+    
+    func setupLinksTableView() {
+        self.linksTableView.register(UINib.init(nibName: "LinksTableViewCell", bundle: nil), forCellReuseIdentifier: "LinksTableViewCell")
         
-        self.tableView.tableFooterView = UIView()
+        self.linksTableView.tableFooterView = UIView()
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        self.linksTableView.delegate = self
+        self.linksTableView.dataSource = self
     }
     
     @IBAction func buttonSearchTapped(_ sender: Any) {
-        self.tableView.isHidden = false
+        self.filterData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == self.linksTableView {
+            return DatabaseObjects.usefulLinks.count
+        }
+        
         switch section {
         case 0:
             return 1
@@ -128,14 +192,33 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if tableView == self.linksTableView {
+            return 1
+        }
+        
         return 2
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == self.linksTableView {
+            return 50
+        }
+        
         return 40
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == self.linksTableView {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "LinksTableViewCell") as? LinksTableViewCell {
+                
+                cell.labelTitle.text = DatabaseObjects.usefulLinks[indexPath.row].title
+                
+                return cell
+            }
+            
+            return UITableViewCell()
+        }
+        
         switch indexPath.section {
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsHeaderTableViewCell") as? ContactsHeaderTableViewCell {
@@ -161,15 +244,55 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == self.linksTableView {
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            var urlString: String!
+            if let url = DatabaseObjects.usefulLinks[indexPath.row].url {
+                if !url.contains("http://") {
+                    urlString = "http://" + url
+                } else {
+                    urlString = url
+                }
+            }
+            
+            guard let url = URL(string: urlString) else {
+                return
+            }
+            
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
+    
     func textFieldDidChange(_ textField: UITextField) {
+        self.filterData()
+    }
+    
+    func filterData() {
         self.filteredContacts = DatabaseObjects.contacts
-        if let title = textField.text {
+        if let title = textFieldTitle.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
             if !title.isEmpty {
                 self.filteredContacts = self.filteredContacts.filter { ($0.fullName?.lowercased().contains(title.lowercased()))! }
             }
         }
+        if let category = textFieldCategory.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            if !category.isEmpty {
+                self.filteredContacts = self.filteredContacts.filter { ($0.category?.lowercased().contains(category.lowercased()))! }
+            }
+        }
         
-        self.tableView.reloadData()
+        self.directoryTableView.reloadData()
+        
+        if self.filteredContacts.count == 0 {
+            self.directoryTableView.isHidden = true
+        } else {
+            self.directoryTableView.isHidden = false
+        }
     }
 
     /*

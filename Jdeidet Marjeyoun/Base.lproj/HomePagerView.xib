@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,11 +23,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q0Z-KI-6sl">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q0Z-KI-6sl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="موعدكم مع نشاط البلدية &quot;سوق الطيب&quot; الذي تقيمه بلدية جديدة مرجعيون نهار الاحد 30-7-2017 " textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my0-YD-2oe">
-                        <rect key="frame" x="20" y="219.5" width="335" height="41.5"/>
+                    <view clipsSubviews="YES" alpha="0.10000000000000001" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nqi-OB-gs1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my0-YD-2oe">
+                        <rect key="frame" x="20" y="270" width="335" height="0.0"/>
                         <fontDescription key="fontDescription" name="DINNextLTArabic-Bold" family="DIN Next LT Arabic" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -42,10 +47,14 @@
                 <constraint firstItem="my0-YD-2oe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="1Uq-QA-vsf"/>
                 <constraint firstAttribute="trailing" secondItem="my0-YD-2oe" secondAttribute="trailing" constant="20" id="3Ro-lp-Nqo"/>
                 <constraint firstAttribute="trailing" secondItem="q0Z-KI-6sl" secondAttribute="trailing" id="4Bm-ds-In7"/>
+                <constraint firstAttribute="trailing" secondItem="Nqi-OB-gs1" secondAttribute="trailing" id="8VP-yt-W1k"/>
+                <constraint firstItem="Nqi-OB-gs1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="D6k-A9-V1J"/>
                 <constraint firstItem="q0Z-KI-6sl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Lzu-RF-2qB"/>
                 <constraint firstAttribute="bottom" secondItem="4kX-hg-1v4" secondAttribute="bottom" id="Z70-Fi-Tbv"/>
                 <constraint firstAttribute="trailing" secondItem="4kX-hg-1v4" secondAttribute="trailing" id="ayd-4N-CAQ"/>
-                <constraint firstAttribute="bottom" secondItem="my0-YD-2oe" secondAttribute="bottom" constant="39" id="cL7-XH-Y3p"/>
+                <constraint firstAttribute="bottom" secondItem="my0-YD-2oe" secondAttribute="bottom" constant="30" id="cL7-XH-Y3p"/>
+                <constraint firstItem="Nqi-OB-gs1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="g7P-Rg-4ih"/>
+                <constraint firstAttribute="bottom" secondItem="Nqi-OB-gs1" secondAttribute="bottom" constant="-1" id="jIs-7K-dV4"/>
                 <constraint firstAttribute="bottom" secondItem="q0Z-KI-6sl" secondAttribute="bottom" id="roo-qx-pxq"/>
                 <constraint firstItem="4kX-hg-1v4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vcF-FW-sTs"/>
                 <constraint firstItem="q0Z-KI-6sl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ylC-qh-BwL"/>

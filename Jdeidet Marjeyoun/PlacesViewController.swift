@@ -8,16 +8,15 @@
 
 import UIKit
 
-class PlacesViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+class PlacesViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var viewCategory: UIView!
-    @IBOutlet weak var textFieldCategory: UITextField!
     @IBOutlet weak var viewTitle: UIView!
     @IBOutlet weak var textFieldTitle: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var textFieldCategory: UITextField!
     
     var pickerView: UIPickerView!
-    var selectedCategoryId: String!
     var filteredPlaces: [Places] = [Places]()
     
     override func viewDidLoad() {
@@ -26,15 +25,15 @@ class PlacesViewController: BaseViewController, UITableViewDelegate, UITableView
         // Do any additional setup after loading the view.
         self.initializeViews()
         self.setupPickerView()
-        self.getContactsData()
         self.setupTableView()
+        self.getPlacesToVisit()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func initializeViews() {
         self.viewCategory.customizeBorder(color: Colors.appBlue)
         self.viewTitle.customizeBorder(color: Colors.appBlue)
@@ -47,8 +46,9 @@ class PlacesViewController: BaseViewController, UITableViewDelegate, UITableView
     func setupPickerView() {
         self.pickerView = UIPickerView()
         self.pickerView.delegate = self
+        self.pickerView.dataSource = self
         self.textFieldCategory.inputView = self.pickerView
-        
+
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44))
         toolbar.sizeToFit()
         toolbar.barStyle = .default
@@ -57,40 +57,48 @@ class PlacesViewController: BaseViewController, UITableViewDelegate, UITableView
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneButtonTapped))
         doneButton.tintColor = Colors.appBlue
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        toolbar.items = [cancelButton, flexibleSpace, doneButton]
-        
+        toolbar.items = [doneButton, flexibleSpace, cancelButton]
+
         self.textFieldCategory.inputAccessoryView = toolbar
     }
-    
+
     func doneButtonTapped() {
-        if DatabaseObjects.contactsCategory.count > 0 {
+        if DatabaseObjects.placesCategories.count > 0 {
             let row = self.pickerView.selectedRow(inComponent: 0)
-            let category = DatabaseObjects.contactsCategory[row]
-            self.selectedCategoryId = category.type
-            self.textFieldCategory.text = category.title
+            let category = DatabaseObjects.placesCategories[row]
+            self.textFieldCategory.text = category.name
         }
-        
+
         self.dismissKeyboard()
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return DatabaseObjects.contactsCategory.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return DatabaseObjects.contactsCategory[row].title
-    }
-    
-    func getContactsData() {
-        // TODO DUMMY DATA
-        DatabaseObjects.places = [
-            Places.init(title: "مطرانية الروم الكاثوليكة", description: "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة القدم", location: "33.924906, 35.684201", thumb: "church1"),
-            Places.init(title: "كنيسة الانجيلية", description: "فوز فريق نادي شبيبة المرج على فريق القليعة بنتيجة 2/4 في دورة كرة القدم", location: "33.926615, 35.680768", thumb: "church2")
-        ]
-        
-        self.filteredPlaces = DatabaseObjects.places
-        
-        self.tableView.reloadData()
+    func getPlacesToVisit() {
+        DispatchQueue.global(qos: .background).async {
+            let response = Services.init().getNews(type: NewsType.PlacesToVisit.identifier)
+            if response?.status == ResponseStatus.SUCCESS.rawValue {
+                if let json = response?.json?.first {
+                    if let jsonArray = json["news"] as? [NSDictionary] {
+                        DatabaseObjects.places = [Places]()
+                        for json in jsonArray {
+                            let place = Places.init(dictionary: json)
+                            DatabaseObjects.places.append(place!)
+                        }
+                        
+                        self.filteredPlaces = DatabaseObjects.places
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                            
+                            if self.filteredPlaces.count == 0 {
+                                self.tableView.isHidden = true
+                            } else {
+                                self.tableView.isHidden = false
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func setupTableView() {
@@ -116,7 +124,9 @@ class PlacesViewController: BaseViewController, UITableViewDelegate, UITableView
             
             let place = self.filteredPlaces[indexPath.row]
             cell.labelTitle.text = place.title
-            cell.imageViewThumb.image = UIImage.init(named: place.thumb!)
+            if let thumb = place.images?.first {
+                cell.imageViewThumb.kf.setImage(with: URL(string: Services.getMediaUrl() + thumb))
+            }
             
             return cell
         }
@@ -132,26 +142,64 @@ class PlacesViewController: BaseViewController, UITableViewDelegate, UITableView
         self.redirectToVC(storyboardId: StoryboardIds.PlacesDetailsViewController, type: .Push)
     }
     
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return DatabaseObjects.placesCategories.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return DatabaseObjects.placesCategories[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let category = DatabaseObjects.placesCategories[row]
+        self.textFieldCategory.text = category.name
+    }
+    
     func textFieldDidChange(_ textField: UITextField) {
+        self.filterData()
+    }
+    
+    @IBAction func buttonSearchTapped(_ sender: Any) {
+        self.filterData()
+    }
+    
+    func filterData() {
         self.filteredPlaces = DatabaseObjects.places
-        if let title = textField.text {
+        if let title = textFieldTitle.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
             if !title.isEmpty {
                 self.filteredPlaces = self.filteredPlaces.filter { ($0.title?.lowercased().contains(title.lowercased()))! }
             }
         }
-
+        if let category = textFieldCategory.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            if !category.isEmpty && category.lowercased() != "all" {
+                self.filteredPlaces = self.filteredPlaces.filter { ($0.category?.lowercased().contains(category.lowercased()))! }
+            }
+        }
+        
+        self.tableView.reloadData()
+        
         if self.filteredPlaces.count == 0 {
             self.tableView.isHidden = true
         } else {
             self.tableView.isHidden = false
         }
-        
-        self.tableView.reloadData()
     }
     
-    @IBAction func buttonSearchTapped(_ sender: Any) {
-        self.tableView.isHidden = false
-    }
+//    var errorMessage: String!
+//    func isValidData() -> Bool {
+//
+//        if (textFieldCategory.text == nil || textFieldCategory.text == "") &&
+//            (textFieldTitle.text == nil || textFieldTitle.text == "") {
+//            errorMessage = NSLocalizedString("Category Place Empty", comment: "")
+//            return false
+//        }
+//
+//        return true
+//    }
 
     /*
     // MARK: - Navigation

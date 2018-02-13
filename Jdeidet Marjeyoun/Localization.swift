@@ -32,11 +32,23 @@ class Localization: NSObject {
         userDef.synchronize()
         
         if lang == "en" {
-            UISwitch.appearance().semanticContentAttribute = .forceLeftToRight
-            UIImageView.appearance().semanticContentAttribute = .forceLeftToRight
-        } else if lang == "ar" {
+            if #available(iOS 9.0, *) {
+                UIView.appearance().semanticContentAttribute = .forceRightToLeft
+            } else {
+                // Fallback on earlier versions
+            }
             UISwitch.appearance().semanticContentAttribute = .forceRightToLeft
             UIImageView.appearance().semanticContentAttribute = .forceRightToLeft
+            UIPageControl.appearance().semanticContentAttribute = .forceLeftToRight
+        } else if lang == "ar" {
+            if #available(iOS 9.0, *) {
+                UIView.appearance().semanticContentAttribute = .forceLeftToRight
+            } else {
+                // Fallback on earlier versions
+            }
+            UISwitch.appearance().semanticContentAttribute = .forceLeftToRight
+            UIImageView.appearance().semanticContentAttribute = .forceLeftToRight
+            UIPageControl.appearance().semanticContentAttribute = .forceRightToLeft
         }
     }
     
@@ -105,6 +117,10 @@ extension UITextField {
 
 extension UILabel {
     public func cstmlayoutSubviews() {
+        
+        if currentVC == nil || (currentVC.presentedViewController as? UIAlertController) != nil {
+            return
+        }
         
         if self.tag <= 0 {
             if Localization.currentLanguage() == "ar" && self.textAlignment != .right {

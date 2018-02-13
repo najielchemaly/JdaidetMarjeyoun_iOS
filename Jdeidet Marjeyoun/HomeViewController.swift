@@ -8,6 +8,7 @@
 
 import UIKit
 import FSPagerView
+import Kingfisher
 
 class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -35,8 +36,15 @@ class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerView
         self.setupCollectionView()
         self.setupCollectViewLayout()
         self.setupPagerView()
+        self.getGlobalVariables()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        self.setupPagerView()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -74,9 +82,9 @@ class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            self.redirectToVC(storyboardId: StoryboardIds.FeesViewController, type: .Push, newsType: .Events)
+            self.redirectToVC(storyboardId: StoryboardIds.FeesViewController, type: .Push, newsType: .Activities)
         case 1:
-            self.redirectToVC(storyboardId: StoryboardIds.NewsViewController, type: .Push, newsType: .Events)
+            self.redirectToVC(storyboardId: StoryboardIds.NewsViewController, type: .Push, newsType: .Activities)
         case 2:
             self.redirectToVC(storyboardId: StoryboardIds.NewsViewController, type: .Push, newsType: .LatestNews)
         case 3:
@@ -91,26 +99,30 @@ class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerView
     }
     
     func setupCollectViewLayout() {
-        let flow = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        flow.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        let itemSpacing = flow.minimumInteritemSpacing
-        let width = self.view.bounds.size.width - CGFloat(6*itemSpacing)
-        flow.itemSize = CGSize(width: width/3, height: width/3)
-        flow.minimumLineSpacing = CGFloat(itemPadding)
-        flow.minimumInteritemSpacing = CGFloat(itemPadding)
+        if let flow = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flow.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+            let itemSpacing = flow.minimumInteritemSpacing
+            let width = self.view.bounds.size.width - CGFloat(6*itemSpacing)
+            flow.itemSize = CGSize(width: width/3, height: width/3)
+            flow.minimumLineSpacing = CGFloat(itemPadding)
+            flow.minimumInteritemSpacing = CGFloat(itemPadding)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        let flow = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let totalCellHeight = flow.itemSize.height * CGFloat((options.count/3))
-        let totalSpacingHeight = CGFloat(itemPadding * (options.count/3 + 1))
+        if let flow = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let totalCellHeight = flow.itemSize.height * CGFloat((options.count/3))
+            let totalSpacingHeight = CGFloat(itemPadding * (options.count/3 + 1))
+            
+            let inset = ((collectionView.bounds.size.height - CGFloat(totalCellHeight + totalSpacingHeight)) / 2) + CGFloat((itemSpacing/3))
+            
+            let roundInset = roundf(Float(inset))
+            
+            return UIEdgeInsetsMake(CGFloat(roundInset), 0, CGFloat(roundInset), 0)
+        }
         
-        let inset = ((collectionView.bounds.size.height - CGFloat(totalCellHeight + totalSpacingHeight)) / 2) + CGFloat((itemSpacing/3))
-        
-        let roundInset = roundf(Float(inset))
-        
-        return UIEdgeInsetsMake(CGFloat(roundInset), 0, CGFloat(roundInset), 0)
+        return collectionView.contentInset
     }
     
     func setupPagerView() {
@@ -124,10 +136,15 @@ class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerView
         
         if let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "HomePagerView", at: index) as? HomePagerView {
             
-            cell.pageControl.numberOfPages = 3
+            cell.pageControl.numberOfPages = DatabaseObjects.highlightedNews.count
             cell.pageControl.currentPage = index
             
-            cell.imageViewThumb.image = #imageLiteral(resourceName: "home_background")
+            let news = DatabaseObjects.highlightedNews[index]
+            if let image = news.images?.first {
+                cell.imageViewThumb.kf.setImage(with: URL.init(string: Services.getMediaUrl() + image))
+            }
+            
+            cell.labelDescription.text = news.shortDescription
             
             return cell
         }
@@ -140,11 +157,78 @@ class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerView
     }
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        let selectedNews = DatabaseObjects.highlightedNews[index]
+        DatabaseObjects.selectedNews = selectedNews
         
+        self.redirectToVC(storyboardId: StoryboardIds.NewsDetailsViewController, type: .Push)
     }
     
     func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return 3
+        return DatabaseObjects.highlightedNews.count
+    }
+    
+    func getGlobalVariables() {
+        self.showWaitOverlay(color: Colors.appBlue)
+        DispatchQueue.global(qos: .background).async {
+            var response = Services.init().getGlobalVariables()
+            if response?.status == ResponseStatus.SUCCESS.rawValue {
+                if let json = response?.json?.first {
+                    if let mediaDefaultImage = json["mediaDefaultImage"] as? String {
+                        DatabaseObjects.mediaDefaultImage = mediaDefaultImage
+                    }
+                    if let is_review = json["is_review"] as? Bool {
+                        isReview = is_review
+                    }
+                    if let mediaUrl = json["mediaUrl"] as? String {
+                        Services.setMediaUrl(url: mediaUrl)
+                    }
+                    if let jsonArray = json["ComplaintsType"] as? [NSDictionary] {
+                        DatabaseObjects.complaintsTypes = [ComplaintType]()
+                        for json in jsonArray {
+                            let complaintType = ComplaintType.init(dictionary: json)
+                            DatabaseObjects.complaintsTypes.append(complaintType!)
+                        }
+                    }
+                    if let jsonArray = json["PlaceCategories"] as? [NSDictionary] {
+                        DatabaseObjects.placesCategories = [Category]()
+                        DatabaseObjects.placesCategories.append(Category.init(title: "All", type: nil))
+                        for json in jsonArray {
+                            let placeCategory = Category.init(dictionary: json)
+                            DatabaseObjects.placesCategories.append(placeCategory!)
+                        }
+                    }
+                    if let jsonArray = json["DirectoryCategories"] as? [NSDictionary] {
+                        DatabaseObjects.directoryCategories = [Category]()
+                        DatabaseObjects.directoryCategories.append(Category.init(title: "All", type: nil))
+                        for json in jsonArray {
+                            let directoryCategory = Category.init(dictionary: json)
+                            DatabaseObjects.directoryCategories.append(directoryCategory!)
+                        }
+                    }
+                }
+            }
+            
+            response = Services.init().getHighlightedNews()
+            if response?.status == ResponseStatus.SUCCESS.rawValue {
+                if let json = response?.json?.first {
+                    if let jsonArray = json["news"] as? [NSDictionary] {
+                        DatabaseObjects.highlightedNews = [News]()
+                        for json in jsonArray {
+                            let highlightedNews = News.init(dictionary: json)
+                            DatabaseObjects.highlightedNews.append(highlightedNews!)
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.pagerView.reloadData()
+                        }
+                    }
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.removeAllOverlays()
+            }
+        }
     }
     
     /*

@@ -11,8 +11,11 @@ import UIKit
 class NewsViewController: BaseViewController {
 
     @IBOutlet weak var tableView: NewsTable!
+    @IBOutlet weak var labelEmpty: UILabel!
     
     var newsType: String = NewsType.None.identifier
+    
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +25,15 @@ class NewsViewController: BaseViewController {
         switch newsType {
         case NewsType.LatestNews.identifier:
             self.getLatestNewsData()
-        case NewsType.Events.identifier:
+        case NewsType.Activities.identifier:
             self.getActivitiesData()
         default:
             break
         }
         
         self.setupTableView()
+        
+        self.labelEmpty.text = NSLocalizedString("Data Empty", comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +42,7 @@ class NewsViewController: BaseViewController {
         switch newsType {
         case NewsType.LatestNews.identifier:
             self.toolBarView.labelTitle.text = NSLocalizedString("Latest News", comment: "")
-        case NewsType.Events.identifier:
+        case NewsType.Activities.identifier:
             self.toolBarView.labelTitle.text = NSLocalizedString("Events", comment: "")
         default:
             break
@@ -53,53 +58,117 @@ class NewsViewController: BaseViewController {
         switch newsType {
         case NewsType.LatestNews.identifier:
             self.tableView.news = DatabaseObjects.latestNews
-        case NewsType.Events.identifier:
+        case NewsType.Activities.identifier:
             self.tableView.news = DatabaseObjects.events
         default:
             break
         }
         
         self.tableView.setupContent()
-    }
-    
-    func getLatestNewsData() {
-        // DUMMY DATA
-        DatabaseObjects.latestNews = [News]()
-        for i in 0...5 {
-            let news = News()
-            news.id = i+1
-            news.shortDescription = "This is short description for LatestNews \(i+1)"
-            news.title = "This is a title for LatestNews \(i+1)"
-            news.description = "This is a long description \n This is a long description \n This is a long description for LatestNews \(i+1)"
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            news.date = formatter.string(from: Date())
-            
-            DatabaseObjects.latestNews.append(news)
+        
+        self.refreshControl = UIRefreshControl()
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = self.refreshControl
+        } else {
+            self.tableView.addSubview(self.refreshControl)
         }
         
-        self.tableView.reloadData()
+        self.refreshControl.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
     }
     
-    func getActivitiesData() {
-        // TODO DUMMY DATA
-        DatabaseObjects.events = [News]()
-        for i in 0...5 {
-            let news = News()
-            news.id = i+1
-            news.shortDescription = "This is short description for Activities \(i+1)"
-            news.title = "This is a title for Activities \(i+1)"
-            news.description = "This is a long description \n This is a long description \n This is a long description for Activities \(i+1)"
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            news.date = formatter.string(from: Date())
-            
-            DatabaseObjects.events.append(news)
+    func handleRefresh() {
+        switch newsType {
+        case NewsType.LatestNews.identifier:
+            self.getLatestNewsData(isRefreshing: true)
+        case NewsType.Activities.identifier:
+            self.getActivitiesData(isRefreshing: true)
+        default:
+            break
         }
-        
-        self.tableView.reloadData()
+    }
+    
+    func getLatestNewsData(isRefreshing: Bool = false) {
+        if !isRefreshing {
+            self.showWaitOverlay(color: Colors.appBlue)
+        }
+        DispatchQueue.global(qos: .background).async {
+            let response = Services.init().getNews(type: NewsType.LatestNews.identifier)
+            if response?.status == ResponseStatus.SUCCESS.rawValue {
+                if let json = response?.json?.first {
+                    if let jsonArray = json["news"] as? [NSDictionary] {
+                        DatabaseObjects.latestNews = [News]()
+                        for json in jsonArray {
+                            let news = News.init(dictionary: json)
+                            DatabaseObjects.latestNews.append(news!)
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.news = DatabaseObjects.latestNews
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            } else {
+//                if let message = response?.message {
+//                    DispatchQueue.main.async {
+//                        self.showAlert(message: message, style: .alert)
+//                    }
+//                }
+            }
+            
+            DispatchQueue.main.async {
+                self.removeAllOverlays()
+                self.refreshControl.endRefreshing()
+                
+                if DatabaseObjects.latestNews.count == 0 {
+                    self.view.sendSubview(toBack: self.tableView)
+                } else {
+                    self.view.bringSubview(toFront: self.tableView)
+                }
+            }
+        }
+    }
+    
+    func getActivitiesData(isRefreshing: Bool = false) {
+        if !isRefreshing {
+            self.showWaitOverlay(color: Colors.appBlue)
+        }
+        DispatchQueue.global(qos: .background).async {
+            let response = Services.init().getNews(type: NewsType.Activities.identifier)
+            if response?.status == ResponseStatus.SUCCESS.rawValue {
+                if let json = response?.json?.first {
+                    if let jsonArray = json["news"] as? [NSDictionary] {
+                        DatabaseObjects.events = [News]()
+                        for json in jsonArray {
+                            let event = News.init(dictionary: json)
+                            DatabaseObjects.events.append(event!)
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.news = DatabaseObjects.events
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            } else {
+//                if let message = response?.message {
+//                    DispatchQueue.main.async {
+//                        self.showAlert(message: message, style: .alert)
+//                    }
+//                }
+            }
+            
+            DispatchQueue.main.async {
+                self.removeAllOverlays()
+                self.refreshControl.endRefreshing()
+                
+                if DatabaseObjects.events.count == 0 {
+                    self.view.sendSubview(toBack: self.tableView)
+                } else {
+                    self.view.bringSubview(toFront: self.tableView)
+                }
+            }
+        }
     }
     
     /*

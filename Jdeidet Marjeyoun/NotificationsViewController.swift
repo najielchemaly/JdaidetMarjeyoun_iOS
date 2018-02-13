@@ -11,8 +11,10 @@ import UIKit
 class NotificationsViewController: BaseViewController {
 
     @IBOutlet weak var tableView: NotificationsTable!
+    @IBOutlet weak var labelEmpty: UILabel!
     
     var newsType: String = NewsType.Notifications.identifier
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,8 @@ class NotificationsViewController: BaseViewController {
         }
         
         self.setupTableView()
+        
+        self.labelEmpty.text = NSLocalizedString("Data Empty", comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,42 +67,136 @@ class NotificationsViewController: BaseViewController {
         }
         
         self.tableView.setupContent()
-    }
-    
-    func getNotificationsData() {
-        // TODO DUMMY DATA
-        DatabaseObjects.notifications = [Notifications]()
-        for i in 0...5 {
-            let notification = Notifications()
-            notification.id = i+1
-            notification.description = "This is a long description \n This is a long description \n This is a long description for Notification \(i+1)"
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            notification.date = formatter.string(from: Date())
-            
-            DatabaseObjects.notifications.append(notification)
+        
+        self.refreshControl = UIRefreshControl()
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = self.refreshControl
+        } else {
+            self.tableView.addSubview(self.refreshControl)
         }
         
-        self.tableView.reloadData()
+        self.refreshControl.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
     }
     
-    func getSocialsData() {
-        DatabaseObjects.socials = [Notifications]()
-        for i in 0...5 {
-            let notification = Notifications()
-            notification.id = i+1
-            notification.title = "This is a title for Socials \(i+1)"
-            notification.description = "This is a long description \n This is a long description \n This is a long description for Socials \(i+1)"
+    func handleRefresh() {
+        switch newsType {
+        case NewsType.Notifications.identifier:
+            self.getNotificationsData(isRefreshing: true)
+        case NewsType.Socials.identifier:
+            self.getSocialsData(isRefreshing: true)
+        default:
+            break
+        }
+    }
+    
+    func getNotificationsData(isRefreshing: Bool = false) {
+        if !isRefreshing {
+            self.showWaitOverlay(color: Colors.appBlue)
+        }
+        DispatchQueue.global(qos: .background).async {
+            let response = Services.init().getNotifications()
+            if response?.status == ResponseStatus.SUCCESS.rawValue {
+                if let json = response?.json?.first {
+                    if let jsonArray = json["notifications"] as? [NSDictionary] {
+                        DatabaseObjects.notifications = [Notifications]()
+                        for json in jsonArray {
+                            let notification = Notifications.init(dictionary: json)
+                            DatabaseObjects.notifications.append(notification!)
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.notifications = DatabaseObjects.notifications
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            } else {
+                if let message = response?.message {
+                    self.showAlert(message: message, style: .alert)
+                }
+            }
             
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            notification.date = formatter.string(from: Date())
-            
-            DatabaseObjects.socials.append(notification)
+            DispatchQueue.main.async {
+                self.removeAllOverlays()
+                self.refreshControl.endRefreshing()
+                
+                if DatabaseObjects.notifications.count == 0 {
+                    self.view.sendSubview(toBack: self.tableView)
+                } else {
+                    self.view.bringSubview(toFront: self.tableView)
+                }
+            }
         }
         
-        self.tableView.reloadData()
+//        // TODO DUMMY DATA
+//        DatabaseObjects.notifications = [Notifications]()
+//        for i in 0...5 {
+//            let notification = Notifications()
+//            notification.id = i+1
+//            notification.description = "This is a long description \n This is a long description \n This is a long description for Notification \(i+1)"
+//
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "yyyy-MM-dd"
+//            notification.date = formatter.string(from: Date())
+//
+//            DatabaseObjects.notifications.append(notification)
+//        }
+    }
+    
+    func getSocialsData(isRefreshing: Bool = false) {
+        if !isRefreshing {
+            self.showWaitOverlay(color: Colors.appBlue)
+        }
+        DispatchQueue.global(qos: .background).async {
+            let response = Services.init().getSocialNews()
+            if response?.status == ResponseStatus.SUCCESS.rawValue {
+                if let json = response?.json?.first {
+                    if let jsonArray = json["socials"] as? [NSDictionary] {
+                        DatabaseObjects.socials = [Notifications]()
+                        for json in jsonArray {
+                            let social = Notifications.init(dictionary: json)
+                            DatabaseObjects.socials.append(social!)
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.notifications = DatabaseObjects.socials
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            } else {
+                if let message = response?.message {
+                    self.showAlert(message: message, style: .alert)
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.removeAllOverlays()
+                self.refreshControl.endRefreshing()
+                
+                if DatabaseObjects.socials.count == 0 {
+                    self.view.sendSubview(toBack: self.tableView)
+                } else {
+                    self.view.bringSubview(toFront: self.tableView)
+                }
+            }
+        }
+        
+//        DatabaseObjects.socials = [Notifications]()
+//        for i in 0...5 {
+//            let notification = Notifications()
+//            notification.id = i+1
+//            notification.title = "This is a title for Socials \(i+1)"
+//            notification.description = "This is a long description \n This is a long description \n This is a long description for Socials \(i+1)"
+//
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "yyyy-MM-dd"
+//            notification.date = formatter.string(from: Date())
+//
+//            DatabaseObjects.socials.append(notification)
+//        }
+//
+//        self.tableView.reloadData()
     }
     
     /*

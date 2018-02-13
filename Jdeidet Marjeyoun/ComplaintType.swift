@@ -13,6 +13,7 @@ import Foundation
 /* For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 public class ComplaintType {
+    public var id: Int?
 	public var title : String?
 
 /**
@@ -47,6 +48,7 @@ public class ComplaintType {
 */
 	required public init?(dictionary: NSDictionary) {
 
+        id = dictionary["id"] as? Int
 		title = dictionary["title"] as? String
 	}
 
@@ -60,6 +62,7 @@ public class ComplaintType {
 
 		let dictionary = NSMutableDictionary()
 
+        dictionary.setValue(self.id, forKey: "id")
 		dictionary.setValue(self.title, forKey: "title")
 
 		return dictionary

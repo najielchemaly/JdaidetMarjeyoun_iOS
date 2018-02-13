@@ -1,8 +1,6 @@
 //
 //  Extensions.swift
-//  BlogMyChild
 //
-//  Created by Volodymyr on 4/11/17.
 //  Copyright © 2017 MR.CHEMALY. All rights reserved.
 //
 
@@ -188,11 +186,13 @@ extension UIViewController {
         }
     }
     
-    func showAlert(title: String = "Alert", message: String, style: UIAlertControllerStyle) {
+    func showAlert(title: String = NSLocalizedString("Alert", comment: ""), message: String, style: UIAlertControllerStyle, popVC: Bool = false) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-            
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: { action in
+            if popVC {
+                self.popVC()
+            }
         }))
         
         self.present(alert, animated: true, completion: nil)
@@ -263,6 +263,12 @@ extension String {
         return models
     }
     
+    func height(width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSFontAttributeName: font], context: nil)
+        return boundingBox.height
+    }
+    
 }
 
 extension FSPageControl {
@@ -271,6 +277,30 @@ extension FSPageControl {
         if hide && self.numberOfPages == 1 {
             self.isHidden = true
         }
+    }
+    
+}
+
+extension UIImage {
+    
+    enum JPEGQuality: CGFloat {
+        case lowest  = 0
+        case low     = 0.25
+        case medium  = 0.5
+        case high    = 0.75
+        case highest = 1
+    }
+    
+    /// Returns the data for the specified image in PNG format
+    /// If the image object’s underlying image data has been purged, calling this function forces that data to be reloaded into memory.
+    /// - returns: A data object containing the PNG data, or nil if there was a problem generating the data. This function may return nil if the image has no data or if the underlying CGImageRef contains data in an unsupported bitmap format.
+    var png: Data? { return UIImagePNGRepresentation(self) }
+    
+    /// Returns the data for the specified image in JPEG format.
+    /// If the image object’s underlying image data has been purged, calling this function forces that data to be reloaded into memory.
+    /// - returns: A data object containing the JPEG data, or nil if there was a problem generating the data. This function may return nil if the image has no data or if the underlying CGImageRef contains data in an unsupported bitmap format.
+    func jpeg(_ quality: JPEGQuality) -> Data? {
+        return UIImageJPEGRepresentation(self, quality.rawValue)
     }
     
 }

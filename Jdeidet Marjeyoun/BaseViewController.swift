@@ -160,6 +160,12 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 
                 popupView.buttonCancel.addTarget(self, action: #selector(hidePopupView), for: .touchUpInside)
                 
+                if DatabaseObjects.fees != nil {
+                    popupView.labelBlockNumber.text = DatabaseObjects.fees.blocknumber
+                    popupView.labelYear.text = DatabaseObjects.fees.year
+                    popupView.labelAmount.text = DatabaseObjects.fees.amount
+                }
+                
                 mainView.addSubview(popupView)
                 mainView.tag = 2
                
@@ -181,6 +187,8 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 
                 popupView.viewConfirmPassword.layer.borderWidth = 1
                 popupView.viewConfirmPassword.layer.borderColor = Colors.appBlue.cgColor
+                
+                popupView.setupDelegates()
                 
                 mainView.addSubview(popupView)
                 mainView.tag = 3
@@ -257,13 +265,42 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func buttonDoneTapped() {
         // Send data to server
-        
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(true, forKey: "didRegister")
-        userDefaults.synchronize()
-        
-        if let navTabBar = storyboard?.instantiateViewController(withIdentifier: "navTabBar") as? UINavigationController {
-            appDelegate.window?.rootViewController = navTabBar
+        if let signupVC = currentVC as? SingupViewController {
+            self.showWaitOverlay(color: Colors.appBlue)
+            DispatchQueue.global(qos: .background).async {
+                let response = Services.init().registerUser(fullName: signupVC.textFieldFullname.text!, username: signupVC.textFieldUsername.text!, password: signupVC.textFieldPassword.text!, phoneNumber: signupVC.textFieldPhoneNumber.text!)
+                
+                DispatchQueue.main.async {
+                    if response?.status == ResponseStatus.SUCCESS.rawValue {
+                        if let json = response?.json?.first {
+                            if let jsonUser = json["user"] as? NSDictionary {
+                                let user = User.init(dictionary: jsonUser)
+                                DatabaseObjects.user = user!
+                                
+                                let userDefaults = UserDefaults.standard
+                                userDefaults.set(true, forKey: "isUserLoggedIn")
+                                
+                                let encodedData = NSKeyedArchiver.archivedData(withRootObject: DatabaseObjects.user)
+                                userDefaults.set(encodedData, forKey: "user")
+                                
+                                userDefaults.synchronize()
+                                
+                                self.redirectToVC(storyboardId: StoryboardIds.NavigationTabBarController, type: .Present)
+//                                if let navTabBar = self.storyboard?.instantiateViewController(withIdentifier: "navTabBar") as? UINavigationController {
+//                                    appDelegate.window?.rootViewController = navTabBar
+//                                }
+                            }
+                        }
+                    } else {
+                        if let message = response?.message {
+                            self.showAlert(message: message, style: .alert)
+                        }
+                    }
+                    
+                    self.removeAllOverlays()
+                    self.hidePopupView()
+                }
+            }
         }
 //        self.redirectToVC(storyboardId: StoryboardIds.NavigationTabBarController, type: .Present)
     }

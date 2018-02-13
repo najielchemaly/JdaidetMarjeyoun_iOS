@@ -13,9 +13,11 @@ import Foundation
 /* For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 public class Contact {
+    public var id : String?
 	public var fullName : String?
 	public var mobileNumber : String?
 	public var phoneNumber : String?
+    public var category: String?
 
 /**
     Returns an array of models based on given dictionary.
@@ -60,9 +62,11 @@ public class Contact {
     
 	required public init?(dictionary: NSDictionary) {
 
-		fullName = dictionary["fullName"] as? String
-		mobileNumber = dictionary["mobileNumber"] as? String
-		phoneNumber = dictionary["phoneNumber"] as? String
+        id = dictionary["id"] as? String
+		fullName = dictionary["fullname"] as? String
+		mobileNumber = dictionary["mobile_number"] as? String
+		phoneNumber = dictionary["phone_number"] as? String
+        category = dictionary["category"] as? String
 	}
 
 		
@@ -75,9 +79,11 @@ public class Contact {
 
 		let dictionary = NSMutableDictionary()
 
-		dictionary.setValue(self.fullName, forKey: "fullName")
-		dictionary.setValue(self.mobileNumber, forKey: "mobileNumber")
-		dictionary.setValue(self.phoneNumber, forKey: "phoneNumber")
+		dictionary.setValue(self.id, forKey: "id")
+        dictionary.setValue(self.fullName, forKey: "fullname")
+		dictionary.setValue(self.mobileNumber, forKey: "mobile_number")
+		dictionary.setValue(self.phoneNumber, forKey: "phone_number")
+        dictionary.setValue(self.category, forKey: "category")
 
 		return dictionary
 	}

@@ -1,6 +1,5 @@
 //
 //  Services.swift
-//  Ste-Louise
 //
 //  Created by MR.CHEMALY on 4/10/17.
 //  Copyright © 2017 MR.CHEMALY. All rights reserved.
@@ -13,7 +12,21 @@ import SwiftyJSON
 
 struct ServiceName {
     
-    static let getGlobalVariables = "/getGlobalVariables"
+    static let getGlobalVariables = "/getGlobalVariables/"
+    static let getHighlightedNews = "/getHighlightedNews/"
+    static let getNews = "/getNews/"
+    static let getFees = "/getMunicipalityFees/"
+    static let getAboutUs = "/getAboutUs/"
+    static let registerUser = "/registerUser/"
+    static let sendComplaint = "/sendComplaint/"
+    static let getDirectory = "/getDirectory/"
+    static let getNotifications = "/getNotifications/"
+    static let getSocialNews = "/getSocialNews/"
+    static let changePassword = "/changePassword/"
+    static let editProfile = "/editProfile/"
+    static let login = "/login/"
+    static let logout = "/logout/"
+    static let getUsefullLinks = "/getUsefullLinks/"
     
 }
 
@@ -43,21 +56,197 @@ class ResponseData {
 
 class Services {
     
-    private let BaseUrl = "http://192.168.0.108/Api"
+//    private let BaseUrl = "http://192.168.0.105/Baladiyeh/Api"
+//    private let BaseUrl = "http://192.168.0.209/Api"
+    private let BaseUrl = "http://www.jdeidetmarjeyoun.com/Api"
     private let Suffix = ""
     private let ACCESS_TOKEN = UserDefaults.standard.string(forKey: Keys.AccessToken.rawValue)
+    private static var _MediaUrl: String = ""
+    var MediaUrl: String {
+        get {
+            return Services._MediaUrl
+        }
+        set {
+            Services._MediaUrl = newValue
+        }
+    }
     
     func getGlobalVariables() -> ResponseData? {
         
-        let serviceName = ServiceName.getGlobalVariables + "/?lang=" + Localization.currentLanguage()
+        let serviceName = ServiceName.getGlobalVariables + "?lang=" + Localization.currentLanguage()
         return makeHttpRequest(method: .get, serviceName: serviceName)
+    }
+    
+    func getHighlightedNews() -> ResponseData? {
+        
+        let serviceName = ServiceName.getHighlightedNews + "?lang=" + Localization.currentLanguage()
+        return makeHttpRequest(method: .get, serviceName: serviceName)
+    }
+    
+    func getNews(type: String) -> ResponseData? {
+        
+        let serviceName = ServiceName.getNews + "?lang=" + Localization.currentLanguage() + "&type=" + type
+        return makeHttpRequest(method: .get, serviceName: serviceName)
+    }
+    
+    func getFees(block_number: String, section: String, year: String) -> ResponseData? {
+        
+        let parameters: Parameters = [
+            "blocknumber": block_number,
+            "section": section,
+            "year": year
+        ]
+        
+        let serviceName = ServiceName.getFees + "?lang=" + Localization.currentLanguage()
+        return makeHttpRequest(method: .post, serviceName: serviceName, parameters: parameters)
+    }
+    
+    func getAboutUs() -> ResponseData? {
+        
+        let serviceName = ServiceName.getAboutUs + "?lang=" + Localization.currentLanguage()
+        return makeHttpRequest(method: .get, serviceName: serviceName)
+    }
+    
+    func registerUser(fullName: String, username: String, password: String, phoneNumber: String) -> ResponseData? {
+        
+        let parameters = [
+            "fullName": fullName,
+            "userName": username,
+            "password": password,
+            "phoneNumber": phoneNumber
+        ]
+        
+        let serviceName = ServiceName.registerUser
+        return makeHttpRequest(method: .post, serviceName: serviceName, parameters: parameters)
+    }
+    
+    func sendComplaint(dataId: String = "", fullName: String, phoneNumber: String, complaintType: String, description: String) -> ResponseData? {
+        
+        let parameters: Parameters = [
+            "dataId": dataId,
+            "fullName": fullName,
+            "phoneNumber": phoneNumber,
+            "complaintType": complaintType,
+            "description": description
+        ]
+        
+        let serviceName = ServiceName.sendComplaint
+        return makeHttpRequest(method: .post, serviceName: serviceName, parameters: parameters)
+    }
+    
+    func getDirectory() -> ResponseData? {
+        
+        let serviceName = ServiceName.getDirectory + "?lang=" + Localization.currentLanguage()
+        return makeHttpRequest(method: .get, serviceName: serviceName)
+    }
+    
+    func getNotifications() -> ResponseData? {
+        
+        let serviceName = ServiceName.getNotifications + "?lang=" + Localization.currentLanguage()
+        return makeHttpRequest(method: .get, serviceName: serviceName)
+    }
+    
+    func getSocialNews() -> ResponseData? {
+        
+        let serviceName = ServiceName.getSocialNews + "?lang=" + Localization.currentLanguage()
+        return makeHttpRequest(method: .get, serviceName: serviceName)
+    }
+    
+    func changePassword(id: String, password: String) -> ResponseData? {
+        
+        let parameters: Parameters = [
+            "id": id,
+            "password": password
+        ]
+        
+        let serviceName = ServiceName.changePassword
+        return makeHttpRequest(method: .post, serviceName: serviceName, parameters: parameters)
+    }
+    
+    func editProfile(id: String, fullName: String, phoneNumber: String, email: String, address: String) -> ResponseData? {
+        
+        let parameters: Parameters = [
+            "id": id,
+            "fullName": fullName,
+            "phoneNumber": phoneNumber,
+            "email": email,
+            "address": address
+        ]
+        
+        let serviceName = ServiceName.editProfile
+        return makeHttpRequest(method: .post, serviceName: serviceName, parameters: parameters)
+    }
+    
+    func login(username: String, password: String) -> ResponseData? {
+        
+        let parameters: Parameters = [
+            "userName": username,
+            "password": password
+        ]
+        
+        let serviceName = ServiceName.login
+        return makeHttpRequest(method: .post, serviceName: serviceName, parameters: parameters)
+    }
+    
+    func logout(userId: String) -> ResponseData? {
+        
+        let parameters: Parameters = [
+            "userId": userId
+        ]
+        
+        let serviceName = ServiceName.logout
+        return makeHttpRequest(method: .post, serviceName: serviceName, parameters: parameters)
+    }
+    
+    func getUsefullLinks() -> ResponseData? {
+        
+        let serviceName = ServiceName.getUsefullLinks
+        return makeHttpRequest(method: .get, serviceName: serviceName)
+    }
+    
+    func uploadImageData(imageFile : UIImage, completion:@escaping(_:ResponseData)->Void) {
+        
+        let imageData = imageFile.jpeg(.medium)// UIImageJPEGRepresentation(imageFile , 0.5)
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(imageData!, withName: "file", fileName: "image.jpeg", mimeType: "image/jpeg")
+        }, to: BaseUrl + "/uploadImage/")
+        { (result) in
+            let responseData = ResponseData()
+            switch result {
+            case .success(let upload, _, _):
+                
+                upload.uploadProgress(closure: { (Progress) in
+                })
+                
+                upload.responseJSON { response in
+                    
+                    if let json = response.result.value as? NSDictionary {
+                        responseData.status = ResponseStatus.SUCCESS.rawValue
+                        responseData.json = [json]
+                        
+                        completion(responseData)
+                    } else {
+                        responseData.status = ResponseStatus.FAILURE.rawValue
+                        responseData.message = ResponseMessage.SERVER_UNREACHABLE.rawValue
+                        responseData.json = nil
+                        completion(responseData)
+                    }
+                }
+                
+            case .failure(let encodingError):
+                print(encodingError)
+                responseData.status = ResponseStatus.FAILURE.rawValue
+                responseData.json = nil
+                completion(responseData)
+            }
+        }
     }
     
     // MARK: /************* SERVER REQUEST *************/
 
    private func makeHttpRequest(method: HTTPMethod, serviceName: String, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders? = nil) -> ResponseData {
     
-        let response = Alamofire.request(BaseUrl + Suffix + serviceName, method: method, parameters: parameters, encoding: encoding, headers: headers).responseJSON(options: .allowFragments)
+        let response = manager.request(BaseUrl + Suffix + serviceName, method: method, parameters: parameters, encoding: encoding, headers: headers).responseJSON(options: .allowFragments)
         let responseData = ResponseData()
         responseData.status = ResponseStatus.FAILURE.rawValue
         responseData.message = ResponseMessage.SERVER_UNREACHABLE.rawValue
@@ -138,11 +327,20 @@ class Services {
         
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        configuration.timeoutIntervalForRequest = 30
         return SessionManager(configuration: configuration)
         
     }()
     
     func getBaseUrl() -> String {
         return self.BaseUrl
+    }
+    
+    static func getMediaUrl() -> String {
+        return _MediaUrl
+    }
+    
+    static func setMediaUrl(url: String) {
+        _MediaUrl = url
     }
 }

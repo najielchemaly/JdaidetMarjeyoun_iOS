@@ -1,6 +1,5 @@
 //
 //  AppDefaults.swift
-//  Ste-Louise
 //
 //  Created by MR.CHEMALY on 7/22/17.
 //  Copyright © 2017 WeDevApp. All rights reserved.
@@ -10,6 +9,7 @@ import UIKit
 
 var currentVC: UIViewController!
 var isUserLoggedIn: Bool = false
+var isReview: Bool = false
 
 let GMS_APIKEY = "AIzaSyD11O_Yqj_IIFQC6Rq-55amKes1iGV4Doo"
 let APPLE_LANGUAGE_KEY = "AppleLanguages"
@@ -89,6 +89,7 @@ struct StoryboardIds {
     static let AboutViewController: String = "AboutViewController"
     static let ProfileViewController: String = "ProfileViewController"
     static let EditProfileViewController: String = "EditProfileViewController"
+    static let LoginViewController: String = "LoginViewController"
     
 }
 
@@ -111,23 +112,6 @@ enum SegueId: String {
 
 }
 
-enum PickerView: Int {
-    
-    case Cycle = 1
-    case Classe = 2
-    case Year = 3
-    
-}
-
-enum FileType: Int {
-    
-    case Unknown = -1
-    case PDF = 1
-    case DOCX = 2
-    case DOC = 3
-    
-}
-
 enum Language: Int {
     
     case Arabic = 1
@@ -139,9 +123,10 @@ enum NewsType {
  
     case None
     case LatestNews
-    case Events
+    case Activities
     case Notifications
     case Socials
+    case PlacesToVisit
     
     var identifier: String {
         return String(describing: self).lowercased()
@@ -155,7 +140,7 @@ func getYears() -> NSMutableArray {
     let strDate = formatter.string(from: Date.init())
     if let intDate = Int(strDate) {
         let yearsArray: NSMutableArray = NSMutableArray()
-        for i in (1964..<intDate) {
+        for i in (1964...intDate).reversed() {
             yearsArray.add(String(format: "%d", i))
         }
         

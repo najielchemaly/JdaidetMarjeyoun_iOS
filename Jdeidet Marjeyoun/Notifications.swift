@@ -9,6 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 import Foundation
+import UIKit
  
 /* For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
@@ -17,6 +18,7 @@ public class Notifications {
 	public var title : String?
     public var description : String?
     public var date : String?
+    public var rowHeight: CGFloat?
 
 /**
     Returns an array of models based on given dictionary.
@@ -57,7 +59,12 @@ public class Notifications {
 
 		id = dictionary["id"] as? Int
 		title = dictionary["title"] as? String
-		description = dictionary["description"] as? String
+        if let data = dictionary["message"] as? String {
+            description = data
+        }
+        if let data = dictionary["description"] as? String {
+            description = data
+        }
         date = dictionary["date"] as? String
 	}
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChangeLanguagePopup: UIView {
 
@@ -15,19 +16,54 @@ class ChangeLanguagePopup: UIView {
     @IBOutlet weak var buttonEnglish: UIButton!
     
     @IBAction func buttonArabicTapped(sender: AnyObject) {
-        self.switchLanguage(language: "ar")
+        if Localization.currentLanguage() == "en" {
+            if #available(iOS 10.0, *) {
+                _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { timer in
+                    Messaging.messaging().unsubscribe(fromTopic: "/topics/jdeidetmarjeyounnewsen")
+                    Messaging.messaging().subscribe(toTopic: "/topics/jdeidetmarjeyounnewsar")
+                })
+            } else {
+                // Fallback on earlier versions
+                Messaging.messaging().unsubscribe(fromTopic: "/topics/jdeidetmarjeyounnewsen")
+                Messaging.messaging().subscribe(toTopic: "/topics/jdeidetmarjeyounnewsar")
+            }
+            
+            self.switchLanguage(language: "ar")
+        } else {
+            if let profileVC = currentVC as? ProfileViewController {
+                profileVC.hidePopupView()
+            }
+        }
     }
     
     @IBAction func buttonEnglishTapped(sender: AnyObject) {
-        self.switchLanguage(language: "en")
+        if Localization.currentLanguage() == "ar" {
+            if #available(iOS 10.0, *) {
+                _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { timer in
+                    Messaging.messaging().unsubscribe(fromTopic: "/topics/jdeidetmarjeyounnewsar")
+                    Messaging.messaging().subscribe(toTopic: "/topics/jdeidetmarjeyounnewsen")
+                })
+            } else {
+                // Fallback on earlier versions
+                Messaging.messaging().unsubscribe(fromTopic: "/topics/jdeidetmarjeyounnewsar")
+                Messaging.messaging().subscribe(toTopic: "/topics/jdeidetmarjeyounnewsen")
+            }
+            
+            self.switchLanguage(language: "en")
+        } else {
+            if let profileVC = currentVC as? ProfileViewController {
+                profileVC.hidePopupView()
+            }
+        }
     }
     
     func switchLanguage(language: String) {
         Localization.setLanguageTo(language)
         
-        if let navTabBar = currentVC.storyboard?.instantiateViewController(withIdentifier: "navTabBar") as? UINavigationController {
-            appDelegate.window?.rootViewController = navTabBar
-        }
+        currentVC.redirectToVC(storyboardId: StoryboardIds.NavigationTabBarController, type: .Present)
+//        if let navTabBar = currentVC.storyboard?.instantiateViewController(withIdentifier: "navTabBar") as? UINavigationController {
+//            appDelegate.window?.rootViewController = navTabBar
+//        }
     }
     
     /*

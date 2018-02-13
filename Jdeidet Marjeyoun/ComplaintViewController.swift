@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComplaintViewController: BaseViewController, UIPickerViewDelegate, ImagePickerDelegate, PSTextFieldDelegate, UITextViewDelegate {
+class ComplaintViewController: BaseViewController, UIPickerViewDelegate, ImagePickerDelegate, PSTextFieldDelegate, UITextViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var viewFullName: UIView!
     @IBOutlet weak var textFieldFullName: PSTextField!
@@ -23,9 +23,10 @@ class ComplaintViewController: BaseViewController, UIPickerViewDelegate, ImagePi
     
     var pickerView: UIPickerView!
     var selectedComplaintId: String!
-    var isDataFoundValid: Bool = false
+//    var isDataFoundValid: Bool = false
     var isTextViewEmpty = true
     var placeholder: String!
+    var selectedImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,15 +56,19 @@ class ComplaintViewController: BaseViewController, UIPickerViewDelegate, ImagePi
         
         self.imagePickerDelegate = self
         
-        self.textFieldFullName.dataValidationType = .firstName
-        self.textFieldPhoneNumber.dataValidationType = .mobileNumber
-        self.textFieldComplaintType.dataValidationType = .empty
+//        self.textFieldFullName.dataValidationType = .firstName
+//        self.textFieldPhoneNumber.dataValidationType = .mobileNumber
+//        self.textFieldComplaintType.dataValidationType = .empty
         
         self.textViewDescription.delegate = self
         self.textViewDescription.text = ""
         self.textViewDidEndEditing(self.textViewDescription)
         
         self.placeholder = NSLocalizedString("Comments", comment: "")
+        
+        self.textFieldFullName.delegate = self
+        self.textFieldPhoneNumber.delegate = self
+        self.textFieldComplaintType.delegate = self
     }
 
     func setupPickerView() {
@@ -74,21 +79,23 @@ class ComplaintViewController: BaseViewController, UIPickerViewDelegate, ImagePi
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44))
         toolbar.sizeToFit()
         toolbar.barStyle = .default
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.dismissKeyboard))
+        let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(self.dismissKeyboard))
         cancelButton.tintColor = Colors.appBlue
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneButtonTapped))
+        let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .plain, target: self, action: #selector(self.doneButtonTapped))
         doneButton.tintColor = Colors.appBlue
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        toolbar.items = [cancelButton, flexibleSpace, doneButton]
+        toolbar.items = [doneButton, flexibleSpace, cancelButton]
         
         self.textFieldComplaintType.inputAccessoryView = toolbar
     }
     
     func doneButtonTapped() {
-        if DatabaseObjects.complaints.count > 0 {
+        if DatabaseObjects.complaintsTypes.count > 0 {
             let row = self.pickerView.selectedRow(inComponent: 0)
-            let complaint = DatabaseObjects.complaints[row]
-            self.selectedComplaintId = complaint.type
+            let complaint = DatabaseObjects.complaintsTypes[row]
+            if let complaintId = complaint.id {
+                self.selectedComplaintId = String(describing: complaintId)
+            }
             self.textFieldComplaintType.text = complaint.title
         }
         
@@ -96,11 +103,11 @@ class ComplaintViewController: BaseViewController, UIPickerViewDelegate, ImagePi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return DatabaseObjects.complaints.count
+        return DatabaseObjects.complaintsTypes.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return DatabaseObjects.complaints[row].title
+        return DatabaseObjects.complaintsTypes[row].title
     }
     
     @IBAction func buttonUploadTapped(_ sender: Any) {
@@ -108,36 +115,126 @@ class ComplaintViewController: BaseViewController, UIPickerViewDelegate, ImagePi
     }
     
     @IBAction func buttonSendTapped(_ sender: Any) {
-        if isDataFoundValid && !isTextViewEmpty {
-            
+        if isValidData() {
+            if self.selectedImage == nil {
+                let alert = UIAlertController(title: NSLocalizedString("Alert", comment: ""), message: NSLocalizedString("Are you sure you want to send a complaint without a photo?", comment: ""), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Send", comment: ""), style: .default, handler: { action in
+                    self.sendComplaintWithoutMedia()
+                }))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                self.sendComplaintWithMedia()
+            }
+        } else {
+            self.showAlert(message: errorMessage, style: .alert)
         }
+    }
+    
+    func sendComplaintWithoutMedia() {
+        self.showWaitOverlay(color: Colors.appBlue)
+        DispatchQueue.global(qos: .background).async {
+            let response = Services.init().sendComplaint(fullName: self.textFieldFullName.text!, phoneNumber: self.textFieldPhoneNumber.text!, complaintType: self.textFieldComplaintType.text!, description: self.textViewDescription.text!)
+        
+            if response?.status == ResponseStatus.SUCCESS.rawValue {
+                DispatchQueue.main.async {
+                    self.resetFields()
+                }
+            }
+        
+            if let message = response?.message {
+                DispatchQueue.main.async {
+                    self.showAlert(message: message, style: .alert)
+                }
+            }
+        
+            DispatchQueue.main.async {
+                self.removeAllOverlays()
+            }
+        }
+    }
+    
+    func sendComplaintWithMedia() {
+        self.showWaitOverlay(color: Colors.appBlue)
+        DispatchQueue.global(qos: .background).async {
+            Services.init().uploadImageData(imageFile: self.selectedImage, completion: { data in
+                if let json = data.json?.first {
+                    if let dataId = json["id"] as? Int {
+                        let response = Services.init().sendComplaint(dataId: String(describing: dataId), fullName: self.textFieldFullName.text!, phoneNumber: self.textFieldPhoneNumber.text!, complaintType: self.textFieldComplaintType.text!, description: self.textViewDescription.text!)
+                        
+                        if response?.status == ResponseStatus.SUCCESS.rawValue {
+                            DispatchQueue.main.async {
+                                self.resetFields()
+                            }
+                        }
+                        
+                        if let message = response?.message {
+                            DispatchQueue.main.async {
+                                self.showAlert(message: message, style: .alert)
+                            }
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        if !data.message.isEmpty {
+                            self.showAlert(message: data.message, style: .alert)
+                        }
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    self.removeAllOverlays()
+                }
+            })
+        }
+    }
+    
+    func resetFields() {
+        self.textFieldFullName.text = nil
+        self.textFieldPhoneNumber.text = nil
+        self.textFieldComplaintType.text = nil
+        self.textViewDescription.text = nil
+        
+        self.didCancelPickingMedia()
     }
     
     //MARK: ImagePicker Delegate
     
     func didFinishPickingMedia(data: UIImage?) {
-        if data != nil {
-            
+        if let image = data {
+            self.selectedImage = image
+            self.buttonUpload.setTitle(NSLocalizedString("Uploaded", comment: ""), for: .normal)
+        } else {
+            self.buttonUpload.setTitle(NSLocalizedString("Upload", comment: ""), for: .normal)
         }
     }
     
     func didCancelPickingMedia() {
-        
+        self.selectedImage = nil
+        self.buttonUpload.setTitle(NSLocalizedString("Upload", comment: ""), for: .normal)
     }
     
     // MARK: PSTextFieldDelegate
     
     func textFieldShouldReturn(_ textField: PSTextField) -> Bool {
+        if textField == textFieldFullName {
+            textFieldPhoneNumber.becomeFirstResponder()
+        } else if textField == textFieldPhoneNumber {
+            textFieldComplaintType.becomeFirstResponder()
+        } else if textField == textFieldComplaintType {
+            textViewDescription.becomeFirstResponder()
+        }
+        
         textField.resignFirstResponder()
         
         return true
     }
     
     func textFieldDidEndEditing(_ textField: PSTextField){
-        isDataFoundValid = textField.validateInput()
+//        isDataFoundValid = textField.validateInput()
     }
     
-    private func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    internal func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
@@ -159,6 +256,19 @@ class ComplaintViewController: BaseViewController, UIPickerViewDelegate, ImagePi
             
             isTextViewEmpty = true
         }
+    }
+    
+    var errorMessage: String!
+    func isValidData() -> Bool {
+        if textFieldFullName.text == nil || textFieldFullName.text == "" ||
+        textFieldPhoneNumber.text == nil || textFieldPhoneNumber.text == "" ||
+        textFieldComplaintType.text == nil || textFieldComplaintType.text == "" ||
+            textViewDescription.text == nil || textViewDescription.text == "" {
+            errorMessage = NSLocalizedString("Data Required", comment: "")
+            return false
+        }
+        
+        return true
     }
     
     /*

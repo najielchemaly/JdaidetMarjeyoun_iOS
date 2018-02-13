@@ -12,31 +12,29 @@ import Foundation
  
 /* For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
-public class Users {
-	public var id : Int?
-	public var fullName : String?
-	public var password : String?
-	public var phoneNumber : String?
-	public var email : String?
-	public var address : String?
-	public var blockNumber : String?
+public class Fees {
+	public var id : String?
+	public var blocknumber : String?
+	public var amount : String?
+    public var year: String?
+    public var section: String?
 
 /**
     Returns an array of models based on given dictionary.
     
     Sample usage:
-    let users_list = Users.modelsFromDictionaryArray(someDictionaryArrayFromJSON)
+    let Fees_list = Fees.modelsFromDictionaryArray(someDictionaryArrayFromJSON)
 
     - parameter array:  NSArray from JSON dictionary.
 
-    - returns: Array of Users Instances.
+    - returns: Array of Fees Instances.
 */
-    public class func modelsFromDictionaryArray(array:NSArray) -> [Users]
+    public class func modelsFromDictionaryArray(array:NSArray) -> [Fees]
     {
-        var models:[Users] = []
+        var models:[Fees] = []
         for item in array
         {
-            models.append(Users(dictionary: item as! NSDictionary)!)
+            models.append(Fees(dictionary: item as! NSDictionary)!)
         }
         return models
     }
@@ -45,25 +43,19 @@ public class Users {
     Constructs the object based on the given dictionary.
     
     Sample usage:
-    let users = Users(someDictionaryFromJSON)
+    let Fees = Fees(someDictionaryFromJSON)
 
     - parameter dictionary:  NSDictionary from JSON.
 
-    - returns: Users Instance.
+    - returns: Fees Instance.
 */
-    required public init() {
-        
-    }
-    
 	required public init?(dictionary: NSDictionary) {
 
-		id = dictionary["id"] as? Int
-		fullName = dictionary["fullName"] as? String
-		password = dictionary["password"] as? String
-		phoneNumber = dictionary["phoneNumber"] as? String
-		email = dictionary["email"] as? String
-		address = dictionary["address"] as? String
-		blockNumber = dictionary["blockNumber"] as? String
+		id = dictionary["id"] as? String
+		blocknumber = dictionary["blocknumber"] as? String
+		amount = dictionary["amount"] as? String
+        year = dictionary["year"] as? String
+        section = dictionary["section"] as? String
 	}
 
 		
@@ -77,12 +69,10 @@ public class Users {
 		let dictionary = NSMutableDictionary()
 
 		dictionary.setValue(self.id, forKey: "id")
-		dictionary.setValue(self.fullName, forKey: "fullName")
-		dictionary.setValue(self.password, forKey: "password")
-		dictionary.setValue(self.phoneNumber, forKey: "phoneNumber")
-		dictionary.setValue(self.email, forKey: "email")
-		dictionary.setValue(self.address, forKey: "address")
-		dictionary.setValue(self.blockNumber, forKey: "blockNumber")
+		dictionary.setValue(self.blocknumber, forKey: "blocknumber")
+		dictionary.setValue(self.amount, forKey: "amount")
+        dictionary.setValue(self.year, forKey: "year")
+        dictionary.setValue(self.section, forKey: "section")
 
 		return dictionary
 	}
