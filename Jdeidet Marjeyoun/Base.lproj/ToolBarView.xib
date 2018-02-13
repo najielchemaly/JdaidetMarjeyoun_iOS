@@ -22,6 +22,9 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sgo-0o-MeM">
                     <rect key="frame" x="0.0" y="0.0" width="50" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="WoA-GD-9SN"/>
+                    </constraints>
                     <inset key="imageEdgeInsets" minX="12" minY="14" maxX="12" maxY="14"/>
                     <state key="normal" image="menu"/>
                     <connections>
@@ -29,7 +32,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yiC-p9-1yZ">
-                    <rect key="frame" x="58" y="0.0" width="259" height="45"/>
+                    <rect key="frame" x="187.5" y="0.0" width="0.0" height="45"/>
                     <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -37,7 +40,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRU-jb-USY">
                     <rect key="frame" x="325" y="0.0" width="50" height="45"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="9QY-l2-JYe"/>
+                        <constraint firstAttribute="width" constant="50" id="cQT-hR-qeo"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="12" minY="10" maxX="24" maxY="10"/>
                     <state key="normal" image="backarrow_right"/>
@@ -48,17 +51,15 @@
             </subviews>
             <color key="backgroundColor" red="0.33725490200000002" green="0.46274509800000002" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="yiC-p9-1yZ" firstAttribute="leading" secondItem="nRU-jb-USY" secondAttribute="trailing" constant="-317" id="2W9-FO-Qr8"/>
-                <constraint firstItem="Sgo-0o-MeM" firstAttribute="leading" secondItem="yiC-p9-1yZ" secondAttribute="trailing" constant="-317" id="3kq-f0-Ohl"/>
-                <constraint firstAttribute="bottom" secondItem="nRU-jb-USY" secondAttribute="bottom" id="Bx6-9p-RJV"/>
-                <constraint firstItem="nRU-jb-USY" firstAttribute="top" secondItem="yiC-p9-1yZ" secondAttribute="top" id="Em7-aW-jNM"/>
-                <constraint firstItem="yiC-p9-1yZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Sm4-rE-wFP"/>
-                <constraint firstItem="yiC-p9-1yZ" firstAttribute="bottom" secondItem="Sgo-0o-MeM" secondAttribute="bottom" id="XH2-43-3Zb"/>
-                <constraint firstItem="nRU-jb-USY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="325" id="ZMj-2e-gsE"/>
-                <constraint firstAttribute="trailing" secondItem="Sgo-0o-MeM" secondAttribute="trailing" constant="325" id="bjs-x9-iSm"/>
-                <constraint firstItem="nRU-jb-USY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cs5-SO-2qr"/>
-                <constraint firstItem="nRU-jb-USY" firstAttribute="bottom" secondItem="yiC-p9-1yZ" secondAttribute="bottom" id="kTE-AE-dGz"/>
-                <constraint firstItem="yiC-p9-1yZ" firstAttribute="top" secondItem="Sgo-0o-MeM" secondAttribute="top" id="nXd-vt-Xh7"/>
+                <constraint firstAttribute="bottom" secondItem="yiC-p9-1yZ" secondAttribute="bottom" id="2S2-Qu-bW5"/>
+                <constraint firstItem="Sgo-0o-MeM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4bG-3N-f7i"/>
+                <constraint firstAttribute="bottom" secondItem="Sgo-0o-MeM" secondAttribute="bottom" id="4ba-oR-PdL"/>
+                <constraint firstItem="Sgo-0o-MeM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Bvk-pL-rFB"/>
+                <constraint firstAttribute="trailing" secondItem="nRU-jb-USY" secondAttribute="trailing" id="abs-Pc-f4p"/>
+                <constraint firstItem="nRU-jb-USY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mZF-DN-5tq"/>
+                <constraint firstItem="yiC-p9-1yZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rJB-Xx-kei"/>
+                <constraint firstItem="yiC-p9-1yZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="s6V-YH-3IL"/>
+                <constraint firstAttribute="bottom" secondItem="nRU-jb-USY" secondAttribute="bottom" id="xZl-BR-niB"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

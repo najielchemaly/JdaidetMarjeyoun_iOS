@@ -51,19 +51,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THE MUNICIPALITY OF" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzV-dq-inW">
-                                <rect key="frame" x="67" y="351.5" width="240" height="20"/>
+                                <rect key="frame" x="67" y="351.5" width="240" height="25"/>
                                 <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="17"/>
                                 <color key="textColor" red="0.40784313725490196" green="0.40784313725490196" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JDEIDET MARJEYOUN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhy-9z-VWl">
-                                <rect key="frame" x="67" y="373.5" width="240" height="20"/>
+                                <rect key="frame" x="67" y="378.5" width="240" height="25"/>
                                 <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="بلدية جديدة مرجعيون" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8c-7I-2sy">
-                                <rect key="frame" x="127" y="393.5" width="122.5" height="20"/>
+                                <rect key="frame" x="120" y="398.5" width="136" height="25"/>
                                 <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -173,13 +173,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="تسجيل دخول" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcX-8U-enU">
-                                <rect key="frame" x="16" y="221" width="343" height="20"/>
+                                <rect key="frame" x="16" y="221" width="343" height="25"/>
                                 <fontDescription key="fontDescription" name="DINNextLTArabic-Bold" family="DIN Next LT Arabic" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-JA-vIi">
-                                <rect key="frame" x="16" y="261" width="343" height="40"/>
+                                <rect key="frame" x="16" y="266" width="343" height="40"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="WIQ-7q-mCm">
                                         <rect key="frame" x="315" y="10" width="20" height="20"/>
@@ -211,7 +211,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eS6-dv-FDw">
-                                <rect key="frame" x="16" y="309" width="343" height="40"/>
+                                <rect key="frame" x="16" y="314" width="343" height="40"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="Q9N-G9-haH">
                                         <rect key="frame" x="315" y="10" width="20" height="20"/>
@@ -243,7 +243,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8y-Zk-YF5">
-                                <rect key="frame" x="16" y="357" width="343" height="40"/>
+                                <rect key="frame" x="16" y="362" width="343" height="40"/>
                                 <color key="backgroundColor" red="0.33725490200000002" green="0.46274509800000002" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="7YZ-Jf-ZCU"/>
@@ -258,7 +258,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aA3-sM-6LV">
-                                <rect key="frame" x="16" y="405" width="343" height="40"/>
+                                <rect key="frame" x="16" y="410" width="343" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="wVd-qN-vYp"/>
@@ -273,7 +273,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUf-gs-MNC">
-                                <rect key="frame" x="130.5" y="624" width="114" height="35"/>
+                                <rect key="frame" x="127" y="624" width="121" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Dkd-0j-dj9"/>
                                 </constraints>
@@ -286,7 +286,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0t-az-3tV">
-                                <rect key="frame" x="130.5" y="658" width="114" height="1"/>
+                                <rect key="frame" x="127" y="658" width="121" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="dw3-cn-aju"/>
@@ -915,7 +915,7 @@
                                         <rect key="frame" x="0.0" y="-14" width="375" height="50"/>
                                         <subviews>
                                             <button opaque="NO" tag="-999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G00-3z-x3A">
-                                                <rect key="frame" x="8" y="8" width="84" height="34"/>
+                                                <rect key="frame" x="8" y="8" width="101" height="34"/>
                                                 <fontDescription key="fontDescription" name="DINNextLTArabic-Light" family="DIN Next LT Arabic" pointSize="16"/>
                                                 <state key="normal" title="تعديل المعلومات">
                                                     <color key="titleColor" red="0.33725490200000002" green="0.46274509800000002" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -925,14 +925,14 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit" translatesAutoresizingMaskIntoConstraints="NO" id="8ZG-1Z-H75">
-                                                <rect key="frame" x="89" y="15" width="18" height="21"/>
+                                                <rect key="frame" x="106" y="15" width="18" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="18" id="5yd-Ho-fnx"/>
                                                     <constraint firstAttribute="height" constant="21" id="Nd8-dj-UAV"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="جورج حسان عبلا" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSP-Fb-y2d">
-                                                <rect key="frame" x="263.5" y="14.5" width="103.5" height="20"/>
+                                                <rect key="frame" x="260" y="12" width="107" height="25"/>
                                                 <fontDescription key="fontDescription" name="DINNextLTArabic-Bold" family="DIN Next LT Arabic" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1348,7 +1348,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ليست لديك إشعارات حتى الآن." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALX-wO-BQ3">
-                                <rect key="frame" x="16" y="363" width="343" height="19"/>
+                                <rect key="frame" x="16" y="363" width="343" height="24"/>
                                 <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1475,7 +1475,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الرجاء اختيار فئة معينة (مصارف, مدارس, ارقام خاصة...) او البحث عبر إدخال الإسم المطلوب " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kg-JV-OHu">
-                                <rect key="frame" x="16" y="374" width="343" height="37.5"/>
+                                <rect key="frame" x="16" y="374" width="343" height="47.5"/>
                                 <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1710,13 +1710,13 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="تسجيل حساب جديد" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOV-5R-SDF">
-                                        <rect key="frame" x="16" y="125.5" width="343" height="20"/>
+                                        <rect key="frame" x="16" y="115.5" width="343" height="25"/>
                                         <fontDescription key="fontDescription" name="DINNextLTArabic-Bold" family="DIN Next LT Arabic" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="يرجى ملء النموذج أدناه لاستخدام التطبيق" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mk3-dS-pHN">
-                                        <rect key="frame" x="16" y="153.5" width="343" height="19"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="يرجى ملء النموذج أدناه لاستخدام التطبيق" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mk3-dS-pHN">
+                                        <rect key="frame" x="16" y="148.5" width="343" height="24"/>
                                         <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1877,7 +1877,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gkt-5N-w0B">
-                                        <rect key="frame" x="173" y="609" width="30" height="30"/>
+                                        <rect key="frame" x="173" y="604" width="30" height="35"/>
                                         <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="15"/>
                                         <state key="normal" title="إلغاء">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -2005,7 +2005,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" tag="999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ليست لديك إشعارات حتى الآن." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93I-Nt-N41">
-                                <rect key="frame" x="16" y="376" width="343" height="19"/>
+                                <rect key="frame" x="16" y="376" width="343" height="24"/>
                                 <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2223,7 +2223,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الرجاء اختيار فئة معينة (مطاعم, كنائس...) او البحث عبر إدخال الإسم المطلوب " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oy-FY-S79">
-                                <rect key="frame" x="16" y="339" width="343" height="37.5"/>
+                                <rect key="frame" x="16" y="339" width="343" height="47.5"/>
                                 <fontDescription key="fontDescription" name="DINNextLTArabic-Regular" family="DIN Next LT Arabic" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
