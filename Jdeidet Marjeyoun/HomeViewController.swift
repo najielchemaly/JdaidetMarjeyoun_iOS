@@ -179,6 +179,9 @@ class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerView
                     if let is_review = json["is_review"] as? Bool {
                         isReview = is_review
                     }
+                    if let is_comingsoon = json["is_comingsoon"] as? Bool {
+                        isComingSoon = is_comingsoon
+                    }
                     if let mediaUrl = json["mediaUrl"] as? String {
                         Services.setMediaUrl(url: mediaUrl)
                     }
@@ -191,7 +194,7 @@ class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerView
                     }
                     if let jsonArray = json["PlaceCategories"] as? [NSDictionary] {
                         DatabaseObjects.placesCategories = [Category]()
-                        DatabaseObjects.placesCategories.append(Category.init(title: "All", type: nil))
+                        DatabaseObjects.placesCategories.append(Category.init(name: NSLocalizedString("all", comment: ""), type: nil))
                         for json in jsonArray {
                             let placeCategory = Category.init(dictionary: json)
                             DatabaseObjects.placesCategories.append(placeCategory!)
@@ -199,7 +202,7 @@ class HomeViewController: BaseViewController, FSPagerViewDataSource, FSPagerView
                     }
                     if let jsonArray = json["DirectoryCategories"] as? [NSDictionary] {
                         DatabaseObjects.directoryCategories = [Category]()
-                        DatabaseObjects.directoryCategories.append(Category.init(title: "All", type: nil))
+                        DatabaseObjects.directoryCategories.append(Category.init(title: NSLocalizedString("all", comment: ""), type: nil))
                         for json in jsonArray {
                             let directoryCategory = Category.init(dictionary: json)
                             DatabaseObjects.directoryCategories.append(directoryCategory!)

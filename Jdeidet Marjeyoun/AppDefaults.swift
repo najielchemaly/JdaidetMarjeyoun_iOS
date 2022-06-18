@@ -10,6 +10,7 @@ import UIKit
 var currentVC: UIViewController!
 var isUserLoggedIn: Bool = false
 var isReview: Bool = false
+var isComingSoon: Bool = false
 
 let GMS_APIKEY = "AIzaSyD11O_Yqj_IIFQC6Rq-55amKes1iGV4Doo"
 let APPLE_LANGUAGE_KEY = "AppleLanguages"
@@ -24,6 +25,16 @@ var appDelegate: AppDelegate {
         return AppDelegate()
     }
 }
+
+enum Storyboards : String {
+    case Main
+    
+    var instance : UIStoryboard {
+        return UIStoryboard(name: self.rawValue, bundle: Bundle.main)
+    }
+}
+
+let mainStoryboard = Storyboards.Main.instance
 
 struct Colors {
     
@@ -90,6 +101,7 @@ struct StoryboardIds {
     static let ProfileViewController: String = "ProfileViewController"
     static let EditProfileViewController: String = "EditProfileViewController"
     static let LoginViewController: String = "LoginViewController"
+    static let ForgotPasswordViewController: String = "ForgotPasswordViewController"
     
 }
 

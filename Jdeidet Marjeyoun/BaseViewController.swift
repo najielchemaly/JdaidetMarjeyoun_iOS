@@ -32,6 +32,10 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.setupToolBarView()
         }
         
+        if hasComingSoon() {
+            self.setupComingSoonView()
+        }
+        
         self.imagePickerController.delegate = self
         self.imagePickerController.allowsEditing = true
     }
@@ -91,10 +95,30 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func setupToolBarView() {
         let view = Bundle.main.loadNibNamed("ToolBarView", owner: self.view, options: nil)
         if let toolBarView = view?.first as? ToolBarView {
+            var toolBarY = 20, toolBarHeight = toolBarView.frame.height
+            if UIDevice.isIphoneX {
+                toolBarY = 0
+                toolBarHeight += 40
+                toolBarView.labelTitleCenterConstraint.constant = 8
+                toolBarView.buttonMenuCenterConstraint.constant = 8
+                toolBarView.buttonBackCenterConstraint.constant = 8
+            }
+            
             self.toolBarView = toolBarView
             self.toolBarView.frame.size.width = self.view.frame.size.width
-            self.toolBarView.frame.origin = CGPoint(x: 0, y: 20)
+            self.toolBarView.frame.size.height = toolBarHeight
+            self.toolBarView.frame.origin = CGPoint(x: 0, y: toolBarY)
             self.view.addSubview(self.toolBarView)
+        }
+    }
+    
+    func setupComingSoonView() {
+        let view = Bundle.main.loadNibNamed("ComingSoonView", owner: self.view, options: nil)
+        if let comingSoonView = view?.first as? ComingSoonView {
+            comingSoonView.frame.origin.y = 65
+            comingSoonView.frame.size.height -= 65
+            comingSoonView.labelTitle.text = NSLocalizedString("Coming Soon", comment: "")
+//            self.view.addSubview(comingSoonView)
         }
     }
     
@@ -243,7 +267,7 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-    func hidePopupView() {
+    @objc func hidePopupView() {
         if mainView != nil {
             if let popupView = mainView.subviews.last {
                 UIView.animate(withDuration: 0.3, animations: {
@@ -263,7 +287,7 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-    func buttonDoneTapped() {
+    @objc func buttonDoneTapped() {
         // Send data to server
         if let signupVC = currentVC as? SingupViewController {
             self.showWaitOverlay(color: Colors.appBlue)
@@ -308,6 +332,15 @@ class BaseViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func hasToolBar() -> Bool {
      
         if self is NewsViewController || self is NewsDetailsViewController || self is NotificationsViewController || self is ComplaintViewController || self is ContactsViewController || self is PlacesViewController || self is PlacesDetailsViewController || self is MapViewController || self is FeesViewController || self is AboutViewController || self is ProfileViewController || self is EditProfileViewController {
+            return true
+        }
+        
+        return false
+    }
+    
+    func hasComingSoon() -> Bool {
+        
+        if isComingSoon && (self is FeesViewController || self is ContactsViewController) {
             return true
         }
         

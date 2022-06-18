@@ -78,7 +78,7 @@ class NotificationsViewController: BaseViewController {
         self.refreshControl.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
     }
     
-    func handleRefresh() {
+    @objc func handleRefresh() {
         switch newsType {
         case NewsType.Notifications.identifier:
             self.getNotificationsData(isRefreshing: true)
@@ -93,20 +93,15 @@ class NotificationsViewController: BaseViewController {
         if !isRefreshing {
             self.showWaitOverlay(color: Colors.appBlue)
         }
+        DatabaseObjects.notifications = [Notifications]()
         DispatchQueue.global(qos: .background).async {
             let response = Services.init().getNotifications()
             if response?.status == ResponseStatus.SUCCESS.rawValue {
                 if let json = response?.json?.first {
                     if let jsonArray = json["notifications"] as? [NSDictionary] {
-                        DatabaseObjects.notifications = [Notifications]()
                         for json in jsonArray {
                             let notification = Notifications.init(dictionary: json)
                             DatabaseObjects.notifications.append(notification!)
-                        }
-                        
-                        DispatchQueue.main.async {
-                            self.tableView.notifications = DatabaseObjects.notifications
-                            self.tableView.reloadData()
                         }
                     }
                 }
@@ -120,6 +115,9 @@ class NotificationsViewController: BaseViewController {
                 self.removeAllOverlays()
                 self.refreshControl.endRefreshing()
                 
+                self.tableView.notifications = DatabaseObjects.notifications
+                self.tableView.reloadData()
+                
                 if DatabaseObjects.notifications.count == 0 {
                     self.view.sendSubview(toBack: self.tableView)
                 } else {
@@ -127,32 +125,18 @@ class NotificationsViewController: BaseViewController {
                 }
             }
         }
-        
-//        // TODO DUMMY DATA
-//        DatabaseObjects.notifications = [Notifications]()
-//        for i in 0...5 {
-//            let notification = Notifications()
-//            notification.id = i+1
-//            notification.description = "This is a long description \n This is a long description \n This is a long description for Notification \(i+1)"
-//
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "yyyy-MM-dd"
-//            notification.date = formatter.string(from: Date())
-//
-//            DatabaseObjects.notifications.append(notification)
-//        }
     }
     
     func getSocialsData(isRefreshing: Bool = false) {
         if !isRefreshing {
             self.showWaitOverlay(color: Colors.appBlue)
         }
+        DatabaseObjects.socials = [Notifications]()
         DispatchQueue.global(qos: .background).async {
             let response = Services.init().getSocialNews()
             if response?.status == ResponseStatus.SUCCESS.rawValue {
                 if let json = response?.json?.first {
                     if let jsonArray = json["socials"] as? [NSDictionary] {
-                        DatabaseObjects.socials = [Notifications]()
                         for json in jsonArray {
                             let social = Notifications.init(dictionary: json)
                             DatabaseObjects.socials.append(social!)

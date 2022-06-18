@@ -48,6 +48,11 @@ public class Category {
 
     - returns: Category Instance.
 */
+    public init(name: String?, type: String?) {
+        self.name = name
+        self.type = type
+    }
+    
     public init(title: String?, type: String?) {
         self.title = title
         self.type = type

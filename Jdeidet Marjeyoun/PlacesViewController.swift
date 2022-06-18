@@ -62,7 +62,7 @@ class PlacesViewController: BaseViewController, UITableViewDelegate, UITableView
         self.textFieldCategory.inputAccessoryView = toolbar
     }
 
-    func doneButtonTapped() {
+    @objc func doneButtonTapped() {
         if DatabaseObjects.placesCategories.count > 0 {
             let row = self.pickerView.selectedRow(inComponent: 0)
             let category = DatabaseObjects.placesCategories[row]
@@ -73,12 +73,12 @@ class PlacesViewController: BaseViewController, UITableViewDelegate, UITableView
     }
     
     func getPlacesToVisit() {
+        DatabaseObjects.places = [Places]()
         DispatchQueue.global(qos: .background).async {
             let response = Services.init().getNews(type: NewsType.PlacesToVisit.identifier)
             if response?.status == ResponseStatus.SUCCESS.rawValue {
                 if let json = response?.json?.first {
                     if let jsonArray = json["news"] as? [NSDictionary] {
-                        DatabaseObjects.places = [Places]()
                         for json in jsonArray {
                             let place = Places.init(dictionary: json)
                             DatabaseObjects.places.append(place!)
@@ -159,7 +159,7 @@ class PlacesViewController: BaseViewController, UITableViewDelegate, UITableView
         self.textFieldCategory.text = category.name
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         self.filterData()
     }
     
@@ -174,9 +174,9 @@ class PlacesViewController: BaseViewController, UITableViewDelegate, UITableView
                 self.filteredPlaces = self.filteredPlaces.filter { ($0.title?.lowercased().contains(title.lowercased()))! }
             }
         }
-        if let category = textFieldCategory.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            if !category.isEmpty && category.lowercased() != "all" {
-                self.filteredPlaces = self.filteredPlaces.filter { ($0.category?.lowercased().contains(category.lowercased()))! }
+        if let selectedCategory = textFieldCategory.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            if !selectedCategory.isEmpty && selectedCategory.lowercased() != NSLocalizedString("all", comment: "") {
+                self.filteredPlaces = self.filteredPlaces.filter { ($0.category?.lowercased().contains(selectedCategory.lowercased()))! }
             }
         }
         

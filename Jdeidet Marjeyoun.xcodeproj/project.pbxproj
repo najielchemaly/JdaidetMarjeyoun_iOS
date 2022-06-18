@@ -27,7 +27,10 @@
 		42342E941FC2C9280067E550 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42342E931FC2C9280067E550 /* LoginViewController.swift */; };
 		4238455E1FE966830045689E /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4238455C1FE966800045689E /* GoogleMaps.framework */; };
 		4238455F1FE966830045689E /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4238455D1FE966830045689E /* GoogleMapsCore.framework */; };
+		424A970E2048112500BE17AC /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A970D2048112500BE17AC /* ForgotPasswordViewController.swift */; };
 		424C57D41FBA5100002B2387 /* Fees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424C57D31FBA50FF002B2387 /* Fees.swift */; };
+		425517F12046FEDF00A28EA9 /* ComingSoonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 425517F02046FEDF00A28EA9 /* ComingSoonView.xib */; };
+		425517F32046FF8200A28EA9 /* ComingSoonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425517F22046FF8200A28EA9 /* ComingSoonView.swift */; };
 		425A39D61F74EF260026056C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A39D51F74EF260026056C /* MapViewController.swift */; };
 		425A39D81F750C690026056C /* FeesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425A39D71F750C690026056C /* FeesViewController.swift */; };
 		425BBA5B1F69184F00C6511B /* PSErrorAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBA571F69184F00C6511B /* PSErrorAlertView.swift */; };
@@ -113,7 +116,10 @@
 		42342E931FC2C9280067E550 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4238455C1FE966800045689E /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		4238455D1FE966830045689E /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
+		424A970D2048112500BE17AC /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		424C57D31FBA50FF002B2387 /* Fees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fees.swift; sourceTree = "<group>"; };
+		425517F02046FEDF00A28EA9 /* ComingSoonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComingSoonView.xib; sourceTree = "<group>"; };
+		425517F22046FF8200A28EA9 /* ComingSoonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonView.swift; sourceTree = "<group>"; };
 		425A39D51F74EF260026056C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		425A39D71F750C690026056C /* FeesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeesViewController.swift; sourceTree = "<group>"; };
 		425BBA571F69184F00C6511B /* PSErrorAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSErrorAlertView.swift; sourceTree = "<group>"; };
@@ -315,6 +321,7 @@
 				421D5E891F7E56D00035368C /* ProfileViewController.swift */,
 				42F459471F8225C300FC2FD9 /* EditProfileViewController.swift */,
 				42342E931FC2C9280067E550 /* LoginViewController.swift */,
+				424A970D2048112500BE17AC /* ForgotPasswordViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -360,6 +367,8 @@
 				42CDBE0C1FA65180006FFDB0 /* ChangeLanguagePopup.swift */,
 				429F3DAC1FC6D18B00F8A8B9 /* LinksTableViewCell.swift */,
 				429F3DAD1FC6D18B00F8A8B9 /* LinksTableViewCell.xib */,
+				425517F02046FEDF00A28EA9 /* ComingSoonView.xib */,
+				425517F22046FF8200A28EA9 /* ComingSoonView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -437,7 +446,7 @@
 				TargetAttributes = {
 					427895E81F666632001DBE5C = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 3345UASE8W;
+						DevelopmentTeam = MW99F65DAW;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -455,6 +464,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				ar,
@@ -495,6 +505,7 @@
 				42F459751F82E87F00FC2FD9 /* PopupView.xib in Resources */,
 				427895F41F666632001DBE5C /* Assets.xcassets in Resources */,
 				427895F21F666632001DBE5C /* Main.storyboard in Resources */,
+				425517F12046FEDF00A28EA9 /* ComingSoonView.xib in Resources */,
 				4293DF221FBC7DFB009E9A9D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,12 +519,13 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Jdeidet Marjeyoun/Pods-Jdeidet Marjeyoun-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Jdeidet Marjeyoun/Pods-Jdeidet Marjeyoun-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -522,16 +534,17 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jdeidet Marjeyoun/Pods-Jdeidet Marjeyoun-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jdeidet Marjeyoun/Pods-Jdeidet Marjeyoun-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1011EE7C1A6DD545B7FAF7D8 /* [CP] Check Pods Manifest.lock */ = {
@@ -558,17 +571,18 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Jdeidet Marjeyoun/Pods-Jdeidet Marjeyoun-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Jdeidet Marjeyoun/Pods-Jdeidet Marjeyoun-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jdeidet Marjeyoun/Pods-Jdeidet Marjeyoun-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jdeidet Marjeyoun/Pods-Jdeidet Marjeyoun-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -634,8 +648,10 @@
 				42E2D5FF1FA7C40B00039EBD /* ComplaintType.swift in Sources */,
 				425BBA5C1F69184F00C6511B /* PSErrorPopupView.swift in Sources */,
 				4278960B1F666E1A001DBE5C /* AppDefaults.swift in Sources */,
+				424A970E2048112500BE17AC /* ForgotPasswordViewController.swift in Sources */,
 				42A071051F6D4B1400BA61CF /* News.swift in Sources */,
 				4278E6F21F67BDA8007530AB /* HomeViewController.swift in Sources */,
+				425517F32046FF8200A28EA9 /* ComingSoonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,12 +862,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -891,10 +908,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -905,7 +923,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Jdeidet Marjeyoun/Jdeidet Marjeyoun.entitlements";
-				DEVELOPMENT_TEAM = 3345UASE8W;
+				DEVELOPMENT_TEAM = MW99F65DAW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -913,9 +931,9 @@
 				INFOPLIST_FILE = "Jdeidet Marjeyoun/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.municipality.jdeidetmarjeyoun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.municipality.marjeyoun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -925,7 +943,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Jdeidet Marjeyoun/Jdeidet Marjeyoun.entitlements";
-				DEVELOPMENT_TEAM = 3345UASE8W;
+				DEVELOPMENT_TEAM = MW99F65DAW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -933,9 +951,9 @@
 				INFOPLIST_FILE = "Jdeidet Marjeyoun/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.municipality.jdeidetmarjeyoun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.municipality.marjeyoun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

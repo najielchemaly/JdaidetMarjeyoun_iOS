@@ -18,6 +18,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var buttonRegister: UIButton!
     @IBOutlet weak var buttonSkip: UIButton!
     @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var forgotPassword: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,10 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func forgotPasswordTapped(_ sender: Any) {
+        self.redirectToVC(storyboardId: StoryboardIds.ForgotPasswordViewController, type: .Present)
     }
     
     @IBAction func buttonLoginTapped(_ sender: Any) {
@@ -90,6 +95,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         self.buttonLogin.setTitle(NSLocalizedString("Sign in", comment: ""), for: .normal)
         self.buttonRegister.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
         self.buttonSkip.setTitle(NSLocalizedString("Skip", comment: ""), for: .normal)
+        self.forgotPassword.setTitle(NSLocalizedString("Forgot password", comment: ""), for: .normal)
         
         self.textFieldUsername.delegate = self
         self.textFieldPassword.delegate = self
@@ -127,6 +133,9 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 if let json = response?.json?.first {
                     if let is_review = json["is_review"] as? Bool {
                         isReview = is_review
+                    }
+                    if let is_comingsoon = json["is_comingsoon"] as? Bool {
+                        isComingSoon = is_comingsoon
                     }
                 }
             }

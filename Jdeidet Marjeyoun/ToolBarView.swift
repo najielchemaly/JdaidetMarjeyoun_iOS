@@ -13,6 +13,9 @@ class ToolBarView: UIView {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var buttonBack: UIButton!
     @IBOutlet weak var buttonMenu: UIButton!
+    @IBOutlet weak var labelTitleCenterConstraint: NSLayoutConstraint!
+    @IBOutlet weak var buttonMenuCenterConstraint: NSLayoutConstraint!
+    @IBOutlet weak var buttonBackCenterConstraint: NSLayoutConstraint!
     
     @IBAction func backButtonPressed(_ sender: Any) {
         currentVC.popVC()

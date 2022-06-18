@@ -170,7 +170,7 @@ class PSTextField: UITextField {
 //        rightView = nil
     }
     
-    func displayErrorAlert(){
+    @objc func displayErrorAlert(){
 
         let popupViewTriangleTopTipPoint: CGPoint = CGPoint(x: self.frame.size.width-popUpTriangleHorizontalRightMargin, y: self.frame.size.height)
 

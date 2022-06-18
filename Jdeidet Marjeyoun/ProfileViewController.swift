@@ -116,7 +116,7 @@ class ProfileViewController: BaseViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func logout() {
+    @objc func logout() {
         DispatchQueue.main.async {
             DatabaseObjects.user = User()
             

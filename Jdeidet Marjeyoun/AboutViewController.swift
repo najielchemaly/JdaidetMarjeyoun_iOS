@@ -44,6 +44,7 @@ class AboutViewController: BaseViewController, FSPagerViewDataSource, FSPagerVie
 
     func initializeViews() {
         self.toolBarView.labelTitle.text = NSLocalizedString("About Us", comment: "")
+        self.showWaitOverlay(color: Colors.appBlue)
         
         DispatchQueue.global(qos: .background).async {
             let response = Services.init().getAboutUs()
@@ -66,6 +67,10 @@ class AboutViewController: BaseViewController, FSPagerViewDataSource, FSPagerVie
                         }
                     }
                 }
+            }
+            
+            DispatchQueue.main.async {
+                self.removeAllOverlays()
             }
         }
         

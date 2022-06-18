@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,19 +25,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="KI9-EH-lgT">
-                                <rect key="frame" x="137" y="283" width="100" height="100"/>
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KI9-EH-lgT" secondAttribute="height" multiplier="1:1" id="1BH-lI-0IM"/>
+                                    <constraint firstAttribute="width" constant="100" id="ZNN-uV-NTc"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="S8Q-pX-Kmu" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="-20" id="2wK-mH-kvb"/>
-                            <constraint firstAttribute="trailing" secondItem="S8Q-pX-Kmu" secondAttribute="trailing" id="6KD-iz-8gj"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="KI9-EH-lgT" secondAttribute="bottom" constant="284" id="Cb5-XA-0yo"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="S8Q-pX-Kmu" secondAttribute="bottom" id="Y5p-KE-zVX"/>
-                            <constraint firstItem="S8Q-pX-Kmu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ery-Tu-17u"/>
-                            <constraint firstItem="KI9-EH-lgT" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="263" id="fvY-Ei-Ga6"/>
-                            <constraint firstItem="KI9-EH-lgT" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="121" id="jrb-HS-pWK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="KI9-EH-lgT" secondAttribute="trailing" constant="122" id="n5j-yP-5R3"/>
+                            <constraint firstItem="KI9-EH-lgT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="1M1-JK-VOP"/>
+                            <constraint firstItem="S8Q-pX-Kmu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="34y-Ho-abv"/>
+                            <constraint firstAttribute="trailing" secondItem="S8Q-pX-Kmu" secondAttribute="trailing" id="7Gi-aZ-od0"/>
+                            <constraint firstItem="KI9-EH-lgT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Prm-qo-dZ4"/>
+                            <constraint firstItem="S8Q-pX-Kmu" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="i7H-sK-kF8"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="S8Q-pX-Kmu" secondAttribute="bottom" id="lqY-2f-pC5"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>

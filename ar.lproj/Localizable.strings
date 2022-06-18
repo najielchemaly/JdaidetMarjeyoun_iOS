@@ -155,3 +155,21 @@
 
 /* No comment provided by engineer. */
 "Send" = "إرسال";
+
+/* No comment provided by engineer. */
+"Coming Soon" = "قيد الإنشاء";
+
+/* No comment provided by engineer. */
+"Forgot password" = "هل نسيت كلمة المرور؟";
+
+/* No comment provided by engineer. */
+"Email" = "البريد الإلكتروني";
+
+/* No comment provided by engineer. */
+"Reset password" = "إعادة تعيين كلمة المرور";
+
+/* No comment provided by engineer. */
+"Email Empty" = "لا يمكن أن يكون حقل البريد الإلكتروني فارغا";
+
+/* No comment provided by engineer. */
+"all" = "جميع الفآت";

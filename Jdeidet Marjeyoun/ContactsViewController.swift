@@ -82,7 +82,7 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
         self.textFieldCategory.inputAccessoryView = toolbar
     }
     
-    func doneButtonTapped() {
+    @objc func doneButtonTapped() {
         if DatabaseObjects.directoryCategories.count > 0 {
             let row = self.pickerView.selectedRow(inComponent: 0)
             let category = DatabaseObjects.directoryCategories[row]
@@ -103,13 +103,12 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
     
     func getContactsData() {
         self.showWaitOverlay(color: Colors.appBlue)
+        DatabaseObjects.contacts = [Contact]()
         DispatchQueue.global(qos: .background).async {
             let response = Services.init().getDirectory()
             if response?.status == ResponseStatus.SUCCESS.rawValue {
                 if let json = response?.json?.first {
                     if let jsonArray = json["directories"] as? [NSDictionary] {
-                        DatabaseObjects.contacts = [Contact]()
-                        
                         for json in jsonArray {
                             let contact = Contact.init(dictionary: json)
                             DatabaseObjects.contacts.append(contact!)
@@ -135,12 +134,12 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
     }
     
     func getUsefulLinksData() {
+        DatabaseObjects.usefulLinks = [UsefulLink]()
         DispatchQueue.global(qos: .background).async {
             let response = Services.init().getUsefullLinks()
             if response?.status == ResponseStatus.SUCCESS.rawValue {
                 if let json = response?.json?.first {
                     if let jsonArray = json["links"] as? [NSDictionary] {
-                        DatabaseObjects.usefulLinks = [UsefulLink]()
                         for json in jsonArray {
                             let usefulLink = UsefulLink.init(dictionary: json)
                             DatabaseObjects.usefulLinks.append(usefulLink!)
@@ -269,7 +268,7 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ textField: UITextField) {
         self.filterData()
     }
     
@@ -280,9 +279,9 @@ class ContactsViewController: BaseViewController, UITableViewDelegate, UITableVi
                 self.filteredContacts = self.filteredContacts.filter { ($0.fullName?.lowercased().contains(title.lowercased()))! }
             }
         }
-        if let category = textFieldCategory.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
-            if !category.isEmpty {
-                self.filteredContacts = self.filteredContacts.filter { ($0.category?.lowercased().contains(category.lowercased()))! }
+        if let selectedCategory = textFieldCategory.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            if !selectedCategory.isEmpty && selectedCategory.lowercased() != NSLocalizedString("all", comment: "") {
+                self.filteredContacts = self.filteredContacts.filter { ($0.category?.lowercased().contains(selectedCategory.lowercased()))! }
             }
         }
         

@@ -64,7 +64,7 @@ class FeesViewController: BaseViewController, UIPickerViewDelegate, UITextFieldD
         self.textFieldYear.inputAccessoryView = toolbar
     }
     
-    func doneButtonTapped() {
+    @objc func doneButtonTapped() {
         if self.years.count > 0 {
             let row = self.pickerView.selectedRow(inComponent: 0)
             if let year = self.years[row] as? String {

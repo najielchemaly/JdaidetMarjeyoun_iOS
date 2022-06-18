@@ -118,7 +118,7 @@ extension UITextField {
             return self.placeHolderColor
         }
         set {
-            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSForegroundColorAttributeName: newValue!])
+            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedStringKey.foregroundColor: newValue!])
         }
     }
     
@@ -186,19 +186,21 @@ extension UIViewController {
         }
     }
     
-    func showAlert(title: String = NSLocalizedString("Alert", comment: ""), message: String, style: UIAlertControllerStyle, popVC: Bool = false) {
+    func showAlert(title: String = NSLocalizedString("Alert", comment: ""), message: String, style: UIAlertControllerStyle, popVC: Bool = false, dismissVC: Bool = false) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: { action in
             if popVC {
                 self.popVC()
+            } else if dismissVC {
+                self.dismissVC()
             }
         }))
         
         self.present(alert, animated: true, completion: nil)
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
     
@@ -265,7 +267,7 @@ extension String {
     
     func height(width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSFontAttributeName: font], context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedStringKey.font: font], context: nil)
         return boundingBox.height
     }
     
@@ -303,4 +305,25 @@ extension UIImage {
         return UIImageJPEGRepresentation(self, quality.rawValue)
     }
     
+}
+
+extension UIDevice {
+    static var isIphoneX: Bool {
+        var modelIdentifier = ""
+        if isSimulator {
+            modelIdentifier = ProcessInfo.processInfo.environment["SIMULATOR_MODEL_IDENTIFIER"] ?? ""
+        } else {
+            var size = 0
+            sysctlbyname("hw.machine", nil, &size, nil, 0)
+            var machine = [CChar](repeating: 0, count: size)
+            sysctlbyname("hw.machine", &machine, &size, nil, 0)
+            modelIdentifier = String(cString: machine)
+        }
+        
+        return modelIdentifier == "iPhone10,3" || modelIdentifier == "iPhone10,6"
+    }
+    
+    static var isSimulator: Bool {
+        return TARGET_OS_SIMULATOR != 0
+    }
 }

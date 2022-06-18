@@ -8,7 +8,7 @@ target ‘Jdeidet Marjeyoun’ do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'ObjectMapper'
-pod 'Kingfisher'#, '~> 3.0'
+pod 'Kingfisher'
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
 pod 'FSPagerView'

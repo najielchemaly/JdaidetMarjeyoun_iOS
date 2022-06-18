@@ -27,6 +27,7 @@ struct ServiceName {
     static let login = "/login/"
     static let logout = "/logout/"
     static let getUsefullLinks = "/getUsefullLinks/"
+    static let forgotPassword = "/forgotPassword/"
     
 }
 
@@ -195,6 +196,15 @@ class Services {
         ]
         
         let serviceName = ServiceName.logout
+        return makeHttpRequest(method: .post, serviceName: serviceName, parameters: parameters)
+    }
+    
+    func forgotPassword(email: String) -> ResponseData? {
+        let parameters: Parameters = [
+            "email": email
+        ]
+        
+        let serviceName = ServiceName.forgotPassword
         return makeHttpRequest(method: .post, serviceName: serviceName, parameters: parameters)
     }
     

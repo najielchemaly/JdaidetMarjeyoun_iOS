@@ -63,8 +63,8 @@ class Localization: NSObject {
 
     // Exchange the implementation of two methods for the same Class
     class func exchangeMethods(_ cls: AnyClass, originalSelector: Selector, overrideSelector: Selector) {
-        let origMethod: Method = class_getInstanceMethod(cls, originalSelector);
-        let overrideMethod: Method = class_getInstanceMethod(cls, overrideSelector);
+        let origMethod: Method = class_getInstanceMethod(cls, originalSelector)!;
+        let overrideMethod: Method = class_getInstanceMethod(cls, overrideSelector)!;
         if (class_addMethod(cls, originalSelector, method_getImplementation(overrideMethod), method_getTypeEncoding(overrideMethod))) {
             class_replaceMethod(cls, overrideSelector, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
         } else {
@@ -83,7 +83,7 @@ class Localization: NSObject {
 }
 
 extension Bundle {
-    func specialLocalizedStringForKey(_ key: String, value: String?, table tableName: String?) -> String {
+    @objc func specialLocalizedStringForKey(_ key: String, value: String?, table tableName: String?) -> String {
         if self == Bundle.main {
             let currentLanguage = Localization.currentLanguage()
             var bundle = Bundle();
@@ -101,7 +101,7 @@ extension Bundle {
 }
 
 extension UITextField {
-    public func cstmlayoutSubviews() {
+    @objc public func cstmlayoutSubviews() {
         
         if self.tag <= 0 {
             if Localization.currentLanguage() == "ar" && self.textAlignment != .right {
@@ -116,7 +116,7 @@ extension UITextField {
 }
 
 extension UILabel {
-    public func cstmlayoutSubviews() {
+    @objc public func cstmlayoutSubviews() {
         
         if currentVC == nil || (currentVC.presentedViewController as? UIAlertController) != nil {
             return
@@ -135,7 +135,7 @@ extension UILabel {
 }
 
 extension UIButton {
-    public func cstmlayoutSubviews() {
+    @objc public func cstmlayoutSubviews() {
         
         if self.tag < 0 {
             if Localization.currentLanguage() == "ar" {
@@ -153,7 +153,7 @@ extension UIButton {
 }
 
 extension UITextView {
-    public func cstmlayoutSubviews() {
+    @objc public func cstmlayoutSubviews() {
         
         if self.tag <= 0 {
             if Localization.currentLanguage() == "ar" && self.textAlignment != .right {
@@ -169,7 +169,7 @@ extension UITextView {
 }
 
 extension UIApplication {
-    var cstm_userInterfaceLayoutDirection : UIUserInterfaceLayoutDirection {
+    @objc var cstm_userInterfaceLayoutDirection : UIUserInterfaceLayoutDirection {
         get {
             var direction = UIUserInterfaceLayoutDirection.rightToLeft
             if Localization.currentLanguage() == "ar" {

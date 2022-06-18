@@ -89,7 +89,7 @@ class ComplaintViewController: BaseViewController, UIPickerViewDelegate, ImagePi
         self.textFieldComplaintType.inputAccessoryView = toolbar
     }
     
-    func doneButtonTapped() {
+    @objc func doneButtonTapped() {
         if DatabaseObjects.complaintsTypes.count > 0 {
             let row = self.pickerView.selectedRow(inComponent: 0)
             let complaint = DatabaseObjects.complaintsTypes[row]

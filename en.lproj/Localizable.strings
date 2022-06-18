@@ -155,3 +155,21 @@
 
 /* No comment provided by engineer. */
 "Send" = "Send";
+
+/* No comment provided by engineer. */
+"Coming Soon" = "COMING SOON";
+
+/* No comment provided by engineer. */
+"Forgot password" = "Forgot password?";
+
+/* No comment provided by engineer. */
+"Email" = "Email address";
+
+/* No comment provided by engineer. */
+"Reset password" = "Reset password";
+
+/* No comment provided by engineer. */
+"Email Empty" = "Email field cannot be empty";
+
+/* No comment provided by engineer. */
+"all" = "All categories";

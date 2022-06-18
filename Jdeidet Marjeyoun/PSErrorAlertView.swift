@@ -44,7 +44,7 @@ class PSErrorAlertView: UIView {
     
     func addPopupView(){
         
-        var textSize: CGSize = self.errorMsg.size(attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 13.0)])
+        var textSize: CGSize = self.errorMsg.size(withAttributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 13.0)])
         textSize = CGSize(width: ceil(textSize.width)+10.0, height: ceil(textSize.height));    //Added 5 pixel margin from both ends.
         textSize.width = (textSize.width < 140.0) ? 140.0 : textSize.width;
         textSize.height = (textSize.height < 30.0) ? 30.0 : textSize.height;
@@ -67,7 +67,7 @@ class PSErrorAlertView: UIView {
         
     }
     
-    func dismissErrorAlertView(_ gestureRecog: UITapGestureRecognizer) {
+    @objc func dismissErrorAlertView(_ gestureRecog: UITapGestureRecognizer) {
         
         removeFromSuperview()
     }

@@ -69,6 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
 
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         DatabaseObjects.FIREBASE_TOKEN = fcmToken
+        
+        if let deviceToken = fcmToken.data(using: .utf8) {
+            Messaging.messaging().apnsToken = deviceToken
+        }
     }
     
     func application(_ application: UIApplication,
@@ -76,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         Messaging.messaging().apnsToken = deviceToken
         
         if let fcmToken = Messaging.messaging().fcmToken {
-            DatabaseObjects.FIREBASE_TOKEN = fcmToken
+            DatabaseObjects.FIREBASE_TOKEN = fcmToken            
         }
     }
     
@@ -99,6 +103,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         // Print full message.
         print(userInfo)
+        
+        if let type = userInfo["type"] as? String, type == "latestnews" {
+            if let newsVC = mainStoryboard.instantiateViewController(withIdentifier: StoryboardIds.NewsViewController) as? NewsViewController, let baseVC = currentVC as? BaseViewController {
+                newsVC.newsType = NewsType.LatestNews.identifier
+                baseVC.navigationController?.pushViewController(newsVC, animated: true)
+            }
+        } else if let type = userInfo["type"] as? String, type == "activities" {
+            if let newsVC = mainStoryboard.instantiateViewController(withIdentifier: StoryboardIds.NewsViewController) as? NewsViewController, let baseVC = currentVC as? BaseViewController {
+                newsVC.newsType = NewsType.Activities.identifier
+                baseVC.navigationController?.pushViewController(newsVC, animated: true)
+            }
+        } else if let type = userInfo["type"] as? String, type == "sociallife" {
+            if let notificationsVC = mainStoryboard.instantiateViewController(withIdentifier: StoryboardIds.NotificationsViewController) as? NotificationsViewController, let baseVC = currentVC as? BaseViewController {
+                notificationsVC.newsType = NewsType.Socials.identifier
+                baseVC.navigationController?.pushViewController(notificationsVC, animated: true)
+            }
+        } else {
+            if let notificationsVC = mainStoryboard.instantiateViewController(withIdentifier: StoryboardIds.NotificationsViewController) as? NotificationsViewController, let baseVC = currentVC as? BaseViewController {
+                notificationsVC.newsType = NewsType.Notifications.identifier
+                baseVC.navigationController?.pushViewController(notificationsVC, animated: true)
+            }
+        }
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -117,6 +143,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         // Print full message.
         print(userInfo)
+        
+        if let type = userInfo["type"] as? String, type == "latestnews" {
+            if let newsVC = mainStoryboard.instantiateViewController(withIdentifier: StoryboardIds.NewsViewController) as? NewsViewController, let baseVC = currentVC as? BaseViewController {
+                newsVC.newsType = NewsType.LatestNews.identifier
+                baseVC.navigationController?.pushViewController(newsVC, animated: true)
+            }
+        } else if let type = userInfo["type"] as? String, type == "activities" {
+            if let newsVC = mainStoryboard.instantiateViewController(withIdentifier: StoryboardIds.NewsViewController) as? NewsViewController, let baseVC = currentVC as? BaseViewController {
+                newsVC.newsType = NewsType.Activities.identifier
+                baseVC.navigationController?.pushViewController(newsVC, animated: true)
+            }
+        } else if let type = userInfo["type"] as? String, type == "sociallife" {
+            if let notificationsVC = mainStoryboard.instantiateViewController(withIdentifier: StoryboardIds.NotificationsViewController) as? NotificationsViewController, let baseVC = currentVC as? BaseViewController {
+                notificationsVC.newsType = NewsType.Socials.identifier
+                baseVC.navigationController?.pushViewController(notificationsVC, animated: true)
+            }
+        } else {
+            if let notificationsVC = mainStoryboard.instantiateViewController(withIdentifier: StoryboardIds.NotificationsViewController) as? NotificationsViewController, let baseVC = currentVC as? BaseViewController {
+                notificationsVC.newsType = NewsType.Notifications.identifier
+                baseVC.navigationController?.pushViewController(notificationsVC, animated: true)
+            }
+        }
         
         completionHandler(UIBackgroundFetchResult.newData)
     }

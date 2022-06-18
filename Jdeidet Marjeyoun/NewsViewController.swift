@@ -76,7 +76,7 @@ class NewsViewController: BaseViewController {
         self.refreshControl.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
     }
     
-    func handleRefresh() {
+    @objc func handleRefresh() {
         switch newsType {
         case NewsType.LatestNews.identifier:
             self.getLatestNewsData(isRefreshing: true)
